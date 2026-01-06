@@ -1,3 +1,12 @@
+<?php
+require_once "bd_helper.php";
+
+$footerSlides = select_sql("SELECT * FROM footer_carousel WHERE ativo = 1 ORDER BY ordem");
+
+
+?>
+
+
 <!-- Carrousel Ultimos Eventos e Noticias-->
   <div class="container-fluid p-0 m-0">
     <div class="row m-0 p-0">
@@ -6,141 +15,45 @@
             <section id="noticias">
 
                 <h3 class="titulo-secundario">Últimas Notícias e Eventos</h3><br>
-
-                <div id="carouselNoticias" class="carousel slide"  data-bs-ride="carousel" data-bs-interval="3500">
+                <!-- Carrousel-->
+                <div id="carouselNoticias" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
 
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselNoticias" data-bs-slide-to="0" class="active"></button>
-                        <button type="button" data-bs-target="#carouselNoticias" data-bs-slide-to="1"></button>
-                        <button type="button" data-bs-target="#carouselNoticias" data-bs-slide-to="2"></button>
-                        <button type="button" data-bs-target="#carouselNoticias" data-bs-slide-to="3"></button>
-                        <button type="button" data-bs-target="#carouselNoticias" data-bs-slide-to="4"></button>
-                        <button type="button" data-bs-target="#carouselNoticias" data-bs-slide-to="5"></button>
+                        <?php foreach ($footerSlides as $i => $slide): ?>
+                            <button type="button" data-bs-target="#carouselNoticias" data-bs-slide-to="<?= $i ?>" <?= $i === 0 ? 'class="active"' : '' ?>></button>
+                        <?php endforeach; ?>
                     </div>
 
                     <div class="carousel-inner">
+                        <?php foreach ($footerSlides as $i => $slide): ?>
+                            <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
+                                <div class="row g-0">
 
-                        <div class="carousel-item active">
-                            <div class="row g-0">
-                                
-                                <div class="col-12">
-                                    <img src="imagens/carousel3/1.jpg" class="noticias-img w-100">
+                                    <div class="col-12">
+                                        <img src="<?= $slide['imagem'] ?>" class="noticias-img w-100">
+                                    </div>
+
+                                    <div class="noticias-conteudo">
+                                        <h3 class="noticias-titulo"><?= $slide['titulo'] ?></h3>
+                                        <div class="noticias-data"><?= $slide['data'] ?></div>
+
+                                        <p class="noticias-texto">
+                                            <?= $slide['texto'] ?>
+                                        </p>
+                                    </div>
+
+                                    <a href="#" class="noticias-btn">VER MAIS</a>
+
                                 </div>
-
-                                <div class="noticias-conteudo">
-                                    <h3 class="noticias-titulo">Conferência — Desafios tecnológicos para a próxima década.</h3>
-                                    <div class="noticias-data">07/12/2007</div>
-
-                                    <p class="noticias-texto">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.
-                                    </p>
-                                    
-                                </div>
-                                <a href="#" class="noticias-btn">VER MAIS</a>
                             </div>
-                        </div>
-
-
-                        <div class="carousel-item">
-                            <div class="row g-0">
-                                
-                                <div class="col-12">
-                                    <img src="imagens/carousel3/2.png" class="noticias-img w-100">
-                                </div>
-
-                                <div class="noticias-conteudo">
-                                    <h3 class="noticias-titulo">Conferência — Desafios tecnológicos para a próxima década.</h3>
-                                    <div class="noticias-data">07/12/2007</div>
-
-                                    <p class="noticias-texto">
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.
-                                    </p>                                    
-                                </div>
-                                <a href="#" class="noticias-btn">VER MAIS</a>
-                            </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            <div class="row g-0">
-                                
-                                <div class="col-12">
-                                    <img src="imagens/carousel3/3.png" class="noticias-img w-100">
-                                </div>
-
-                                <div class="noticias-conteudo">
-                                    <h3 class="noticias-titulo">Conferência — Desafios tecnológicos para a próxima década.</h3>
-                                    <div class="noticias-data">07/12/2007</div>
-
-                                    <p class="noticias-texto">
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.
-                                    </p>                                    
-                                </div>
-                                <a href="#" class="noticias-btn">VER MAIS</a>
-                            </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            <div class="row g-0">
-                                
-                                <div class="col-12">
-                                    <img src="imagens/carousel3/4.png" class="noticias-img w-100">
-                                </div>
-
-                                <div class="noticias-conteudo">
-                                    <h3 class="noticias-titulo">Conferência — Desafios tecnológicos para a próxima década.</h3>
-                                    <div class="noticias-data">07/12/2007</div>
-
-                                    <p class="noticias-texto">
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.
-                                    </p>                                    
-                                </div>
-                                <a href="#" class="noticias-btn">VER MAIS</a>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row g-0">
-                                
-                                <div class="col-12">
-                                    <img src="imagens/carousel3/5.png" class="noticias-img w-100">
-                                </div>
-
-                                <div class="noticias-conteudo">
-                                    <h3 class="noticias-titulo">Conferência — Desafios tecnológicos para a próxima década.</h3>
-                                    <div class="noticias-data">07/12/2007</div>
-
-                                    <p class="noticias-texto">
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.
-                                    </p>                                    
-                                </div>
-                                <a href="#" class="noticias-btn">VER MAIS</a>
-                            </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            <div class="row g-0">
-                                
-                                <div class="col-12">
-                                    <img src="imagens/carousel3/6.png" class="noticias-img w-100">
-                                </div>
-
-                                <div class="noticias-conteudo">
-                                    <h3 class="noticias-titulo">Conferência — Desafios tecnológicos para a próxima década.</h3>
-                                    <div class="noticias-data">07/12/2007</div>
-
-                                    <p class="noticias-texto">
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.
-                                    </p>                                    
-                                </div>
-                                <a href="#" class="noticias-btn">VER MAIS</a>
-                            </div>
-                        </div>
-
+                        <?php endforeach; ?>
                     </div>
 
                 </div>
 
-            </section>
 
+            </section>
+            <!-- Navbarfundo-->
             <nav id="navbarfundo" class="navbarfundo navbar navbar-expand-lg">
               <div class="mx-auto navbarfundo-topo">
 
