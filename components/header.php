@@ -1,3 +1,12 @@
+<?php
+require_once "bd_helper.php";
+
+$items = select_sql("SELECT * FROM navbar ORDER BY pai_id, ordem");
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -57,75 +66,50 @@
       <div class="row m-0">
         <div class="col-12 p-0">
 
+        <!-- NavbarTopoMobile-->
           <nav class="navbar navbar-expand-lg navbartopo nav-mobile">
             <div class="container-fluid p-0 m-0">
-              
-            <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarMobile">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
 
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMobile">
+                <span class="navbar-toggler-icon"></span>
+              </button>
 
               <div class="collapse navbar-collapse" id="navbarMobile">
                 <ul class="navbar-nav mx-auto">
+                  <?php foreach($items as $menu): ?>
+                    <?php if($menu['pai_id'] === NULL): ?>
+                      <?php
+                        $hasSub = false;
+                        foreach($items as $sub) {
+                          if($sub['pai_id'] == $menu['id']) { $hasSub = true; break; }
+                        }
+                      ?>
+                      <li class="nav-item <?php echo $hasSub ? 'dropdown' : ''; ?>">
+                        <a class="nav-link <?php echo $hasSub ? '' : ''; ?>"
+                          href="<?php echo $menu['url']; ?>"
+                          <?php echo $hasSub ? 'role="button" data-bs-toggle="dropdown" aria-expanded="false"' : ''; ?>>
+                          <?php echo $menu['titulo']; ?>
+                        </a>
 
-                  <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Empresa
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Áreas de atuação</a></li>
-                      <li><a class="dropdown-item" href="#">Historial</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e tecnologia</a></li>
-                      <li><a class="dropdown-item" href="#">Responsabilidade Social</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Destaques</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Notícias e Eventos</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Soluções
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Telecomunicações</a></li>
-                      <li><a class="dropdown-item" href="#">Televisões e audiovisuais</a></li>
-                      <li><a class="dropdown-item" href="#">Informática e Redes</a></li>
-                      <li><a class="dropdown-item" href="#">Data center e cibersegurança</a></li>
-                      <li><a class="dropdown-item" href="#">Internet of Things</a></li>
-                      <li><a class="dropdown-item" href="#">Assistentes virtuais</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Inovação e Tecnologia
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 1</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 2</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 3</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 4</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 5</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 6</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 7</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Os Nossos Parceiros</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contactos</a>
-                  </li>
+                        <?php if($hasSub): ?>
+                          <ul class="dropdown-menu">
+                            <?php foreach($items as $sub): ?>
+                              <?php if($sub['pai_id'] == $menu['id']): ?>
+                                <li><a class="dropdown-item" href="<?php echo $sub['url']; ?>"><?php echo $sub['titulo']; ?></a></li>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          </ul>
+                        <?php endif; ?>
+                      </li>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
                 </ul>
               </div>
+
             </div>
           </nav>
           
+        <!-- Carrousel do Header-->
           <div id="carousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#carousel1" data-bs-slide-to="0" class="active" aria-current="true"></button>
@@ -151,72 +135,46 @@
 
           </div>
 
+        <!-- NavbarTopoDesktop-->
           <nav class="navbar navbar-expand-lg navbartopo nav-desktop">
             <div class="container">
-              
-            <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNavDropdown">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
 
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+                <span class="navbar-toggler-icon"></span>
+              </button>
 
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mx-auto">
+                  <?php foreach($items as $menu): ?>
+                    <?php if($menu['pai_id'] === NULL): ?>
+                      <?php
+                        $hasSub = false;
+                        foreach($items as $sub) {
+                          if($sub['pai_id'] == $menu['id']) { $hasSub = true; break; }
+                        }
+                      ?>
+                      <li class="nav-item <?php echo $hasSub ? 'dropdown' : ''; ?>">
+                        <a class="nav-link <?php echo $hasSub ? '' : ''; ?>"
+                          href="<?php echo $menu['url']; ?>"
+                          <?php echo $hasSub ? 'role="button" data-bs-toggle="dropdown" aria-expanded="false"' : ''; ?>>
+                          <?php echo $menu['titulo']; ?>
+                        </a>
 
-                  <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Empresa
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Áreas de atuação</a></li>
-                      <li><a class="dropdown-item" href="#">Historial</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e tecnologia</a></li>
-                      <li><a class="dropdown-item" href="#">Responsabilidade Social</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Destaques</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Notícias e Eventos</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Soluções
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Telecomunicações</a></li>
-                      <li><a class="dropdown-item" href="#">Televisões e audiovisuais</a></li>
-                      <li><a class="dropdown-item" href="#">Informática e Redes</a></li>
-                      <li><a class="dropdown-item" href="#">Data center e cibersegurança</a></li>
-                      <li><a class="dropdown-item" href="#">Internet of Things</a></li>
-                      <li><a class="dropdown-item" href="#">Assistentes virtuais</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Inovação e Tecnologia
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 1</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 2</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 3</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 4</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 5</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 6</a></li>
-                      <li><a class="dropdown-item" href="#">Inovação e Tecnologia 7</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Os Nossos Parceiros</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contactos</a>
-                  </li>
+                        <?php if($hasSub): ?>
+                          <ul class="dropdown-menu">
+                            <?php foreach($items as $sub): ?>
+                              <?php if($sub['pai_id'] == $menu['id']): ?>
+                                <li><a class="dropdown-item" href="<?php echo $sub['url']; ?>"><?php echo $sub['titulo']; ?></a></li>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          </ul>
+                        <?php endif; ?>
+                      </li>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
                 </ul>
               </div>
+
             </div>
           </nav>
 
