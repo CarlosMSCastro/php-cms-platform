@@ -2,6 +2,7 @@
 require_once "bd_helper.php";
 
 $footerSlides = select_sql("SELECT * FROM footer_carousel WHERE ativo = 1 ORDER BY ordem");
+$footerNav = select_sql("SELECT * FROM footer_navbar ORDER BY ordem");
 
 
 ?>
@@ -42,7 +43,7 @@ $footerSlides = select_sql("SELECT * FROM footer_carousel WHERE ativo = 1 ORDER 
                                         </p>
                                     </div>
 
-                                    <a href="#" class="noticias-btn">VER MAIS</a>
+                                    <a href="<?= $slide['pagina_url'] ?>" class="noticias-btn">VER MAIS</a>
 
                                 </div>
                             </div>
@@ -60,33 +61,13 @@ $footerSlides = select_sql("SELECT * FROM footer_carousel WHERE ativo = 1 ORDER 
                   <div class="collapse navbar-collapse" id="navbarFundoDropdown">
                       <ul class="navbar-nav navbarfundo-menu">
 
-                          <li class="nav-item navbarfundo-item">
-                              <a class="nav-link navbarfundo-link" href="#">Empresa</a>
-                          </li>
-
-                          <li class="nav-item navbarfundo-item">
-                              <a class="nav-link navbarfundo-link" href="#">Destaques</a>
-                          </li>
-
-                          <li class="nav-item navbarfundo-item">
-                              <a class="nav-link navbarfundo-link" href="#">Notícias e Eventos</a>
-                          </li>
-
-                          <li class="nav-item navbarfundo-item">
-                              <a class="nav-link navbarfundo-link" href="#">Soluções</a>
-                          </li>
-
-                          <li class="nav-item navbarfundo-item">
-                              <a class="nav-link navbarfundo-link" href="#">Inovação e Tecnologia</a>
-                          </li>
-
-                          <li class="nav-item navbarfundo-item">
-                              <a class="nav-link navbarfundo-link" href="#">Os Nossos Parceiros</a>
-                          </li>
-
-                          <li class="nav-item navbarfundo-item">
-                              <a class="nav-link navbarfundo-link" href="#">Contactos</a>
-                          </li>
+                          <?php foreach ($footerNav as $item): ?>
+                              <li class="nav-item navbarfundo-item">
+                                  <a class="nav-link navbarfundo-link" href="<?= $item['url'] ?>">
+                                      <?= $item['titulo'] ?>
+                                  </a>
+                              </li>
+                          <?php endforeach; ?>
 
                       </ul>
                   </div>
