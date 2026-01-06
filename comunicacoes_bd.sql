@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Jan-2026 às 19:46
+-- Tempo de geração: 06-Jan-2026 às 22:25
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -20,6 +20,35 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `comunicacoes_bd`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `carousel2`
+--
+
+CREATE TABLE `carousel2` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(255) DEFAULT NULL,
+  `texto` text DEFAULT NULL,
+  `data` varchar(50) DEFAULT NULL,
+  `imagem` varchar(255) DEFAULT NULL,
+  `pagina_url` varchar(255) DEFAULT NULL,
+  `ordem` int(11) DEFAULT NULL,
+  `ativo` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `carousel2`
+--
+
+INSERT INTO `carousel2` (`id`, `titulo`, `texto`, `data`, `imagem`, `pagina_url`, `ordem`, `ativo`) VALUES
+(1, 'Data Center - Tecnologia e Inovação para 2022', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi id ante volutpat, commodo dolor eu, ornare leo. Integer efficitur, lacus sit amet pellentesque egestas, sapien massa tristique turpis, ac faucibus augue magna et libero. Quisque vel laoreet ipsum. Sed ac eleifend justo, maximus luctus turpis. Duis at neque nec est semper cursus. Quisque quis felis eu mi congue mollis eu at odio.\r\n\r\nVivamus aliquam nisi ut mauris luctus, eget suscipit lorem congue. Morbi ac ex quam. Aenean dapibus nibh vel nisi hendrerit venenatis a vitae nunc. In hac habitasse platea dictumst. Curabitur eleifend sagittis arcu,', '03/07/2009', 'imagens/carousel2/destaque_1.jpg', NULL, 1, 1),
+(2, 'Lorem ipsum - dolor sit amet, consectetur adis', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi id ante volutpat, commodo dolor eu, ornare leo. Integer efficitur, lacus sit amet pellentesque egestas, sapien massa tristique turpis, ac faucibus augue magna et libero. Quisque vel laoreet ipsum. Sed ac eleifend justo, maximus luctus turpis. Duis at neque nec est semper cursus. Quisque quis felis eu mi congue mollis eu at odio.\r\n\r\nVivamus aliquam nisi ut mauris luctus, eget suscipit lorem congue. Morbi ac ex quam. Aenean dapibus nibh vel nisi hendrerit venenatis a vitae nunc. In hac habitasse platea dictumst. Curabitur eleifend sagittis arcu,', '11/02/2015', 'imagens/carousel2/destaque_2.jpg', NULL, 2, 1),
+(3, 'Lorem ipsum - dolor sit amet, consectetur adis', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi id ante volutpat, commodo dolor eu, ornare leo. Integer efficitur, lacus sit amet pellentesque egestas, sapien massa tristique turpis, ac faucibus augue magna et libero. Quisque vel laoreet ipsum. Sed ac eleifend justo, maximus luctus turpis. Duis at neque nec est semper cursus. Quisque quis felis eu mi congue mollis eu at odio.\r\n\r\nVivamus aliquam nisi ut mauris luctus, eget suscipit lorem congue. Morbi ac ex quam. Aenean dapibus nibh vel nisi hendrerit venenatis a vitae nunc. In hac habitasse platea dictumst. Curabitur eleifend sagittis arcu,', '27/08/2012', 'imagens/carousel2/destaque_3.jpg', NULL, 3, 1),
+(4, 'Lorem ipsum - dolor sit amet, consectetur adis', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi id ante volutpat, commodo dolor eu, ornare leo. Integer efficitur, lacus sit amet pellentesque egestas, sapien massa tristique turpis, ac faucibus augue magna et libero. Quisque vel laoreet ipsum. Sed ac eleifend justo, maximus luctus turpis. Duis at neque nec est semper cursus. Quisque quis felis eu mi congue mollis eu at odio.\r\n\r\nVivamus aliquam nisi ut mauris luctus, eget suscipit lorem congue. Morbi ac ex quam. Aenean dapibus nibh vel nisi hendrerit venenatis a vitae nunc. In hac habitasse platea dictumst. Curabitur eleifend sagittis arcu,', '05/03/2011', 'imagens/carousel2/destaque_4.jpg', NULL, 4, 1),
+(5, 'Lorem ipsum - dolor sit amet, consectetur adis', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi id ante volutpat, commodo dolor eu, ornare leo. Integer efficitur, lacus sit amet pellentesque egestas, sapien massa tristique turpis, ac faucibus augue magna et libero. Quisque vel laoreet ipsum. Sed ac eleifend justo, maximus luctus turpis. Duis at neque nec est semper cursus. Quisque quis felis eu mi congue mollis eu at odio.\r\n\r\nVivamus aliquam nisi ut mauris luctus, eget suscipit lorem congue. Morbi ac ex quam. Aenean dapibus nibh vel nisi hendrerit venenatis a vitae nunc. In hac habitasse platea dictumst. Curabitur eleifend sagittis arcu,', '18/09/2013', 'imagens/carousel2/destaque_5.jpg', NULL, 5, 1),
+(6, 'Lorem ipsum - dolor sit amet, consectetur adis', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi id ante volutpat, commodo dolor eu, ornare leo. Integer efficitur, lacus sit amet pellentesque egestas, sapien massa tristique turpis, ac faucibus augue magna et libero. Quisque vel laoreet ipsum. Sed ac eleifend justo, maximus luctus turpis. Duis at neque nec est semper cursus. Quisque quis felis eu mi congue mollis eu at odio.\r\n\r\nVivamus aliquam nisi ut mauris luctus, eget suscipit lorem congue. Morbi ac ex quam. Aenean dapibus nibh vel nisi hendrerit venenatis a vitae nunc. In hac habitasse platea dictumst. Curabitur eleifend sagittis arcu,', '11/11/2008', 'imagens/carousel2/destaque_6.jpg', NULL, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -102,6 +131,26 @@ INSERT INTO `footer_navbar` (`id`, `titulo`, `url`, `ordem`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `home_conteudo`
+--
+
+CREATE TABLE `home_conteudo` (
+  `id` int(11) NOT NULL,
+  `titulo_h1` varchar(255) NOT NULL,
+  `titulo_h2` varchar(255) NOT NULL,
+  `texto` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `home_conteudo`
+--
+
+INSERT INTO `home_conteudo` (`id`, `titulo_h1`, `titulo_h2`, `texto`) VALUES
+(1, 'Bem-vindo à TA Comunicações', 'O seu Parceiro Tecnológico de Excelência', 'A TA Comunicações é uma empresa especializada em fornecer soluções integradas de internet e comunicações,\r\n    que endereça clientes do segmento Corporate. Há mais de 28 anos que trabalha arduamente no sentido de se\r\n    consolidar enquanto parceiro tecnológico, potenciando a presença dos seus clientes no mercado, através de\r\n    soluções personalizadas que alavancam as receitas e reduzem os custos. Com representação das melhores\r\n    marcas e vasta experiência, posiciona-se como um fornecedor global de telecomunicações, comprometido com\r\n    a prestação de um serviço de excelência, por via de uma estratégia assente na formação contínua dos seus\r\n    colaboradores. A TA Comunicações privilegia as relações assentes na confiança e no conhecimento,\r\n    permitindo uma gestão e apoio ao cliente que se diferencia no mercado tecnológico.');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `navbar`
 --
 
@@ -147,6 +196,12 @@ INSERT INTO `navbar` (`id`, `titulo`, `url`, `pai_id`, `ordem`) VALUES
 --
 
 --
+-- Índices para tabela `carousel2`
+--
+ALTER TABLE `carousel2`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `carousel_topo`
 --
 ALTER TABLE `carousel_topo`
@@ -165,6 +220,12 @@ ALTER TABLE `footer_navbar`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `home_conteudo`
+--
+ALTER TABLE `home_conteudo`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `navbar`
 --
 ALTER TABLE `navbar`
@@ -173,6 +234,12 @@ ALTER TABLE `navbar`
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `carousel2`
+--
+ALTER TABLE `carousel2`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `carousel_topo`
@@ -191,6 +258,12 @@ ALTER TABLE `footer_carousel`
 --
 ALTER TABLE `footer_navbar`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de tabela `home_conteudo`
+--
+ALTER TABLE `home_conteudo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `navbar`

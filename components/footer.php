@@ -3,10 +3,86 @@ require_once "bd_helper.php";
 
 $footerSlides = select_sql("SELECT * FROM footer_carousel WHERE ativo = 1 ORDER BY ordem");
 $footerNav = select_sql("SELECT * FROM footer_navbar ORDER BY ordem");
+$carousel2Items = select_sql("SELECT * FROM carousel2 WHERE ativo = 1 ORDER BY ordem");
 
+
+if (!$carousel2Items) {
+    $carousel2Items = [];
+}
 
 ?>
 
+
+  <!-- Carrousel Destaques-->
+  <div class="container-fluid p-0 m-0"> 
+    <div class="row p-0 my-0 mx-3">
+      <div class="col-12 p-0 m-0">
+
+        <section id="destaques">
+          
+          <h3 class="titulo-secundario">Destaques</h3><br>
+
+          <hr class="linha-separadora">
+
+          <div id="carouselDestaques" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+
+            <!-- Indicadores -->
+            <div class="carousel-indicators">
+              <?php foreach($carousel2Items as $index => $item): ?>
+                <button type="button" data-bs-target="#carouselDestaques" data-bs-slide-to="<?= $index ?>" <?= $index === 0 ? 'class="active"' : '' ?>></button>
+              <?php endforeach; ?>
+            </div>
+
+            <!-- Slides -->
+            <div class="carousel-inner">
+              <?php foreach($carousel2Items as $index => $item): ?>
+                <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                  <div class="row g-0">
+                    <!-- Imagem -->
+                    <div class="col-6">
+                      <img src="<?= $item['imagem'] ?>" class="destaques-img w-100">
+                    </div>
+
+                    <!-- Conteúdo -->
+                    <div class="col-6 destaques-conteudo">
+                      <h3 class="destaques-titulo"><?= $item['titulo'] ?></h3>
+                      <div class="destaques-data"><?= $item['data'] ?></div>
+
+                      <!-- Texto em múltiplos parágrafos, como no hardcoded -->
+                      <p class="destaques-texto">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi id ante volutpat, commodo dolor eu, ornare leo. Integer efficitur, lacus sit amet pellentesque egestas, sapien massa tristique turpis, ac faucibus augue magna et libero. Quisque vel laoreet ipsum. Sed ac eleifend justo, maximus luctus turpis. Duis at neque nec est semper cursus. Quisque quis felis eu mi congue mollis eu at odio.
+                      </p>
+                      <br>
+                      <p class="destaques-texto">
+                        Vivamus aliquam nisi ut mauris luctus, eget suscipit lorem congue. Morbi ac ex quam. Aenean dapibus nibh vel nisi hendrerit venenatis a vitae nunc. In hac habitasse platea dictumst. Curabitur eleifend sagittis arcu,
+                      </p>
+                      <br>
+
+                      <!-- Botão VER MAIS sempre visível -->
+                      <a href="<?= !empty($item['pagina_url']) ? $item['pagina_url'] : '#' ?>" class="destaques-btn">VER MAIS</a>
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+            </div>
+
+            <!-- Controles -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestaques" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselDestaques" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </button>
+
+          </div>
+
+        </section>
+
+        <br><br>
+      </div>
+    </div>
+  </div>
 
 <!-- Carrousel Ultimos Eventos e Noticias-->
   <div class="container-fluid p-0 m-0">
@@ -78,6 +154,7 @@ $footerNav = select_sql("SELECT * FROM footer_navbar ORDER BY ordem");
         </div>
     </div>
   </div>
+
 
   <footer>
     <div class="container-fluid p-0">
