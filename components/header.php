@@ -2,7 +2,7 @@
 require_once "bd_helper.php";
 
 $items = select_sql("SELECT * FROM navbar ORDER BY pai_id, ordem");
-
+$slides = select_sql("SELECT * FROM carousel_topo WHERE ativo = 1 ORDER BY ordem");
 
 ?>
 
@@ -111,29 +111,25 @@ $items = select_sql("SELECT * FROM navbar ORDER BY pai_id, ordem");
           
         <!-- Carrousel do Header-->
           <div id="carousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carousel1" data-bs-slide-to="0" class="active" aria-current="true"></button>
-              <button type="button" data-bs-target="#carousel1" data-bs-slide-to="1" ></button>
-              <button type="button" data-bs-target="#carousel1" data-bs-slide-to="2" ></button>
-              <button type="button" data-bs-target="#carousel1" data-bs-slide-to="3" ></button>
-            </div>
+              <div class="carousel-indicators">
+                  <?php foreach ($slides as $i => $slide): ?>
+                      <button type="button"
+                              data-bs-target="#carousel1"
+                              data-bs-slide-to="<?= $i ?>"
+                              <?php if ($i === 0) echo 'class="active" aria-current="true"'; ?>>
+                      </button>
+                  <?php endforeach; ?>
+              </div>
 
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="imagens/carousel1/cabecalho_home.png" class="d-block w-100">
+              <div class="carousel-inner">
+                  <?php foreach ($slides as $i => $slide): ?>
+                      <div class="carousel-item <?php if ($i === 0) echo 'active'; ?>">
+                          <img src="<?= $slide['imagem'] ?>" class="d-block w-100">
+                      </div>
+                  <?php endforeach; ?>
               </div>
-              <div class="carousel-item">
-                <img src="imagens/carousel1/cabecalho_destaque.png" class="d-block w-100">
-              </div>
-              <div class="carousel-item">
-                <img src="imagens/carousel1/cabecalho_contactos.png" class="d-block w-100">
-              </div>
-              <div class="carousel-item">
-                <img src="imagens/carousel1/cabecalho_noticias_e_eventos.png" class="d-block w-100">
-              </div>
-            </div>
-
           </div>
+
 
         <!-- NavbarTopoDesktop-->
           <nav class="navbar navbar-expand-lg navbartopo nav-desktop">

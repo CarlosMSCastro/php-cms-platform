@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Jan-2026 às 06:25
+-- Tempo de geração: 06-Jan-2026 às 13:16
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `comunicacoes_bd`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `carousel_topo`
+--
+
+CREATE TABLE `carousel_topo` (
+  `id` int(11) NOT NULL,
+  `imagem` varchar(255) NOT NULL,
+  `ordem` int(11) NOT NULL DEFAULT 0,
+  `ativo` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `carousel_topo`
+--
+
+INSERT INTO `carousel_topo` (`id`, `imagem`, `ordem`, `ativo`) VALUES
+(1, 'imagens/carousel1/cabecalho_home.png', 1, 1),
+(2, 'imagens/carousel1/cabecalho_destaque.png', 2, 1),
+(3, 'imagens/carousel1/cabecalho_contactos.png', 3, 1),
+(4, 'imagens/carousel1/cabecalho_noticias_e_eventos.png', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -69,6 +92,12 @@ INSERT INTO `navbar` (`id`, `titulo`, `url`, `pai_id`, `ordem`) VALUES
 --
 
 --
+-- Índices para tabela `carousel_topo`
+--
+ALTER TABLE `carousel_topo`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `navbar`
 --
 ALTER TABLE `navbar`
@@ -77,6 +106,12 @@ ALTER TABLE `navbar`
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `carousel_topo`
+--
+ALTER TABLE `carousel_topo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `navbar`
