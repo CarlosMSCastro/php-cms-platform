@@ -1,15 +1,15 @@
 <?php
 require_once "bd_helper.php";
-$tipoPagina = 'destaques';
+$tipoPagina = 'noticias';
 require_once "components/header.php";
-$destaques = select_sql("SELECT * FROM carousel2 ORDER BY id ASC");
+$noticias = select_sql("SELECT * FROM footer_carousel ORDER BY id ASC");
 
 
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $perPage = 6; 
 $offset = ($page - 1) * $perPage;
-$totalItems = count($destaques);
-$pageItems = array_slice($destaques, $offset, $perPage);
+$totalItems = count($noticias);
+$pageItems = array_slice($noticias, $offset, $perPage);
 $totalPages = ceil($totalItems / $perPage);
 
 
@@ -19,7 +19,7 @@ $totalPages = ceil($totalItems / $perPage);
 <div class="container-fluid p-0">
     <div class="row m-0 m-md-5">
         <div class="col-12 p-0">
-          <h2 style="text-align: center; margin-bottom:40px; font-weight: bolder;font-size: 30px;color: #4D4D4D !important;">Destaques</h2>
+          <h2 style="text-align: center; margin-bottom:40px; font-weight: bolder;font-size: 34px;color: #4D4D4D !important;">Notícias e Eventos</h2>
             <div class="row g-0 g-md-5 mx-md-4">
               <!-- Cards -->
           <?php foreach ($pageItems as $d): ?>
@@ -61,9 +61,8 @@ $totalPages = ceil($totalItems / $perPage);
     </div>
 </div>
 
-
 <?php 
-$showCarousel2 = false;
-$showFooterCarousel=true;
+$showCarousel2 = true;
+$showFooterCarousel=false;
 require_once "components/footer.php"
 ?>

@@ -85,76 +85,80 @@ if (!$carousel2Items) {
       </div>
     </div>
   <?php endif; ?>               
-  <!-- Carrousel Ultimos Eventos e Noticias-->
-  <div class="container-fluid p-0 m-0">
-    <div class="row m-0 p-0">
-        <div class="col-12 p-0 m-0">
+  
+  <!-- Carrousel Ultimos Eventos e Noticias-->  
+  <?php if (!empty($showFooterCarousel)): ?>
+    <div class="container-fluid p-0 m-0">
+      <div class="row m-0 p-0">
+          <div class="col-12 p-0 m-0">
 
-            <section id="noticias">
+              <section id="noticias">
 
-                <h3 class="titulo-secundario">Últimas Notícias e Eventos</h3><br>
-                <!-- Carrousel-->
-                <div id="carouselNoticias" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+                  <h3 class="titulo-secundario">Últimas Notícias e Eventos</h3><br>
+                  <!-- Carrousel-->
+                  <div id="carouselNoticias" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
 
-                    <div class="carousel-indicators">
-                        <?php foreach ($footerSlides as $i => $slide): ?>
-                            <button type="button" data-bs-target="#carouselNoticias" data-bs-slide-to="<?= $i ?>" <?= $i === 0 ? 'class="active"' : '' ?>></button>
-                        <?php endforeach; ?>
-                    </div>
+                      <div class="carousel-indicators">
+                          <?php foreach ($footerSlides as $i => $slide): ?>
+                              <button type="button" data-bs-target="#carouselNoticias" data-bs-slide-to="<?= $i ?>" <?= $i === 0 ? 'class="active"' : '' ?>></button>
+                          <?php endforeach; ?>
+                      </div>
 
-                    <div class="carousel-inner">
-                        <?php foreach ($footerSlides as $i => $slide): ?>
-                            <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
-                                <div class="row g-0">
+                      <div class="carousel-inner">
+                          <?php foreach ($footerSlides as $i => $slide): ?>
+                              <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
+                                  <div class="row g-0">
 
-                                    <div class="col-12">
-                                        <img src="<?= $slide['imagem'] ?>" class="noticias-img w-100">
-                                    </div>
+                                      <div class="col-12">
+                                          <img src="<?= $slide['imagem'] ?>" class="noticias-img w-100">
+                                      </div>
 
-                                    <div class="noticias-conteudo">
-                                        <h3 class="noticias-titulo"><?= $slide['titulo'] ?></h3>
-                                        <div class="noticias-data"><?= $slide['data'] ?></div>
+                                      <div class="noticias-conteudo">
+                                          <h3 class="noticias-titulo"><?= $slide['titulo'] ?></h3>
+                                          <div class="noticias-data"><?= $slide['data'] ?></div>
 
-                                        <p class="noticias-texto">
-                                            <?= $slide['texto'] ?>
-                                        </p>
-                                    </div>
+                                          <p class="noticias-texto">
+                                              <?= $slide['texto'] ?>
+                                          </p>
+                                      </div>
 
-                                    <a href="<?= $slide['pagina_url'] ?>" class="noticias-btn">VER MAIS</a>
+                                      <a href="<?= $slide['pagina_url'] ?>" class="noticias-btn">VER MAIS</a>
 
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
+                                  </div>
+                              </div>
+                          <?php endforeach; ?>
+                      </div>
+
+                  </div>
+
+
+              </section>
+              <!-- Navbarfundo-->
+              <nav id="navbarfundo" class="navbarfundo navbar navbar-expand-lg">
+                <div class="mx-auto navbarfundo-topo">
+
+                    <div class="collapse navbar-collapse" id="navbarFundoDropdown">
+                        <ul class="navbar-nav navbarfundo-menu">
+
+                            <?php foreach ($footerNav as $item): ?>
+                                <li class="nav-item navbarfundo-item">
+                                    <a class="nav-link navbarfundo-link" href="<?= $item['url'] ?>">
+                                        <?= $item['titulo'] ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+
+                        </ul>
                     </div>
 
                 </div>
+              </nav>
 
-
-            </section>
-            <!-- Navbarfundo-->
-            <nav id="navbarfundo" class="navbarfundo navbar navbar-expand-lg">
-              <div class="mx-auto navbarfundo-topo">
-
-                  <div class="collapse navbar-collapse" id="navbarFundoDropdown">
-                      <ul class="navbar-nav navbarfundo-menu">
-
-                          <?php foreach ($footerNav as $item): ?>
-                              <li class="nav-item navbarfundo-item">
-                                  <a class="nav-link navbarfundo-link" href="<?= $item['url'] ?>">
-                                      <?= $item['titulo'] ?>
-                                  </a>
-                              </li>
-                          <?php endforeach; ?>
-
-                      </ul>
-                  </div>
-
-              </div>
-            </nav>
-
-        </div>
+          </div>
+      </div>
     </div>
-  </div>
+  <?php endif; ?>
+
 
 
   <footer>

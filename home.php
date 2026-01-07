@@ -21,4 +21,7 @@ $homeContent = select_sql("SELECT * FROM home_conteudo LIMIT 1")[0];
     </div>
   </div>
 
-  <?php require_once "components/footer.php"; ?>
+  <?php
+  $showFooterCarousel=true;
+  require_once "components/footer.php";
+  ?>

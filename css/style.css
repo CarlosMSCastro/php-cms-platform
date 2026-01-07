@@ -558,6 +558,7 @@ footer{
 .card-title{
     font-weight:bolder;
     color: #4D4D4D !important;
+    font-size:22px;
 }
 .pagination-btn {
     font-size: 20px;
@@ -569,6 +570,9 @@ footer{
 .pagination-btn:hover{color: #fff !important;}
 .container_destaque{
     width:80%;
+}
+.card-text{
+    font-size:20px;
 }
 @media (max-width: 1267px) and (min-width: 992px) {
     .navbartopo {max-width:95%;}
