@@ -2,9 +2,16 @@
 require_once "bd_helper.php";
 
 $items = select_sql("SELECT * FROM navbar ORDER BY pai_id, ordem");
-$slides = select_sql("SELECT * FROM carousel_topo WHERE ativo = 1 ORDER BY ordem");
 
+if (!empty($tipoPagina) && $tipoPagina === 'home') {
+  $slides = select_sql("SELECT * FROM carousel_topo WHERE ativo = 1 ORDER BY ordem");
+} elseif (!empty($tipoPagina)) {
+  $slides = select_sql("SELECT imagem FROM headers WHERE tipo_pagina = '$tipoPagina' AND ativo = 1 ORDER BY ordem");
+} else {
+  $slides = [];
+}
 ?>
+
 
 
 <!DOCTYPE html>
@@ -65,7 +72,6 @@ $slides = select_sql("SELECT * FROM carousel_topo WHERE ativo = 1 ORDER BY ordem
       </div>
       <div class="row m-0">
         <div class="col-12 p-0">
-
         <!-- NavbarTopoMobile-->
           <nav class="navbar navbar-expand-lg navbartopo nav-mobile">
             <div class="container-fluid p-0 m-0">
@@ -107,8 +113,7 @@ $slides = select_sql("SELECT * FROM carousel_topo WHERE ativo = 1 ORDER BY ordem
               </div>
 
             </div>
-          </nav>
-          
+          </nav>          
         <!-- Carrousel do Header-->
           <div id="carousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
               <div class="carousel-indicators">
@@ -129,9 +134,6 @@ $slides = select_sql("SELECT * FROM carousel_topo WHERE ativo = 1 ORDER BY ordem
                   <?php endforeach; ?>
               </div>
           </div>
-
-
-
         <!-- NavbarTopoDesktop-->
           <nav class="navbar navbar-expand-lg navbartopo nav-desktop">
             <div class="container">
@@ -174,7 +176,6 @@ $slides = select_sql("SELECT * FROM carousel_topo WHERE ativo = 1 ORDER BY ordem
 
             </div>
           </nav>
-
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <?php 
+$tipoPagina = 'home';
 require_once "components/header.php";
 require_once "bd_helper.php";
-$id = $_GET['id'] ?? 0;
 $homeContent = select_sql("SELECT * FROM home_conteudo LIMIT 1")[0];
 ?>
 

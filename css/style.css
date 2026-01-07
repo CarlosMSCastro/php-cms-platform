@@ -533,6 +533,35 @@ footer{
 #samsung{width: 120px !important;}
 .footer-mobile{display:none !important;}
 #titulo-empresa{text-align: right;}
+.corpo-texto {
+    width: 90%;
+    margin: -50px auto 0 auto;
+    background: #fff;
+    padding: 15px;
+    color: #4D4D4D !important;
+}
+.card-destaque{
+    margin: 0 auto;
+    margin-bottom:40px;
+    color: #4D4D4D !important;
+}
+.card-img-top{
+    height: 280px;       
+    object-fit: cover;    
+    width: 100%;          
+}
+.card-title{
+    font-weight:bolder;
+    color: #4D4D4D !important;
+}
+.pagination-btn {
+    font-size: 20px;
+    padding: 0px 11px;
+    font-weight:bold;
+    color: #4D4D4D !important;
+}
+.pagination-btn.btn-primary {color: #fff !important;}
+.pagination-btn:hover{color: #fff !important;}
 @media (max-width: 1267px) and (min-width: 992px) {
     .navbartopo {max-width:95%;}
     .nav-link {
@@ -965,4 +994,24 @@ footer{
     #footer-logos{gap:20px;}
     #footer-copyright{font-size:16px !important;}
     #titulo-empresa{text-align: center;}
+}
+
+@media (max-width: 767.98px) {
+    .card-destaque {
+        width: 100% !important;  
+        margin: 0 !important;
+        margin-bottom: 20px !important; 
+    }
+    .card-img-top {
+        height: 320px !important;
+        width: 100% !important;
+        border-radius: 0; 
+    }
+    .corpo-texto {
+        width: 90%;
+        margin: -40px auto 0 auto;
+    }
+    .corpo-texto{font-size:19px !important;}
+    .card-title{font-size:22px !important;}
+    .row.g-0.g-md-5 > .col-12.col-md-6:nth-of-type(n+7) {display: none !important;}
 }

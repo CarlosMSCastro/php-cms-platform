@@ -3,11 +3,11 @@ require_once "bd_helper.php";
 
 $footerSlides = select_sql("SELECT * FROM footer_carousel WHERE ativo = 1 ORDER BY ordem");
 $footerNav = select_sql("SELECT * FROM footer_navbar ORDER BY ordem");
+
 $carousel2Items = select_sql("SELECT * FROM carousel2 WHERE ativo = 1 ORDER BY ordem");
 
-
 if (!$carousel2Items) {
-    $carousel2Items = [];
+  $carousel2Items = [];
 }
 
 ?>
@@ -49,7 +49,7 @@ if (!$carousel2Items) {
                         <h3 class="destaques-titulo"><?= $item['titulo'] ?></h3>
                         <div class="destaques-data"><?= $item['data'] ?></div>
 
-                        <!-- Texto em múltiplos parágrafos, como no hardcoded -->
+                        <!-- Texto  -->
                         <p class="destaques-texto">
                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi id ante volutpat, commodo dolor eu, ornare leo. Integer efficitur, lacus sit amet pellentesque egestas, sapien massa tristique turpis, ac faucibus augue magna et libero. Quisque vel laoreet ipsum. Sed ac eleifend justo, maximus luctus turpis. Duis at neque nec est semper cursus. Quisque quis felis eu mi congue mollis eu at odio.
                         </p>
@@ -59,7 +59,7 @@ if (!$carousel2Items) {
                         </p>
                         <br>
 
-                        <!-- Botão VER MAIS sempre visível -->
+                        <!-- VER MAIS  -->
                         <a href="<?= !empty($item['pagina_url']) ? $item['pagina_url'] : '#' ?>" class="destaques-btn">VER MAIS</a>
                       </div>
                     </div>
@@ -67,7 +67,7 @@ if (!$carousel2Items) {
                 <?php endforeach; ?>
               </div>
 
-              <!-- Controles -->
+              <!-- Indicators -->
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestaques" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
               </button>
