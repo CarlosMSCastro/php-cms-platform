@@ -608,7 +608,20 @@ footer{
 .titulocontactos{
     line-height:20px;
     font-weight:bold;
-    color: #313131 !important;
+    color: #3b3b3b !important;
+}
+label.titulocontactos{
+    font-size:28px;
+}
+.form-control{
+    border:1px solid black;
+    border-radius: 0;
+    font-weight: bold;
+    font-size: 26px;
+}
+.form-check-input{
+    border:1px solid #7e7e7e;
+    border-radius: 0px !important;
 }
 .contacto{
     font-weight:bold;
@@ -618,6 +631,26 @@ footer{
 }
 .container-contactos{
     padding-left:140px;
+}
+h5.titulocontactos{
+    color: #7e7e7e !important;
+}
+.recaptcha{
+    width:250px;
+}
+.botaoalto{
+    padding-bottom:12px !important;
+    font-size:23px !important;
+    margin-top: 0px !important;
+    width:120px !important;
+}
+.caixabotaoenviar{
+    margin-top:-61px;
+}
+@media (max-width:1400px) and (min-width :992px){
+    .caixabotaoenviar{
+        margin-top:61px;
+    }
 }
 @media (max-width: 1267px) and (min-width: 992px) {
     .navbartopo {max-width:95%;}
@@ -957,6 +990,13 @@ footer{
         font-size: 24px !important;
         font-weight: bold;
     }
+    .container-contactos{
+        padding-left:80px !important;
+    }
+    .caixabotaoenviar{
+        margin-top:50px !important;
+        margin-bottom:50px !important;
+    }
 }
 @media (max-width: 610px){
     .social-icons {
@@ -1109,7 +1149,12 @@ footer{
         width:100% !important;
         margin-bottom: 40px;
     }
-    .shadownav{
-    margin-top:150px !important;
+    .shadownav{margin-top:150px !important;}
+    .container-contactos{
+        padding-left:0px !important;
+        margin-bottom:70px;
+    }
+    .caixabotaoenviar{
+        margin-top:50px !important;
     }
 }

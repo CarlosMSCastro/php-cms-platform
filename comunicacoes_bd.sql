@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Jan-2026 às 06:48
+-- Tempo de geração: 08-Jan-2026 às 21:40
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -96,15 +96,45 @@ CREATE TABLE `contactos` (
   `fax` varchar(50) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `nif` varchar(50) DEFAULT NULL,
-  `gps` varchar(100) DEFAULT NULL
+  `gps` varchar(100) DEFAULT NULL,
+  `iframe_mapa` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `contactos`
 --
 
-INSERT INTO `contactos` (`id`, `morada`, `telefone`, `fax`, `email`, `nif`, `gps`) VALUES
-(1, 'Rua da Felicidade\r\nEscritório 1\r\n1234-567 Lisboa', '(+351) 212 345 678', '(+351) 218 765 432', 'geral@comunicacoes.pt', '111 222 333', '+11° 22\' 33.44\", -5° 66\' 77.88\"');
+INSERT INTO `contactos` (`id`, `morada`, `telefone`, `fax`, `email`, `nif`, `gps`, `iframe_mapa`) VALUES
+(1, 'Rua da Felicidade\r\nEscritório 1\r\n1234-567 Lisboa', '(+351) 212 345 678', '(+351) 218 765 432', 'geral@comunicacoes.pt', '111 222 333', '+11° 22\' 33.44\", -5° 66\' 77.88\"', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1559.9880050579154!2d-9.335241447003197!3d38.71287539603649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzjCsDQyJzQ2LjkiTiA5wrAyMCcwNS44Ilc!5e0!3m2!1spt-PT!2spt!4v1767904586443!5m2!1spt-PT!2spt\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `contactos_form`
+--
+
+CREATE TABLE `contactos_form` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `telefone` varchar(50) DEFAULT NULL,
+  `assunto` varchar(255) DEFAULT NULL,
+  `mensagem` text DEFAULT NULL,
+  `receber_copia` tinyint(1) DEFAULT 0,
+  `data_envio` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `contactos_form`
+--
+
+INSERT INTO `contactos_form` (`id`, `nome`, `email`, `telefone`, `assunto`, `mensagem`, `receber_copia`, `data_envio`) VALUES
+(1, 'CarlosCastro', 'CARLOSCASTRO96@LIVE.COM.PT', '911074815', 'Primeiro Teste', 'Olá Mundo!', 0, '2026-01-08 18:47:13'),
+(2, 'CarlosCastro', 'CARLOSCASTRO96@LIVE.COM.PT', '911074815', 'Primeiro Teste', 'Olá Mundo!', 0, '2026-01-08 18:51:23'),
+(3, 'João Castro', 'joaocastroteste@mail.com', '911023332', 'Testar esta sht', 'Ola World', 1, '2026-01-08 18:52:20'),
+(4, 'Deolinda Castro', 'deolinda.castro@mail.com', '1233212456', 'Teste2', 'Teste', 1, '2026-01-08 18:54:58'),
+(5, 'Deolinda Castro', 'deolinda.castro@mail.com', '1233212456', 'Teste2', 'Teste', 1, '2026-01-08 18:55:58'),
+(6, 'Cristiano Ronaldo', 'cristiano.ronaldo@mail.com', '999222433', 'Oblha', 'SIIIIIIIIU', 1, '2026-01-08 19:15:35');
 
 -- --------------------------------------------------------
 
@@ -375,6 +405,12 @@ ALTER TABLE `contactos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `contactos_form`
+--
+ALTER TABLE `contactos_form`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `footer_carousel`
 --
 ALTER TABLE `footer_carousel`
@@ -452,6 +488,12 @@ ALTER TABLE `carousel_topo`
 --
 ALTER TABLE `contactos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `contactos_form`
+--
+ALTER TABLE `contactos_form`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `footer_carousel`
