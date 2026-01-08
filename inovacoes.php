@@ -1,0 +1,52 @@
+<?php
+require_once "bd_helper.php";
+$tipoPagina = 'inovações e tecnologia';
+require_once "components/header.php";
+
+$id_navbar = $_GET['id'] ?? 0;
+
+
+$inovacao = select_sql("SELECT titulo_h1, texto, texto_2, imagem FROM paginas_inovacoes WHERE id_navbar = $id_navbar")[0] ?? null;
+
+?>
+
+
+<div class="container-fluid p-5 container_destaque">
+  <div class="row m-0">
+      <div class="col-12 p-0">
+
+      <?php if ($inovacao): ?>
+        <h1 id="titulo-empresa">
+          <?= ucfirst($tipoPagina) ?> – <?= $inovacao['titulo_h1'] ?>
+        </h1>
+      <?php endif; ?>
+        <div class="row mt-3">
+          <div class="col-12">
+            <p class="textomobile">
+              <?= $inovacao['texto'] ?>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <img src="<?= $inovacao['imagem'] ?>" alt="<?= htmlspecialchars($inovacao['titulo_h1']) ?>" class="img-fluid mt-4 imgsolucoes">
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-12">
+            <p class="textomobile">
+              <?= $inovacao['texto_2'] ?>
+            </p>
+          </div>
+        </div>
+        
+      </div>
+  </div>
+</div>
+
+<?php
+$showCarousel2 = false;
+$showFooterCarousel=true;
+require_once "components/footer.php";
+?>
