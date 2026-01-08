@@ -152,12 +152,12 @@ if (!empty($tipoPagina) && $tipoPagina === 'home') {
                           if($sub['pai_id'] == $menu['id']) { $hasSub = true; break; }
                         }
                       ?>
-                      <li class="nav-item <?php echo $hasSub ? 'dropdown' : ''; ?>">
-                        <a class="nav-link <?php echo $hasSub ? '' : ''; ?>"
-                          href="<?php echo $menu['url']; ?>"
-                          <?php echo $hasSub ? 'role="button" data-bs-toggle="dropdown" aria-expanded="false"' : ''; ?>>
-                          <?php echo $menu['titulo']; ?>
-                        </a>
+                    <li class="nav-item <?php echo $hasSub ? 'dropdown' : ''; ?>">
+                      <a class="nav-link <?php echo $hasSub ? '' : ''; ?>"
+                        href="<?php echo $menu['url']; ?>"
+                        <?php echo $hasSub ? 'id="dropdown-'.strtolower(str_replace(' ', '-', $menu['titulo'])).'" role="button" data-bs-toggle="dropdown" aria-expanded="false"' : ''; ?>>
+                        <?php echo $menu['titulo']; ?>
+                      </a>
 
                         <?php if($hasSub): ?>
                           <ul class="dropdown-menu">

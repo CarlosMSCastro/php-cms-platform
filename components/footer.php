@@ -3,12 +3,13 @@ require_once "bd_helper.php";
 
 $footerSlides = select_sql("SELECT * FROM footer_carousel WHERE ativo = 1 ORDER BY ordem");
 $footerNav = select_sql("SELECT * FROM footer_navbar ORDER BY ordem");
-
 $carousel2Items = select_sql("SELECT * FROM carousel2 WHERE ativo = 1 ORDER BY ordem");
 
 if (!$carousel2Items) {
   $carousel2Items = [];
 }
+if(!isset($showFooterNavbar)) $showFooterNavbar = true;
+
 
 ?>
 
@@ -76,7 +77,7 @@ if (!$carousel2Items) {
   <?php endif; ?>               
   
   <!-- Carrousel Ultimos Eventos e Noticias-->  
-  <?php if (!empty($showFooterCarousel)): ?>
+  <?php if ($showFooterCarousel ?? true): ?>
     <div class="container-fluid p-0 m-0">
       <div class="row m-0 p-0">
         <div class="col-12 p-0 m-0">
@@ -119,27 +120,54 @@ if (!$carousel2Items) {
             </div>
           </section>
           <!-- Navbarfundo-->
+        <?php if($showFooterNavbar): ?>
           <nav id="navbarfundo" class="navbarfundo navbar navbar-expand-lg">
             <div class="mx-auto navbarfundo-topo">
               <div class="collapse navbar-collapse" id="navbarFundoDropdown">
                 <ul class="navbar-nav navbarfundo-menu">
                 <?php foreach ($footerNav as $item): ?>
-                    <li class="nav-item navbarfundo-item">
-                      <a class="nav-link navbarfundo-link" href="<?= $item['url'] ?>">
-                        <?= $item['titulo'] ?>
-                      </a>
-                    </li>
-                  <?php endforeach; ?>
+                  <li class="nav-item navbarfundo-item">
+                    <a class="nav-link navbarfundo-link" 
+                      href="<?= $item['url'] ?>"
+                      <?php if($item['url'] === '#'): ?>
+                        onclick="abrirDropdownTopo('dropdown-<?= strtolower(str_replace(' ', '-', $item['titulo'])) ?>'); return false;"
+                      <?php endif; ?>>
+                      <?= $item['titulo'] ?>
+                    </a>
+                  </li>
+                <?php endforeach; ?>
                 </ul>
               </div>
             </div>
           </nav>
+        <?php endif; ?>
+          
         </div>
       </div>
     </div>
   <?php endif; ?>
-
-
+        <!-- Navbarfundo FORA quando carousel NÃO existe -->
+        <?php if (!$showFooterCarousel && $showFooterNavbar): ?>
+          <nav id="navbarfundo" class="navbarfundo navbar navbar-expand-lg shadownav2">
+            <div class="mx-auto navbarfundo-topo">
+              <div class="collapse navbar-collapse" id="navbarFundoDropdown">
+                <ul class="navbar-nav navbarfundo-menu">
+                <?php foreach ($footerNav as $item): ?>
+                  <li class="nav-item navbarfundo-item">
+                    <a class="nav-link navbarfundo-link" 
+                      href="<?= $item['url'] ?>"
+                      <?php if($item['url'] === '#'): ?>
+                        onclick="abrirDropdownTopo('dropdown-<?= strtolower(str_replace(' ', '-', $item['titulo'])) ?>'); return false;"
+                      <?php endif; ?>>
+                      <?= $item['titulo'] ?>
+                    </a>
+                  </li>
+                <?php endforeach; ?>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        <?php endif; ?>
 
   <footer>
     <div class="container-fluid p-0">
@@ -219,6 +247,6 @@ if (!$carousel2Items) {
       </div>
     </div>
   </footer>
-
+<script src="js/script.js"></script>
 </body>
 </html>

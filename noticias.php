@@ -4,7 +4,7 @@ $tipoPagina = 'noticias e eventos';
 require_once "components/header.php";
 $noticias = select_sql("SELECT * FROM footer_carousel ORDER BY id ASC");
 
-
+$footerNav = select_sql("SELECT * FROM footer_navbar ORDER BY ordem");
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $perPage = 6; 
 $offset = ($page - 1) * $perPage;
@@ -59,8 +59,11 @@ $totalPages = ceil($totalItems / $perPage);
     </div>
 </div>
 
+
+
 <?php 
 $showCarousel2 = true;
+$showFooterNavbar=true;
 $showFooterCarousel=false;
 require_once "components/footer.php"
 ?>

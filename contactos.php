@@ -133,17 +133,21 @@ require_once "components/header.php";
 <br><br><br><br>
 
 
-<nav id="navbarfundo" class="navbarfundo navbar navbar-expand-lg shadownav">
+<nav id="navbarfundo" class="navbarfundo navbar navbar-expand-lg">
   <div class="mx-auto navbarfundo-topo">
     <div class="collapse navbar-collapse" id="navbarFundoDropdown">
       <ul class="navbar-nav navbarfundo-menu">
-        <?php foreach ($footerNav as $item): ?>
-          <li class="nav-item navbarfundo-item">
-            <a class="nav-link navbarfundo-link" href="<?= $item['url'] ?>">
-              <?= $item['titulo'] ?>
-            </a>
-          </li>
-        <?php endforeach; ?>
+      <?php foreach ($footerNav as $item): ?>
+        <li class="nav-item navbarfundo-item">
+          <a class="nav-link navbarfundo-link" 
+            href="<?= $item['url'] ?>"
+            <?php if($item['url'] === '#'): ?>
+              onclick="abrirDropdownTopo('dropdown-<?= strtolower(str_replace(' ', '-', $item['titulo'])) ?>'); return false;"
+            <?php endif; ?>>
+            <?= $item['titulo'] ?>
+          </a>
+        </li>
+      <?php endforeach; ?>
       </ul>
     </div>
   </div>

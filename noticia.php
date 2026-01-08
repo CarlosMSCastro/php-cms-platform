@@ -5,7 +5,7 @@ $tipoPagina = 'noticias e evento';
 require_once "components/header.php";
 
 $id = (int)($_GET['id'] ?? 0);
-
+$footerNav = select_sql("SELECT * FROM footer_navbar ORDER BY ordem");
 $noticia = select_sql("SELECT titulo, imagem, texto FROM footer_carousel WHERE id = $id")[0] ?? null;
 ?>
 
@@ -48,5 +48,6 @@ $noticia = select_sql("SELECT titulo, imagem, texto FROM footer_carousel WHERE i
 <?php
 $showCarousel2 = true;
 $showFooterCarousel=false;
+$showFooterNavbar=true;
 require_once "components/footer.php";
 ?>
