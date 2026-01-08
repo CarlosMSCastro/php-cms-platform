@@ -26,5 +26,6 @@ $pagina = select_sql("SELECT titulo_h1, texto FROM paginas_empresa WHERE id_navb
 
 <?php
 $showCarousel2 = false;
+$showFooterCarousel=true;
 require_once "components/footer.php";
 ?>

@@ -35,7 +35,7 @@ $noticia = select_sql("SELECT titulo, imagem, texto FROM footer_carousel WHERE i
         </div>
         <div class="row mt-4 mx-0">
           <div class="col-12 text-center text-md-end px-0">
-            <a href="destaques.php" class="destaques-btn d-inline-block">Voltar para Noticias</a>
+            <a href="noticias.php" class="destaques-btn d-inline-block">Voltar para Noticias</a>
           </div>
         </div>
         

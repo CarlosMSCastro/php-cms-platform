@@ -574,6 +574,11 @@ footer{
 .card-text{
     font-size:20px;
 }
+.imgsolucoes{
+    height:500px !important;
+    object-fit:cover !important;
+    width: 100%;
+}
 @media (max-width: 1267px) and (min-width: 992px) {
     .navbartopo {max-width:95%;}
     .nav-link {
@@ -1040,4 +1045,9 @@ footer{
     .corpo-texto{font-size:19px !important;}
     .card-title{font-size:22px !important;}
     .row.g-0.g-md-5 > .col-12.col-md-6:nth-of-type(n+7) {display: none !important;}
+    .imgsolucoes{
+    height:300px !important;
+    object-fit:cover !important;
+    width: 100%;
+}
 }
