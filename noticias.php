@@ -1,6 +1,6 @@
 <?php
 require_once "bd_helper.php";
-$tipoPagina = 'noticias';
+$tipoPagina = 'noticias e eventos';
 require_once "components/header.php";
 $noticias = select_sql("SELECT * FROM footer_carousel ORDER BY id ASC");
 

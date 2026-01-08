@@ -10,7 +10,7 @@ $homeContent = select_sql("SELECT * FROM home_conteudo LIMIT 1")[0];
     <div class="row mx-4 my-0">
       <div class="col-12 p-0 m-0">
         <section id="intro">
-          <h1><?= $homeContent['titulo_h1'] ?></h1>
+          <h1><?= $homeContent['titulo_h1'] ?></h1><br>
           <h2><?= $homeContent['titulo_h2'] ?></h2>
 
           <p>
@@ -25,3 +25,5 @@ $homeContent = select_sql("SELECT * FROM home_conteudo LIMIT 1")[0];
   $showFooterCarousel=true;
   require_once "components/footer.php";
   ?>
+
+

@@ -1,7 +1,7 @@
 <?php
 
 require_once "bd_helper.php";
-$tipoPagina = 'noticias';
+$tipoPagina = 'noticias e evento';
 require_once "components/header.php";
 
 $id = (int)($_GET['id'] ?? 0);
@@ -17,7 +17,7 @@ $noticia = select_sql("SELECT titulo, imagem, texto FROM footer_carousel WHERE i
 
       <?php if ($noticia): ?>
         <h1 id="titulo-empresa" style=" line-height: 1.2;  ">
-          <?= ucfirst($tipoPagina) ?> – <?= $noticia['titulo'] ?>
+          <?= ucfirst($tipoPagina) ?>s – <?= $noticia['titulo'] ?>
         </h1>
       <?php endif; ?>
 

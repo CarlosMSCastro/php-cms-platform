@@ -584,6 +584,10 @@ footer{
     font-size: 20px;
     color: #4D4D4D;
 }
+.parceiros{
+    max-width:55% !important;
+    margin-bottom: 40px;
+}
 @media (max-width: 1267px) and (min-width: 992px) {
     .navbartopo {max-width:95%;}
     .nav-link {

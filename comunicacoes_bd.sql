@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Jan-2026 às 03:46
+-- Tempo de geração: 08-Jan-2026 às 05:03
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -157,11 +157,13 @@ CREATE TABLE `headers` (
 --
 
 INSERT INTO `headers` (`id`, `tipo_pagina`, `imagem`, `ativo`, `ordem`) VALUES
-(1, 'empresa', 'imagens/carousel1/cabecalho_noticias_e_eventos.png', 1, 1),
-(2, 'destaques', 'imagens/carousel1/cabecalho_destaque.png', 1, 1),
-(3, 'noticias', 'imagens/carousel1/cabecalho_noticias_e_eventos.png', 1, 1),
-(4, 'solucoes', 'imagens/carousel1/cabecalho_home.png', 1, 1),
-(5, 'inovacoes e tecnologia', 'imagens/carousel1/cabecalho_home.png', 1, 1);
+(1, 'empresa', 'imagens/headers/cabecalho_empresa.png', 1, 1),
+(2, 'destaques', 'imagens/headers/cabecalho_destaques.png', 1, 1),
+(3, 'noticias e eventos', 'imagens/headers/cabecalho_noticias_e_eventos.png', 1, 1),
+(4, 'solucoes', 'imagens/headers/cabecalho_solucoes.png', 1, 1),
+(5, 'inovacoes e tecnologia', 'imagens/headers/cabecalho_inovacao_e_tecnologia.png', 1, 1),
+(6, 'noticias e evento', 'imagens/headers/cabecalho_noticia.png', 1, 1),
+(7, 'parceiros', 'imagens/headers/cabecalho_parceiros.png', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -223,7 +225,7 @@ INSERT INTO `navbar` (`id`, `titulo`, `url`, `pai_id`, `ordem`) VALUES
 (19, 'Inovação e Tecnologia 4', 'inovacoes.php?id=19', 15, 4),
 (20, 'Inovação e Tecnologia 5', 'inovacoes.php?id=20', 15, 5),
 (21, 'Inovação e Tecnologia 6', 'inovacoes.php?id=21', 15, 6),
-(22, 'Os Nossos Parceiros', 'pagina.php?id=22', NULL, 6),
+(22, 'Os Nossos Parceiros', 'parceiros.php', NULL, 6),
 (23, 'Contactos', 'pagina.php?id=23', NULL, 7);
 
 -- --------------------------------------------------------
@@ -303,6 +305,30 @@ INSERT INTO `paginas_solucoes` (`id`, `titulo_h1`, `texto`, `texto_2`, `imagem`,
 (5, 'Internet of Things', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.', 'imagens/solucoes/solucao_2.webp', 13),
 (6, 'Assistentes Virtuais', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.', 'imagens/solucoes/solucao_3.jpg', 14);
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `parceiros`
+--
+
+CREATE TABLE `parceiros` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `imagem_grande` varchar(255) DEFAULT NULL,
+  `imagem_pequena` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `parceiros`
+--
+
+INSERT INTO `parceiros` (`id`, `nome`, `imagem_grande`, `imagem_pequena`) VALUES
+(1, 'Altice Empresas', 'imagens/footer/altice_Empresas.svg', NULL),
+(2, 'Samsung', NULL, 'imagens/footer/samsung.svg'),
+(3, 'Dell', NULL, 'imagens/footer/dell.svg'),
+(4, 'Aruba', NULL, 'imagens/footer/aruba.svg'),
+(5, 'HP', NULL, 'imagens/footer/hp.svg');
+
 --
 -- Índices para tabelas despejadas
 --
@@ -371,6 +397,12 @@ ALTER TABLE `paginas_solucoes`
   ADD KEY `id_navbar` (`id_navbar`);
 
 --
+-- Índices para tabela `parceiros`
+--
+ALTER TABLE `parceiros`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
@@ -402,7 +434,7 @@ ALTER TABLE `footer_navbar`
 -- AUTO_INCREMENT de tabela `headers`
 --
 ALTER TABLE `headers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `home_conteudo`
@@ -433,6 +465,12 @@ ALTER TABLE `paginas_inovacoes`
 --
 ALTER TABLE `paginas_solucoes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de tabela `parceiros`
+--
+ALTER TABLE `parceiros`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restrições para despejos de tabelas
