@@ -46,11 +46,11 @@ if (!empty($tipoPagina) && $tipoPagina === 'home') {
             <div class="header-right">
               <div class="social-icons">
 
-                <a href="#"><img src="imagens/socials/contactos.svg"></a>
+                <a href="contactos.php"><img src="imagens/socials/contactos.svg"></a>
                 <div class="separator"></div>
-                <a href="#"><img src="imagens/socials/linkedIn.svg"></a>
-                <a href="#"><img src="imagens/socials/instagram.svg"></a>
-                <a href="#"><img src="imagens/socials/facebook.svg"></a>
+                <a href="https://www.linkedin.com/" target="_blank"><img src="imagens/socials/linkedIn.svg"></a>
+                <a href="https://www.instagram.com/" target="_blank"><img src="imagens/socials/instagram.svg"></a>
+                <a href="https://www.facebook.com/" target="_blank"><img src="imagens/socials/facebook.svg"></a>
               </div>
             </div>           
           </div>
@@ -60,11 +60,11 @@ if (!empty($tipoPagina) && $tipoPagina === 'home') {
                 <img id="logoprincipal" src="imagens/LogotipoComunicacoes.png">
               </a>
               <div class="social-icons">
-                <a href="#"><img src="imagens/socials/contactos.svg"></a>
+                <a href="contactos.php"><img src="imagens/socials/contactos.svg"></a>
                 <div class="separator"></div>
-                <a href="#"><img src="imagens/socials/linkedIn.svg"></a>
-                <a href="#"><img src="imagens/socials/instagram.svg"></a>
-                <a href="#"><img src="imagens/socials/facebook.svg"></a>
+                <a href="https://www.linkedin.com/" target="_blank"><img src="imagens/socials/linkedIn.svg"></a>
+                <a href="https://www.instagram.com/" target="_blank"><img src="imagens/socials/instagram.svg"></a>
+                <a href="https://www.facebook.com/" target="_blank"><img src="imagens/socials/facebook.svg"></a>
               </div>
             </div>          
           </div>         

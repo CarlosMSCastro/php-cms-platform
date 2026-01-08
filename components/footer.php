@@ -159,15 +159,15 @@ if (!$carousel2Items) {
             <div class="row m-0 p-0 justify-content-between align-items-center" id="footer-info">
 
               <div class="col-auto d-flex align-items-center gap-3" id="footer-social">
-                <img src="imagens/socials/contactos.svg" class="footer-icon">
+                <a href="contactos.php"><img src="imagens/socials/contactos.svg" class="footer-icon"></a>
                 <div class="separator"></div>
-                <img src="imagens/socials/linkedIn.svg" class="footer-icon">
-                <img src="imagens/socials/instagram.svg" class="footer-icon">
-                <img src="imagens/socials/facebook.svg" class="footer-icon">
+                <a href="https://www.linkedin.com/" target="_blank"><img src="imagens/socials/linkedIn.svg" class="footer-icon"></a>
+                <a href="https://www.instagram.com/" target="_blank"><img src="imagens/socials/instagram.svg" class="footer-icon"></a>
+                <a href="https://www.facebook.com/" target="_blank"><img src="imagens/socials/facebook.svg" class="footer-icon"></a>
               </div>
 
               <div class="col-auto d-flex align-items-center gap-4" id="footer-certificados">
-                <img src="imagens/footer/livrodeReclamacoes.svg" class="footer-livro">
+                <a href="https://www.livroreclamacoes.pt" target="_blank"><img src="imagens/footer/livrodeReclamacoes.svg" class="footer-livro"></a>
                 <img src="imagens/footer/ralc.svg" class="footer-consumo">
               </div>
 
@@ -183,11 +183,11 @@ if (!$carousel2Items) {
         <div class="col-12 m-0 p-0 footer-mobile">
           <div id="footerfundo" class="container-fluid p-0">
             <div class="col-auto justify-content-center d-flex align-items-center gap-3" id="footer-social">
-              <img src="imagens/socials/contactos.svg" class="footer-icon">
+              <a href="contactos.php"><img src="imagens/socials/contactos.svg" class="footer-icon"></a>
               <div class="separator"></div>
-              <img src="imagens/socials/linkedIn.svg" class="footer-icon">
-              <img src="imagens/socials/instagram.svg" class="footer-icon">
-              <img src="imagens/socials/facebook.svg" class="footer-icon">
+              <a href="https://www.linkedin.com" target="_blank"><img src="imagens/socials/linkedIn.svg" class="footer-icon"></a>
+              <a href="https://www.instagram.com" target="_blank"><img src="imagens/socials/instagram.svg" class="footer-icon"></a>
+              <a href="https://www.facebook.com" target="_blank"><img src="imagens/socials/facebook.svg" class="footer-icon"></a>
             </div>
             <div class="row m-0 p-0 justify-content-center" id="footer-logos">
               <div class="col-auto"><img src="imagens/footer/altice_empresas.svg" class="footer-logo"></div>
@@ -203,7 +203,7 @@ if (!$carousel2Items) {
             <div class="row m-0 p-0 justify-content-between align-items-center" id="footer-info">
 
               <div class="col-auto d-flex align-items-center gap-4" id="footer-certificados">
-                <img src="imagens/footer/livrodeReclamacoes.svg" class="footer-livro">
+                <a href="https://www.livroreclamacoes.pt" target="_blank"><img src="imagens/footer/livrodeReclamacoes.svg" class="footer-livro"></a>
                 <img src="imagens/footer/ralc.svg" class="footer-consumo">
               </div>
 
