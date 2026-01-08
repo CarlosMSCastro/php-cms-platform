@@ -602,6 +602,23 @@ footer{
     margin-bottom:100px !important;
     color: #4D4D4D !important;
 }
+.shadownav{
+    box-shadow: 0 12px 15px rgba(0,0,0,0.15);
+}
+.titulocontactos{
+    line-height:20px;
+    font-weight:bold;
+    color: #313131 !important;
+}
+.contacto{
+    font-weight:bold;
+    color: #4d4d4d !important;
+    font-size:28px;
+    line-height:40px;
+}
+.container-contactos{
+    padding-left:140px;
+}
 @media (max-width: 1267px) and (min-width: 992px) {
     .navbartopo {max-width:95%;}
     .nav-link {
@@ -1091,5 +1108,8 @@ footer{
     .parceiros{
         width:100% !important;
         margin-bottom: 40px;
+    }
+    .shadownav{
+    margin-top:150px !important;
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Jan-2026 às 05:03
+-- Tempo de geração: 08-Jan-2026 às 06:48
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -86,6 +86,29 @@ INSERT INTO `carousel_topo` (`id`, `imagem`, `ordem`, `ativo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `contactos`
+--
+
+CREATE TABLE `contactos` (
+  `id` int(11) NOT NULL,
+  `morada` varchar(255) DEFAULT NULL,
+  `telefone` varchar(50) DEFAULT NULL,
+  `fax` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `nif` varchar(50) DEFAULT NULL,
+  `gps` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `contactos`
+--
+
+INSERT INTO `contactos` (`id`, `morada`, `telefone`, `fax`, `email`, `nif`, `gps`) VALUES
+(1, 'Rua da Felicidade\r\nEscritório 1\r\n1234-567 Lisboa', '(+351) 212 345 678', '(+351) 218 765 432', 'geral@comunicacoes.pt', '111 222 333', '+11° 22\' 33.44\", -5° 66\' 77.88\"');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `footer_carousel`
 --
 
@@ -163,7 +186,7 @@ INSERT INTO `headers` (`id`, `tipo_pagina`, `imagem`, `ativo`, `ordem`) VALUES
 (4, 'solucoes', 'imagens/headers/cabecalho_solucoes.png', 1, 1),
 (5, 'inovacoes e tecnologia', 'imagens/headers/cabecalho_inovacao_e_tecnologia.png', 1, 1),
 (6, 'noticias e evento', 'imagens/headers/cabecalho_noticia.png', 1, 1),
-(7, 'parceiros', 'imagens/headers/cabecalho_parceiros.png', 1, 1);
+(7, 'contactos', 'imagens/headers/cabecalho_contactos.png', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -226,7 +249,7 @@ INSERT INTO `navbar` (`id`, `titulo`, `url`, `pai_id`, `ordem`) VALUES
 (20, 'Inovação e Tecnologia 5', 'inovacoes.php?id=20', 15, 5),
 (21, 'Inovação e Tecnologia 6', 'inovacoes.php?id=21', 15, 6),
 (22, 'Os Nossos Parceiros', 'parceiros.php', NULL, 6),
-(23, 'Contactos', 'pagina.php?id=23', NULL, 7);
+(23, 'Contactos', 'contactos.php', NULL, 7);
 
 -- --------------------------------------------------------
 
@@ -346,6 +369,12 @@ ALTER TABLE `carousel_topo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `contactos`
+--
+ALTER TABLE `contactos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `footer_carousel`
 --
 ALTER TABLE `footer_carousel`
@@ -417,6 +446,12 @@ ALTER TABLE `carousel2`
 --
 ALTER TABLE `carousel_topo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `contactos`
+--
+ALTER TABLE `contactos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `footer_carousel`
