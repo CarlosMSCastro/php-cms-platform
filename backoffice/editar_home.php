@@ -115,10 +115,11 @@ if(!empty($_POST)) {
             Fazer upload no File Manager
         </a>
 
-        <form method="post" class="d-flex mb-3">
+        <form method="post" class="d-flex mb-0">
             <input type="text" name="nova_imagem" placeholder="nome_do_ficheiro.jpg" class="form-control me-2">
             <button type="submit" class="btn btn-dark">Adicionar ao Carousel</button>
         </form>
+        <p class="legenda">*use exatamente a estrutura "nome_do_ficheiro_.jpg", não use caminho completo.</p>
 
         <table class="table table-bordered align-middle text-start">
             <thead>

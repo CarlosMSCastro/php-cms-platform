@@ -62,14 +62,15 @@ require_once "components/header.php";
     <?php endif; ?>
 
     <!-- Formulário do banner global -->
-    <!-- Formulário do banner global -->
     <form method="post">
         <div class="mb-3">
             <h4>Banner Empresa</h4>
+            
             <div class="input-group">
                 <input type="text" name="banner" id="banner" class="form-control" value="<?= htmlspecialchars($bannerAtual) ?>">
                 <button type="button" class="btn btn-secondary" onclick="abrirTiny()">Abrir File Manager</button>
             </div>
+            <p class="legenda d-block">*use exatamente a estrutura "http://localhost/comunicacoes/backoffice/uploads/nome_do_ficheiro_.jpg".</p>
             <?php if ($bannerAtual): ?>
                 <img src="<?= htmlspecialchars($bannerAtual) ?>" alt="Banner Atual" style="max-width:600px;margin-top:10px;">
             <?php endif; ?>

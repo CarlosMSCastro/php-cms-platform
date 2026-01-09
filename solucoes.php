@@ -29,7 +29,7 @@ $solucao = select_sql("SELECT titulo_h1, texto, texto_2, imagem FROM paginas_sol
         </div>
         <div class="row p-0">
           <div class="col-12 p-0">
-            <img src="<?= $solucao['imagem'] ?>" alt="<?= htmlspecialchars($solucao['titulo_h1']) ?>" class="img-fluid mt-4 imgsolucoes">
+            <img src="backoffice/<?= htmlspecialchars($solucao['imagem']) ?>" alt="<?= htmlspecialchars($solucao['titulo_h1']) ?>" class="img-fluid mt-4 imgsolucoes">
           </div>
         </div>
 

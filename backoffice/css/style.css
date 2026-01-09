@@ -68,6 +68,9 @@ a{
 }
 
 a:hover{
-  transform:scale(120%);
+  transform:scale(116%);
 }
-
+p.legenda{
+  font-size:12px !important;
+  text-align:left !important;
+}
