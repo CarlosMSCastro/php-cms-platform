@@ -1002,6 +1002,15 @@ h5.titulocontactos{
         margin-top:50px !important;
         margin-bottom:50px !important;
     }
+    .shadornav{
+        display:none;
+    }
+    .shadownav2{
+        display:none;
+    }
+    iframe{
+        margin-bottom:50px;
+    }
 }
 @media (max-width: 610px){
     .social-icons {
@@ -1104,6 +1113,9 @@ h5.titulocontactos{
         text-align: center;
         font-size: 22px !important;
         font-weight: bold;
+    }
+    h3.titulo-secundario{
+        margin-top:70px;
     }
 }
 
