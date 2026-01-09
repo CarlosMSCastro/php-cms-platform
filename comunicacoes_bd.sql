@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09-Jan-2026 às 04:09
+-- Tempo de geração: 09-Jan-2026 às 06:47
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -79,10 +79,10 @@ CREATE TABLE `carousel_topo` (
 --
 
 INSERT INTO `carousel_topo` (`id`, `imagem`, `ordem`, `ativo`, `data_insercao`) VALUES
-(1, 'imagens/carousel1/cabecalho_home.png', 1, 1, '2026-01-09 01:35:43'),
-(2, 'imagens/carousel1/cabecalho_destaque.png', 2, 1, '2026-01-09 01:35:43'),
-(3, 'imagens/carousel1/cabecalho_contactos.png', 3, 1, '2026-01-09 01:35:43'),
-(4, 'imagens/carousel1/cabecalho_noticias_e_eventos.png', 4, 1, '2026-01-09 01:35:43');
+(1, 'backoffice/uploads/cabecalho_home.png', 1, 1, '2026-01-09 01:35:43'),
+(2, 'backoffice/uploads/cabecalho_destaque.png', 2, 1, '2026-01-09 01:35:43'),
+(3, 'backoffice/uploads/cabecalho_contactos.png', 3, 1, '2026-01-09 01:35:43'),
+(4, 'backoffice/uploads/cabecalho_noticias_e_eventos.png', 4, 1, '2026-01-09 01:35:43');
 
 -- --------------------------------------------------------
 
@@ -103,7 +103,7 @@ CREATE TABLE `colaboradores` (
 --
 
 INSERT INTO `colaboradores` (`id`, `username`, `password`, `nome`, `data_ultimo_acesso`) VALUES
-(1, 'admin', '$2y$10$ZYjApfjjUBens8/zaW/0y.Sv/e0SvYIXlUhj3ybxddP0sMEwFs3Qm', 'Administrador', '02:37:30 - 09/01/2026');
+(1, 'admin', '$2y$10$ZYjApfjjUBens8/zaW/0y.Sv/e0SvYIXlUhj3ybxddP0sMEwFs3Qm', 'Administrador', '05:41:56 - 09/01/2026');
 
 -- --------------------------------------------------------
 
@@ -259,7 +259,7 @@ CREATE TABLE `home_conteudo` (
 --
 
 INSERT INTO `home_conteudo` (`id`, `titulo_h1`, `titulo_h2`, `texto`) VALUES
-(1, 'Bem-vindo à TA Comunicações', 'O seu Parceiro Tecnológico de Excelência', 'A TA Comunicações é uma empresa especializada em fornecer soluções integradas de internet e comunicações,\r\n    que endereça clientes do segmento Corporate. Há mais de 28 anos que trabalha arduamente no sentido de se\r\n    consolidar enquanto parceiro tecnológico, potenciando a presença dos seus clientes no mercado, através de\r\n    soluções personalizadas que alavancam as receitas e reduzem os custos. Com representação das melhores\r\n    marcas e vasta experiência, posiciona-se como um fornecedor global de telecomunicações, comprometido com\r\n    a prestação de um serviço de excelência, por via de uma estratégia assente na formação contínua dos seus\r\n    colaboradores. A TA Comunicações privilegia as relações assentes na confiança e no conhecimento,\r\n    permitindo uma gestão e apoio ao cliente que se diferencia no mercado tecnológico.');
+(1, 'Bem-vindo à Comunicações', 'O seu Parceiro Tecnológico de Excelência', 'A TA Comunicações é uma empresa especializada em fornecer soluções integradas de internet e comunicações, que endereça clientes do segmento Corporate.&nbsp;Há mais de 28 anos que trabalha arduamente no sentido de se consolidar enquanto parceiro tecnológico, potenciando a presença dos seus clientes no mercado, através de soluções personalizadas que alavancam as receitas e reduzem os custos. Com representação das melhores marcas e vasta experiência, posiciona-se como um fornecedor global de telecomunicações, comprometido com a prestação de um serviço de excelência, por via de uma estratégia assente na formação contínua dos seus colaboradores.&nbsp;A TA Comunicações privilegia as relações assentes na confiança e no conhecimento, permitindo uma gestão e apoio ao cliente que se diferencia no mercado tecnológico.');
 
 -- --------------------------------------------------------
 
@@ -511,7 +511,7 @@ ALTER TABLE `carousel2`
 -- AUTO_INCREMENT de tabela `carousel_topo`
 --
 ALTER TABLE `carousel_topo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `colaboradores`
