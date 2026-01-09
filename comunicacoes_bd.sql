@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09-Jan-2026 às 01:59
+-- Tempo de geração: 09-Jan-2026 às 04:09
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -70,18 +70,19 @@ CREATE TABLE `carousel_topo` (
   `id` int(11) NOT NULL,
   `imagem` varchar(255) NOT NULL,
   `ordem` int(11) NOT NULL DEFAULT 0,
-  `ativo` tinyint(1) NOT NULL DEFAULT 1
+  `ativo` tinyint(1) NOT NULL DEFAULT 1,
+  `data_insercao` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `carousel_topo`
 --
 
-INSERT INTO `carousel_topo` (`id`, `imagem`, `ordem`, `ativo`) VALUES
-(1, 'imagens/carousel1/cabecalho_home.png', 1, 1),
-(2, 'imagens/carousel1/cabecalho_destaque.png', 2, 1),
-(3, 'imagens/carousel1/cabecalho_contactos.png', 3, 1),
-(4, 'imagens/carousel1/cabecalho_noticias_e_eventos.png', 4, 1);
+INSERT INTO `carousel_topo` (`id`, `imagem`, `ordem`, `ativo`, `data_insercao`) VALUES
+(1, 'imagens/carousel1/cabecalho_home.png', 1, 1, '2026-01-09 01:35:43'),
+(2, 'imagens/carousel1/cabecalho_destaque.png', 2, 1, '2026-01-09 01:35:43'),
+(3, 'imagens/carousel1/cabecalho_contactos.png', 3, 1, '2026-01-09 01:35:43'),
+(4, 'imagens/carousel1/cabecalho_noticias_e_eventos.png', 4, 1, '2026-01-09 01:35:43');
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,7 @@ CREATE TABLE `colaboradores` (
 --
 
 INSERT INTO `colaboradores` (`id`, `username`, `password`, `nome`, `data_ultimo_acesso`) VALUES
-(1, 'admin', '$2y$10$ZYjApfjjUBens8/zaW/0y.Sv/e0SvYIXlUhj3ybxddP0sMEwFs3Qm', 'Administrador', '00:52:37 - 09/01/2026');
+(1, 'admin', '$2y$10$ZYjApfjjUBens8/zaW/0y.Sv/e0SvYIXlUhj3ybxddP0sMEwFs3Qm', 'Administrador', '02:37:30 - 09/01/2026');
 
 -- --------------------------------------------------------
 
