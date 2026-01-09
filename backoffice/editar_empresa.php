@@ -3,6 +3,25 @@ require_once "bootstrap.php";
 verificar_login();
 $pagina = "editar_empresa";
 
+// ====== Atualizar banner global tipo 'empresa' ======
+$headerEmpresa = select_sql("SELECT * FROM headers WHERE tipo_pagina = 'empresa' LIMIT 1")[0] ?? null;
+$bannerAtual = $headerEmpresa['imagem'] ?? '';
+
+if (isset($_POST['guardar_banner'])) {
+    $novoBanner = $_POST['banner'] ?? '';
+
+    if ($headerEmpresa) {
+        idu_sql("UPDATE headers SET imagem = ? WHERE tipo_pagina = 'empresa'", [$novoBanner]);
+    } else {
+        idu_sql("INSERT INTO headers (tipo_pagina, imagem, ativo, ordem) VALUES (?, ?, 1, 1)", ['empresa', $novoBanner]);
+    }
+
+    $_SESSION['mensagem_sucesso'] = "Banner atualizado com sucesso!";
+    header("Location: editar_empresa.php");
+    exit;
+}
+
+// ====== Eliminar página ======
 if (isset($_POST['delete_id'])) {
     $idEliminar = $_POST['delete_id'];
 
@@ -17,13 +36,15 @@ if (isset($_POST['delete_id'])) {
         idu_sql("DELETE FROM navbar WHERE id = ?", [$id_navbar]);
     }
 
-    header("Location: editar_empresa.php?sucesso=1");
+    $_SESSION['mensagem_sucesso'] = "Página eliminada com sucesso!";
+    header("Location: editar_empresa.php");
     exit;
 }
 
-
+// ====== Buscar páginas ======
 $paginas = select_sql("SELECT * FROM paginas_empresa ORDER BY id");
 
+// ====== Mensagem de sucesso via sessão ======
 $mensagem_sucesso = '';
 if (!empty($_SESSION['mensagem_sucesso'])) {
     $mensagem_sucesso = $_SESSION['mensagem_sucesso'];
@@ -32,6 +53,7 @@ if (!empty($_SESSION['mensagem_sucesso'])) {
 
 require_once "components/header.php";
 ?>
+
 <div class="caixa">
     <h3>Páginas Empresa</h3>
 
@@ -39,9 +61,44 @@ require_once "components/header.php";
         <div class="alert alert-success"><?= htmlspecialchars($mensagem_sucesso) ?></div>
     <?php endif; ?>
 
-    <div class="mb-3">
-        <a href="editar_conteudo_empresa.php" class="btn btn-dark">Adicionar Novo</a>
-    </div>
+    <!-- Formulário do banner global -->
+    <!-- Formulário do banner global -->
+    <form method="post">
+        <div class="mb-3">
+            <h4>Banner Empresa</h4>
+            <div class="input-group">
+                <input type="text" name="banner" id="banner" class="form-control" value="<?= htmlspecialchars($bannerAtual) ?>">
+                <button type="button" class="btn btn-secondary" onclick="abrirTiny()">Abrir File Manager</button>
+            </div>
+            <?php if ($bannerAtual): ?>
+                <img src="<?= htmlspecialchars($bannerAtual) ?>" alt="Banner Atual" style="max-width:600px;margin-top:10px;">
+            <?php endif; ?>
+        </div>
+        <button type="submit" name="guardar_banner" class="btn btn-dark mb-3">Guardar Banner</button>
+    </form>
+
+    <script>
+    function abrirTiny() {
+        var width = 900;
+        var height = 600;
+        var left = (screen.width/2) - (width/2);
+        var top = (screen.height/2) - (height/2);
+
+        // Caminho relativo correto
+        window.open(
+            'tfm/tinyfilemanager.php',
+            'TinyFileManager',
+            `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes`
+        );
+    }
+
+    // Função chamada pelo TinyFileManager para preencher o input
+    function setBannerEmpresa(url) {
+        document.getElementById('banner').value = url;
+    }
+    </script>
+
+
 
     <table class="table table-bordered align-middle text-start">
         <thead>
@@ -70,6 +127,9 @@ require_once "components/header.php";
             <?php endforeach; ?>
         </tbody>
     </table>
+    <div class="mb-3">
+        <a href="editar_conteudo_empresa.php" class="btn btn-dark">Adicionar Novo</a>
+    </div>
 </div>
 
 <?php require_once "components/footer.php"; ?>
