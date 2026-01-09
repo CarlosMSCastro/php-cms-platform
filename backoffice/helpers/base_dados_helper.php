@@ -31,6 +31,7 @@ function idu_sql($sql, $parametros = []) {
   global $pdo;
   $consulta = $pdo->prepare($sql);
   $consulta->execute($parametros);
+  return $pdo->lastInsertId();
 }
 
 ?>
