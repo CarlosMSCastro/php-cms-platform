@@ -31,11 +31,11 @@ if (isset($_POST['titulo']) && isset($_POST['texto'])) {
             [$novoTitulo, $novoTexto, $id]
         );
 
+        // Atualizar título e URL na navbar
         $id_navbar = select_sql("SELECT id_navbar FROM paginas_empresa WHERE id = ?", [$id])[0]['id_navbar'];
-        $url = "empresa.php?id=$id_navbar";  // ← USA ID DA NAVBAR
-        idu_sql("UPDATE navbar SET url = ? WHERE id = ?", [$url, $id_navbar]);
+        $url = "empresa.php?id=$id_navbar";  // usa ID da navbar
+        idu_sql("UPDATE navbar SET titulo = ?, url = ? WHERE id = ?", [$novoTitulo, $url, $id_navbar]);
 
-        // Guardar mensagem e redirecionar para a página de origem
         $_SESSION['mensagem_sucesso'] = "Página atualizada com sucesso!";
         header("Location: editar_empresa.php");
         exit;
@@ -59,15 +59,14 @@ if (isset($_POST['titulo']) && isset($_POST['texto'])) {
         $consulta2->execute([$novoTitulo, $novoTexto, $id_navbar]);
         $id_pagina = $pdo->lastInsertId();
 
-        // MUDANÇA AQUI: Usar $id_navbar em vez de $id_pagina
-        $url = "empresa.php?id=$id_navbar";  // ← USA ID DA NAVBAR, NÃO DA PÁGINA
+        $url = "empresa.php?id=$id_navbar";  // usa ID da navbar
         idu_sql("UPDATE navbar SET url = ? WHERE id = ?", [$url, $id_navbar]);
 
-        // Guardar mensagem e redirecionar para a página de origem
         $_SESSION['mensagem_sucesso'] = "Nova página adicionada com sucesso!";
         header("Location: editar_empresa.php");
         exit;
     }
+
 }
 
 

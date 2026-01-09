@@ -30,13 +30,18 @@ if (isset($_POST['titulo'], $_POST['texto'], $_POST['texto_2'], $_POST['imagem']
     $novoTexto  = $_POST['texto'];
     $novoTexto2 = $_POST['texto_2'];
     $novaImagem = $_POST['imagem'];
-
     if ($id) {
         // Atualizar solução existente
         idu_sql(
             "UPDATE paginas_solucoes SET titulo_h1 = ?, texto = ?, texto_2 = ?, imagem = ? WHERE id = ?",
             [$novoTitulo, $novoTexto, $novoTexto2, $novaImagem, $id]
         );
+
+        // Atualizar título e URL na navbar correspondente
+        $id_navbar = select_sql("SELECT id_navbar FROM paginas_solucoes WHERE id = ?", [$id])[0]['id_navbar'];
+        $url = "solucoes.php?id=$id_navbar";
+        idu_sql("UPDATE navbar SET titulo = ?, url = ? WHERE id = ?", [$novoTitulo, $url, $id_navbar]);
+
         $_SESSION['mensagem_sucesso'] = "Solução atualizada com sucesso!";
     } else {
         // Inserir nova solução

@@ -74,7 +74,6 @@ require_once "components/header.php";
     <!-- Banner global -->
     <form method="post">
         <div class="mb-3">
-            <h4>Banner Soluções</h4>
 
             <div class="input-group">
                 <input
