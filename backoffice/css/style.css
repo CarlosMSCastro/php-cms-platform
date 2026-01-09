@@ -52,9 +52,6 @@ button{
   transition: 0.2s ease;
 }
 
-a:hover{
-  transform:scale(110%);
-}
 
 .tabela {
   width: 100%;
@@ -66,10 +63,11 @@ a{
 }
 
 .active{
-  color:dodgerblue !important;;
+  color:dodgerblue !important;
+  transform:scale(110%);
 }
 
 a:hover{
-  transform:scale(110%);
+  transform:scale(120%);
 }
 

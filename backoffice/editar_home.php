@@ -2,7 +2,7 @@
 require_once "bootstrap.php";
 verificar_login();
 
-$mensagemSucesso = ''; // variável única para mensagens
+$mensagemSucesso = '';
 
 $pagina = "editar_home";
 require_once "components/header.php";
@@ -72,7 +72,7 @@ if(!empty($_POST)) {
               <?= htmlspecialchars($item['titulo_h1']) ?>
             </div>
             <div>
-              <a href="editar_conteudo_home.php?id=<?= $item['id'] ?>&campo=titulo_h1" class="btn btn-dark "> Editar</a>
+              <a href="editar_conteudo_home.php?id=<?= $item['id'] ?>&campo=titulo_h1" class="btn btn-dark">Editar</a>
             </div>
           </td>
           <td>
@@ -87,11 +87,12 @@ if(!empty($_POST)) {
 
           <td>
             <div class="mb-3">
-              <?= nl2br(htmlspecialchars(mb_strimwidth($item['texto'], 0, 250, '...'))) ?>
+              <!-- MUDANÇA AQUI: texto com HTML renderizado, strip_tags para preview -->
+              <?= mb_strimwidth(strip_tags($item['texto']), 0, 250, '...') ?>
             </div>
 
             <div>
-              <a href="editar_conteudo_home.php?id=<?= $item['id'] ?>&campo=texto"class="btn btn-dark">Editar</a>
+              <a href="editar_conteudo_home.php?id=<?= $item['id'] ?>&campo=texto" class="btn btn-dark">Editar</a>
             </div>
           </td>
 
@@ -106,23 +107,19 @@ if(!empty($_POST)) {
     <div class="caixa-div p-3">
         <h4>Carousel Página Home</h4>
 
-        <!-- Mensagem de sucesso -->
         <?php if($mensagemSucesso): ?>
             <div class="alert alert-success mb-3"><?= $mensagemSucesso ?></div>
         <?php endif; ?>
 
-        <!-- Botão abrir TinyFileManager -->
         <a href="tfm/tinyfilemanager.php" target="_blank" class="btn btn-dark mb-3">
             Fazer upload no File Manager
         </a>
 
-        <!-- Formulário para adicionar imagem manualmente -->
         <form method="post" class="d-flex mb-3">
             <input type="text" name="nova_imagem" placeholder="nome_do_ficheiro.jpg" class="form-control me-2">
             <button type="submit" class="btn btn-dark">Adicionar ao Carousel</button>
         </form>
 
-        <!-- Tabela do carousel -->
         <table class="table table-bordered align-middle text-start">
             <thead>
                 <tr>
@@ -135,13 +132,10 @@ if(!empty($_POST)) {
             <tbody>
                 <?php foreach($carousel as $item): ?>
                 <tr>
-                    <!-- Thumbnail -->
                     <td>
                         <img src="/comunicacoes/<?= htmlspecialchars($item['imagem']) ?>" alt="" style="height:60px;">
-
                     </td>
 
-                    <!-- Checkbox ativo -->
                     <td>
                         <form method="post" style="display:inline;">
                             <input type="hidden" name="id" value="<?= $item['id'] ?>">
@@ -149,10 +143,8 @@ if(!empty($_POST)) {
                         </form>
                     </td>
 
-                    <!-- Data inserção -->
                     <td><?= date('d/m/Y H:i', strtotime($item['data_insercao'])) ?></td>
 
-                    <!-- Ações -->
                     <td>
                         <form method="post" style="display:inline;">
                             <input type="hidden" name="delete_id" value="<?= $item['id'] ?>">
@@ -168,9 +160,4 @@ if(!empty($_POST)) {
     </div>
 </div>
 
-
-
-
-
 <?php require_once "components/footer.php"; ?>
-

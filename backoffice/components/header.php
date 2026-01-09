@@ -22,11 +22,11 @@
   <div class="row min-vh-100">
 
     <!-- SIDEBAR -->
-    <nav class="col-3 col-lg-2 p-3 ">
+    <nav class="col-3 col-lg-2 p-3">
 
       <ul class="nav flex-column gap-1">
         <li class="nav-item mb-3">
-          <a href="home.php" class="  nav-link rounded  bg-dark <?php echo ($pagina=='home')?'active':''; ?>">Entrada</a>
+          <a href="home.php" class="  nav-link rounded bg-dark <?php echo ($pagina=='home')?'active':''; ?>">Entrada</a>
         </li>
         <li class="nav-item">
           <a href="editar_home.php" class="  nav-link rounded  bg-dark  <?php echo ($pagina=='editar_home')?'active':''; ?>">Editar Home</a>
@@ -60,5 +60,5 @@
     </nav>
 
     <!-- ÁREA DE CONTEÚDO -->
-    <main class="col-9 col-lg-10 p-4">
+    <main class="col-9 col-lg-10">
 <?php endif; ?>
