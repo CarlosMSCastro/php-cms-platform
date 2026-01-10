@@ -3,13 +3,13 @@ require_once "bootstrap.php";
 verificar_login();
 $pagina = "editar_empresa";
 
-// ====== Buscar dados ======
+
 $banners = select_sql("SELECT * FROM cabecalhos ORDER BY id DESC") ?? [];
 $headerEmpresa = select_sql("SELECT * FROM headers WHERE tipo_pagina = 'empresa' LIMIT 1")[0] ?? null;
 $bannerAtual = $headerEmpresa['imagem'] ?? '';
 $paginas = select_sql("SELECT * FROM paginas_empresa ORDER BY id");
 
-// ====== Processar POST: Guardar Banner ======
+// Guardar Banner
 if (isset($_POST['guardar_banner'])) {
     $novoBanner = $_POST['banner'] ?? '';
     if ($headerEmpresa) {
@@ -22,7 +22,7 @@ if (isset($_POST['guardar_banner'])) {
     exit;
 }
 
-// ====== Processar POST: Criar/Editar Página ======
+// Criar/Editar Página 
 if (isset($_POST['salvar_pagina'])) {
     $id = $_POST['id'] ?? null;
     $novoTitulo = strip_tags($_POST['titulo_h1'] ?? '');
@@ -75,14 +75,12 @@ if (isset($_POST['salvar_pagina'])) {
     exit;
 }
 
-// ====== Processar POST: Eliminar Página ======
+// Eliminar Página
 if (isset($_POST['delete_id'])) {
     $idEliminar = $_POST['delete_id'];
     $id_navbar = select_sql("SELECT id_navbar FROM paginas_empresa WHERE id = ?", [$idEliminar])[0]['id_navbar'] ?? null;
     idu_sql("DELETE FROM paginas_empresa WHERE id = ?", [$idEliminar]);
-    if ($id_navbar) {
-        idu_sql("DELETE FROM navbar WHERE id = ?", [$id_navbar]);
-    }
+    if ($id_navbar) {idu_sql("DELETE FROM navbar WHERE id = ?", [$id_navbar]);}
     $_SESSION['mensagem_sucesso'] = "Página eliminada com sucesso!";
     header("Location: editar_empresa.php");
     exit;
@@ -143,11 +141,7 @@ require_once "components/header.php";
           <div class="tab-pane fade show active pt-2 pb-4" id="tab-preview">
             <div class="mx-auto" style="max-width: 85%;">
               <div class="text-center py-4">
-                <img id="banner-preview" 
-                     src="<?= htmlspecialchars($bannerAtual) ?>" 
-                     class="img-fluid rounded shadow" 
-                     style="max-height: 500px;">
-                <p class="text-muted mt-3"><?= basename($bannerAtual) ?></p>
+                <img id="banner-preview" src="<?= htmlspecialchars($bannerAtual) ?>" class="img-fluid rounded shadow" style="max-height: 500px;">
               </div>
             </div>
           </div>
@@ -165,11 +159,9 @@ require_once "components/header.php";
                   $isSelected = ($b['imagem'] ?? '') === $bannerAtual;
                 ?>
                 <div class="card shadow-sm <?= $isSelected ? 'border-success border-3' : '' ?>" 
-                     style="width: 160px; cursor: pointer;"
-                     onclick="selecionarBanner('<?= htmlspecialchars($b['imagem'], ENT_QUOTES) ?>', this)">
-                  <img src="<?= htmlspecialchars($b['imagem']) ?>" 
-                       class="card-img-top" 
-                       style="height: 120px; object-fit: cover;">
+                    style="width: 160px; cursor: pointer;"
+                    onclick="selecionarBanner('<?= htmlspecialchars($b['imagem'], ENT_QUOTES) ?>', this)">
+                  <img src="<?= htmlspecialchars($b['imagem']) ?>" class="card-img-top" style="height: 120px; object-fit: cover;">
                   <div class="card-body p-2 text-center">
                     <?php if($isSelected): ?>
                       <span class="badge bg-success w-100">✓ Selecionado</span>
@@ -187,11 +179,6 @@ require_once "components/header.php";
         </div>
 
         <input type="hidden" name="banner" id="banner" value="<?= htmlspecialchars($bannerAtual) ?>">
-
-        <!-- BOTÃO GUARDAR -->
-        <div class="d-flex justify-content-end border-top pt-3 mt-4">
-          <button type="submit" name="guardar_banner" class="btn btn-dark btn-lg px-5">Guardar Banner</button>
-        </div>
 
       </form>
     </div>
@@ -235,7 +222,7 @@ require_once "components/header.php";
                   <div class="flex-grow-1">
                     <h5 class="fw-bold mb-1"><?= htmlspecialchars($paginaItem['titulo_h1']) ?></h5>
                     <p class="text-muted mb-2 small">
-                      <?= nl2br(htmlspecialchars(mb_strimwidth($paginaItem['texto'], 0, 200, '...'))) ?>
+                      <?= htmlspecialchars(mb_strimwidth(strip_tags($paginaItem['texto']), 0, 200, '...')) ?>
                     </p>
 
                     <div class="d-flex gap-2 flex-wrap mt-2">
@@ -299,11 +286,6 @@ require_once "components/header.php";
 </div>
 
 
-
-
-
-
-
 <!-- OFFCANVAS: FILE MANAGER -->
 <div class="offcanvas offcanvas-end" id="offcanvasTFM">
   <div class="offcanvas-header">
@@ -318,7 +300,7 @@ require_once "components/header.php";
 <script>
 let editorModal = null;
 
-// Função para EDITAR página existente
+//EDITAR página existente
 function abrirModalEdicao(pagina) {
   document.getElementById('modalTitulo').textContent = 'Editar Página';
   document.getElementById('modal-id').value = pagina.id;
@@ -343,10 +325,10 @@ function abrirModalEdicao(pagina) {
   modal.show();
 }
 
-// Função para CRIAR nova página
+// CRIAR nova página
 function abrirModalNovaPagina() {
   document.getElementById('modalTitulo').textContent = 'Adicionar Nova Página';
-  document.getElementById('modal-id').value = ''; // Vazio = nova página
+  document.getElementById('modal-id').value = ''; 
   document.getElementById('modal-titulo-h1').value = '';
   
   const textarea = document.getElementById('modal-texto');
@@ -371,13 +353,13 @@ function abrirModalNovaPagina() {
 
 <script>
 function selecionarBanner(imagemUrl, elemento) {
-  // Atualiza o input hidden
+
   document.getElementById('banner').value = imagemUrl;
   
-  // Atualiza o preview
+
   document.getElementById('banner-preview').src = imagemUrl;
   
-  // Remove seleção de todos os cards
+
   document.querySelectorAll('#tab-galeria .card').forEach(card => {
     card.classList.remove('border-success', 'border-3');
     const cardBody = card.querySelector('.card-body');
@@ -386,7 +368,7 @@ function selecionarBanner(imagemUrl, elemento) {
     cardBody.innerHTML = `<small class="text-muted text-truncate d-block">${fileName}</small>`;
   });
   
-  // Adiciona seleção ao card clicado
+
   elemento.classList.add('border-success', 'border-3');
   elemento.querySelector('.card-body').innerHTML = '<span class="badge bg-success w-100">✓ Selecionado</span>';
 }

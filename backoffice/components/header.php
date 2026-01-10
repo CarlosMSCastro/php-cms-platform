@@ -20,7 +20,7 @@
 <div class="container-fluid">
   <div class="row">
 
-      <!-- SIDEBAR -->
+      <!-- navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold" href="home.php">Backoffice</a>
