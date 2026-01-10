@@ -1,11 +1,9 @@
 
-<?php if(isset($_SESSION["colaborador"])): ?>
     </main>
   </div>
 </div>
-<footer>
-  <p>Carlos Castro © 2025</p>
+<footer class="bg-dark text-center py-2 mt-auto">
+  <small class="text-white-50">Carlos Castro @ 2026</small>
 </footer>
-<?php endif; ?>
 </body>
 </html>

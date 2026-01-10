@@ -7,38 +7,7 @@ body {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.caixa{
-  background-color: rgba(255, 255, 255, 0.75);
-  border:2px solid rgb(66, 66, 66);
-  border-radius:10px;
-  text-align:center;
-  max-width:100%;
-  margin: 20px auto;
-  padding:20px;
-  color:#4D4D4D;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-.caixa h1{
-  text-transform:uppercase;
-}
 
-.caixa label{
-  color:black;
-}
-
-footer{
-  position:relative;
-
-  background-color: rgba(0, 0, 0, 0.55);
-  width:100%;
-  text-align:center;
-  text-transform:uppercase;
-}
-
-footer p{
-  margin:0px;
-  text-transform:uppercase;
-}
 
 input{
   text-align:center;
@@ -58,9 +27,6 @@ button{
   border-collapse: collapse;
 }
 
-a{
-  color:white !important;
-}
 
 .active{
   color:dodgerblue !important;
@@ -73,4 +39,8 @@ a:hover{
 p.legenda{
   font-size:12px !important;
   text-align:left !important;
+}
+
+.removerpaddingtop{
+  margin-top: -50px;
 }
