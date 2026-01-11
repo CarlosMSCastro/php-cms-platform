@@ -6,26 +6,22 @@ $pagina = "editar_inovacoes";
 $banners = select_sql("SELECT * FROM cabecalhos ORDER BY id DESC") ?? [];
 $headerInovacoes = select_sql("SELECT * FROM headers WHERE tipo_pagina = 'inovacoes e tecnologia' LIMIT 1")[0] ?? null;
 $bannerAtual = $headerInovacoes['imagem'] ?? '';
-
 $paginas = select_sql("SELECT * FROM paginas_inovacoes ORDER BY id");
 
-/* ====== Guardar Banner ====== */
+/* Guardar Banner */
 if (isset($_POST['guardar_banner'])) {
     $novoBanner = $_POST['banner'] ?? '';
     if ($headerInovacoes) {
         idu_sql("UPDATE headers SET imagem = ? WHERE tipo_pagina = 'inovacoes e tecnologia'", [$novoBanner]);
     } else {
-        idu_sql(
-            "INSERT INTO headers (tipo_pagina, imagem, ativo, ordem) VALUES (?, ?, 1, 1)",
-            ['inovacoes e tecnologia', $novoBanner]
-        );
+        idu_sql("INSERT INTO headers (tipo_pagina, imagem, ativo, ordem) VALUES (?, ?, 1, 1)",['inovacoes e tecnologia', $novoBanner]);
     }
     $_SESSION['mensagem_sucesso'] = "Banner atualizado com sucesso!";
     header("Location: editar_inovacoes.php");
     exit;
 }
 
-/* ====== Criar / Editar Página ====== */
+/* Criar / Editar Página */
 if (isset($_POST['salvar_pagina'])) {
     $id = $_POST['id'] ?? null;
     $novoTitulo = strip_tags($_POST['titulo_h1'] ?? '');
@@ -35,58 +31,32 @@ if (isset($_POST['salvar_pagina'])) {
 
     if ($id) {
         // EDITAR
-        idu_sql(
-            "UPDATE paginas_inovacoes SET titulo_h1 = ?, texto = ?, texto_2 = ?, imagem = ? WHERE id = ?",
-            [$novoTitulo, $novoTexto, $novoTexto2, $novaImagem, $id]
-        );
-
-        $id_navbar = select_sql(
-            "SELECT id_navbar FROM paginas_inovacoes WHERE id = ?",
-            [$id]
-        )[0]['id_navbar'] ?? null;
-
-        if ($id_navbar) {
-            $url = "inovacoes.php?id=$id_navbar";
-            idu_sql(
-                "UPDATE navbar SET titulo = ?, url = ? WHERE id = ?",
-                [$novoTitulo, $url, $id_navbar]
-            );
+        idu_sql("UPDATE paginas_inovacoes SET titulo_h1 = ?, texto = ?, texto_2 = ?, imagem = ? WHERE id = ?",[$novoTitulo, $novoTexto, $novoTexto2, $novaImagem, $id]);
+        $id_navbar = select_sql("SELECT id_navbar FROM paginas_inovacoes WHERE id = ?",[$id])[0]['id_navbar'] ?? null;
+        if ($id_navbar) {$url = "inovacoes.php?id=$id_navbar";idu_sql("UPDATE navbar SET titulo = ?, url = ? WHERE id = ?",[$novoTitulo, $url, $id_navbar]);
         }
-
         $_SESSION['mensagem_sucesso'] = "Página atualizada com sucesso!";
     } else {
         // CRIAR
         global $pdo;
 
-        $pai = select_sql(
-            "SELECT id FROM navbar WHERE titulo = 'inovacoes e tecnologia' LIMIT 1"
-        )[0]['id'] ?? null;
-
+        $pai = select_sql("SELECT id FROM navbar WHERE titulo = 'inovacoes e tecnologia' LIMIT 1")[0]['id'] ?? null;
         if (!$pai) {
             $_SESSION['mensagem_sucesso'] = "Erro: menu 'inovações e tecnologia' não encontrado!";
             header("Location: editar_inovacoes.php");
             exit;
         }
 
-        $proxOrdem = select_sql(
-            "SELECT IFNULL(MAX(ordem),0)+1 prox FROM navbar WHERE pai_id = ?",
-            [$pai]
-        )[0]['prox'];
-
-        $stmt = $pdo->prepare(
-            "INSERT INTO navbar (titulo, url, pai_id, ordem) VALUES (?, '', ?, ?)"
-        );
+        $proxOrdem = select_sql("SELECT IFNULL(MAX(ordem),0)+1 prox FROM navbar WHERE pai_id = ?",[$pai])[0]['prox'];
+        $stmt = $pdo->prepare("INSERT INTO navbar (titulo, url, pai_id, ordem) VALUES (?, '', ?, ?)");
         $stmt->execute([$novoTitulo, $pai, $proxOrdem]);
         $id_navbar = $pdo->lastInsertId();
 
-        $stmt2 = $pdo->prepare(
-            "INSERT INTO paginas_inovacoes (titulo_h1, texto, texto_2, imagem, id_navbar) VALUES (?, ?, ?, ?, ?)"
-        );
+        $stmt2 = $pdo->prepare("INSERT INTO paginas_inovacoes (titulo_h1, texto, texto_2, imagem, id_navbar) VALUES (?, ?, ?, ?, ?)");
         $stmt2->execute([$novoTitulo, $novoTexto, $novoTexto2, $novaImagem, $id_navbar]);
 
         $url = "inovacoes.php?id=$id_navbar";
         idu_sql("UPDATE navbar SET url = ? WHERE id = ?", [$url, $id_navbar]);
-
         $_SESSION['mensagem_sucesso'] = "Nova página adicionada com sucesso!";
     }
 
@@ -94,14 +64,10 @@ if (isset($_POST['salvar_pagina'])) {
     exit;
 }
 
-/* ====== Eliminar Página ====== */
+/* Eliminar Página */
 if (isset($_POST['delete_id'])) {
     $id = $_POST['delete_id'];
-    $id_navbar = select_sql(
-        "SELECT id_navbar FROM paginas_inovacoes WHERE id = ?",
-        [$id]
-    )[0]['id_navbar'] ?? null;
-
+    $id_navbar = select_sql("SELECT id_navbar FROM paginas_inovacoes WHERE id = ?",[$id])[0]['id_navbar'] ?? null;
     idu_sql("DELETE FROM paginas_inovacoes WHERE id = ?", [$id]);
     if ($id_navbar) {
         idu_sql("DELETE FROM navbar WHERE id = ?", [$id_navbar]);
@@ -112,12 +78,12 @@ if (isset($_POST['delete_id'])) {
     exit;
 }
 
-/* ====== Mensagem ====== */
+/*  Mensagem */
 $mensagem_sucesso = $_SESSION['mensagem_sucesso'] ?? '';
 unset($_SESSION['mensagem_sucesso']);
-
 require_once "components/header.php";
 ?>
+
 <!-- MENSAGEM DE SUCESSO -->
 <?php if($mensagem_sucesso): ?>
   <div class="container-fluid py-3">
@@ -128,10 +94,9 @@ require_once "components/header.php";
   </div>
 <?php endif; ?>
 
-<!-- SEÇÃO: BANNER -->
+<!-- BANNER -->
 <div class="container-fluid py-4">
   <div class="card shadow-lg border-0">
-    
     <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
       <h3 class="mb-0 fw-bold">Banner da Página</h3>
       <button class="btn btn-light btn-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTFM">
@@ -141,7 +106,6 @@ require_once "components/header.php";
 
     <div class="card-body">
       <form method="post" id="form-banner">
-
         <!-- TABS -->
         <ul class="nav nav-tabs mb-4">
           <li class="nav-item">
@@ -157,8 +121,7 @@ require_once "components/header.php";
         </ul>
 
         <!-- TAB CONTENT -->
-        <div class="tab-content">
-          
+        <div class="tab-content">          
           <!-- TAB 1: PREVIEW -->
           <div class="tab-pane fade show active pt-2 pb-4" id="tab-preview">
             <div class="mx-auto" style="max-width: 85%;">
@@ -170,19 +133,15 @@ require_once "components/header.php";
 
           <!-- TAB 2: GALERIA -->
           <div class="tab-pane fade py-3" id="tab-galeria">
-            <div class="mx-auto py-2" style="max-width: 85%;">
-              
+            <div class="mx-auto py-2" style="max-width: 85%;">             
               <div class="alert alert-info mb-4">
                 <strong>Clique numa imagem</strong> para selecionar como banner da página.
               </div>
-
               <div class="d-flex flex-wrap gap-3 justify-content-center">
                 <?php foreach($banners as $b):
                   $isSelected = ($b['imagem'] ?? '') === $bannerAtual;
                 ?>
-                <div class="card shadow-sm <?= $isSelected ? 'border-success border-3' : '' ?>" 
-                    style="width: 160px; cursor: pointer;"
-                    onclick="selecionarBanner('<?= htmlspecialchars($b['imagem'], ENT_QUOTES) ?>', this)">
+                <div class="card shadow-sm <?= $isSelected ? 'border-success border-3' : '' ?>" style="width: 160px; cursor: pointer;"onclick="selecionarBanner('<?= htmlspecialchars($b['imagem'], ENT_QUOTES) ?>', this)">
                   <img src="<?= htmlspecialchars($b['imagem']) ?>" class="card-img-top" style="height: 120px; object-fit: cover;">
                   <div class="card-body p-2 text-center">
                     <?php if($isSelected): ?>
@@ -194,12 +153,9 @@ require_once "components/header.php";
                 </div>
                 <?php endforeach; ?>
               </div>
-
             </div>
           </div>
-
         </div>
-
         <input type="hidden" name="banner" id="banner" value="<?= htmlspecialchars($bannerAtual) ?>">
         <!-- BOTÃO GUARDAR -->
         <div class="d-flex justify-content-end border-top pt-3 mt-4">
@@ -207,11 +163,10 @@ require_once "components/header.php";
         </div>
       </form>
     </div>
-
   </div>
 </div>
 
-<!-- SEÇÃO: PÁGINAS DE INOVAÇÕES -->
+<!-- PÁGINAS DE INOVAÇÕES -->
 <div class="container-fluid py-4">
   <div class="card shadow-lg border-0">
 
@@ -224,19 +179,16 @@ require_once "components/header.php";
 
     <div class="card-body">
       <div class="mx-auto" style="max-width: 85%;">
-
         <?php if(empty($paginas)): ?>
           <div class="alert alert-warning">
             <strong>Nenhuma página criada.</strong>
             Clique em "Adicionar Nova Página" para começar.
           </div>
-        <?php else: ?>
-          
+        <?php else: ?>         
           <?php foreach($paginas as $paginaItem): ?>
             <div class="card shadow-sm mb-3">
               <div class="card-body p-3">
-                <div class="d-flex gap-3 align-items-start">
-                  
+                <div class="d-flex gap-3 align-items-start">                  
                   <div class="flex-shrink-0">
                     <?php if(!empty($paginaItem['imagem'])): ?>
                       <img src="<?= htmlspecialchars($paginaItem['imagem']) ?>"
@@ -249,7 +201,6 @@ require_once "components/header.php";
                       </div>
                     <?php endif; ?>
                   </div>
-
                   <div class="flex-grow-1">
                     <h5 class="fw-bold mb-1"><?= htmlspecialchars($paginaItem['titulo_h1']) ?></h5>
                     <p class="text-muted mb-2 small">
@@ -258,14 +209,10 @@ require_once "components/header.php";
                     <p class="text-muted mb-2 small">
                       <strong>Texto 2:</strong> <?= htmlspecialchars(mb_strimwidth(strip_tags($paginaItem['texto_2']), 0, 150, '...')) ?>
                     </p>
-
                     <div class="d-flex gap-2 flex-wrap mt-2">
-                      <button type="button" 
-                              class="btn btn-dark btn-sm" 
-                              onclick="abrirModalEdicao(<?= htmlspecialchars(json_encode($paginaItem), ENT_QUOTES) ?>)">
+                      <button type="button" class="btn btn-dark btn-sm" onclick="abrirModalEdicao(<?= htmlspecialchars(json_encode($paginaItem), ENT_QUOTES) ?>)">
                         Editar
                       </button>
-
                       <form method="post" class="d-inline">
                         <input type="hidden" name="delete_id" value="<?= $paginaItem['id'] ?>">
                         <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Eliminar esta página?');">
@@ -296,37 +243,25 @@ require_once "components/header.php";
         <h5 class="modal-title fw-bold" id="modalTitulo">Editar Inovação</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-
       <form method="post" id="formEdicaoModal">
         <div class="modal-body p-4">
           <input type="hidden" name="id" id="modal-id">
-
           <!-- TÍTULO -->
           <div class="mb-3">
             <label class="form-label fw-bold">Título</label>
-            <input type="text"
-                   name="titulo_h1"
-                   id="modal-titulo-h1"
-                   class="form-control form-control-lg"
-                   required>
+            <input type="text" name="titulo_h1" id="modal-titulo-h1" class="form-control form-control-lg" required>
           </div>
 
           <!-- TEXTO 1 -->
           <div class="mb-3">
             <label class="form-label fw-bold">Texto 1</label>
-            <textarea name="texto"
-                      id="modal-texto"
-                      class="form-control"
-                      rows="8"></textarea>
+            <textarea name="texto" id="modal-texto" class="form-control ckeditor" rows="8"></textarea>
           </div>
 
           <!-- TEXTO 2 -->
           <div class="mb-3">
             <label class="form-label fw-bold">Texto 2</label>
-            <textarea name="texto_2"
-                      id="modal-texto-2"
-                      class="form-control"
-                      rows="8"></textarea>
+            <textarea name="texto_2" id="modal-texto-2" class="form-control ckeditor" rows="8"></textarea>
           </div>
 
           <!-- IMAGEM -->
@@ -336,18 +271,12 @@ require_once "components/header.php";
             <!-- TABS -->
             <ul class="nav nav-tabs mb-3">
               <li class="nav-item">
-                <button class="nav-link active"
-                        data-bs-toggle="tab"
-                        data-bs-target="#tab-imagem-preview"
-                        type="button">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-imagem-preview" type="button">
                   Imagem Atual
                 </button>
               </li>
               <li class="nav-item">
-                <button class="nav-link"
-                        data-bs-toggle="tab"
-                        data-bs-target="#tab-imagem-galeria"
-                        type="button">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-imagem-galeria" type="button">
                   Escolher da Galeria
                 </button>
               </li>
@@ -371,7 +300,7 @@ require_once "components/header.php";
                   id="tab-imagem-galeria">
                 <div class="h-100 d-flex flex-column">
 
-                  <div class="alert alert-info mx-5 flex-shrink-0">
+                  <div class="alert alert-info mx-5 mt-3 flex-shrink-0">
                     <strong>Clique numa imagem</strong> para selecioná-la.
                   </div>
 
@@ -409,10 +338,7 @@ require_once "components/header.php";
 
             <!-- FILE MANAGER -->
             <div class="mt-2">
-              <button type="button"
-                      class="btn btn-outline-secondary btn-sm"
-                      data-bs-toggle="offcanvas"
-                      data-bs-target="#offcanvasTFM">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTFM">
                 📁 Gerir Ficheiros / Upload
               </button>
             </div>
@@ -421,14 +347,10 @@ require_once "components/header.php";
         </div>
 
         <div class="modal-footer">
-          <button type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
             Cancelar
           </button>
-          <button type="submit"
-                  name="salvar_pagina"
-                  class="btn btn-dark btn-lg px-5">
+          <button type="submit" name="salvar_pagina" class="btn btn-dark btn-lg px-5">
             Guardar
           </button>
         </div>
@@ -450,8 +372,6 @@ require_once "components/header.php";
 </div>
 
 <script>
-let editorModal = null;
-let editorModal2 = null;
 
 // EDITAR página existente
 function abrirModalEdicao(pagina) {
@@ -468,33 +388,6 @@ function abrirModalEdicao(pagina) {
     item.classList.remove('border-success', 'border-3');
   });
 
-  // TEXTO 1
-  const textarea = document.getElementById('modal-texto');
-  textarea.value = pagina.texto || '';
-
-  if (!editorModal) {
-    ClassicEditor.create(textarea)
-      .then(editor => {
-        editorModal = editor;
-        editor.setData(pagina.texto || '');
-      });
-  } else {
-    editorModal.setData(pagina.texto || '');
-  }
-
-  // TEXTO 2
-  const textarea2 = document.getElementById('modal-texto-2');
-  textarea2.value = pagina.texto_2 || '';
-
-  if (!editorModal2) {
-    ClassicEditor.create(textarea2)
-      .then(editor => {
-        editorModal2 = editor;
-        editor.setData(pagina.texto_2 || '');
-      });
-  } else {
-    editorModal2.setData(pagina.texto_2 || '');
-  }
 
   new bootstrap.Modal(document.getElementById('modalEdicao')).show();
 }
@@ -518,29 +411,11 @@ function abrirModalNovaPagina() {
   const textarea = document.getElementById('modal-texto');
   textarea.value = '';
 
-  if (!editorModal) {
-    ClassicEditor.create(textarea)
-      .then(editor => {
-        editorModal = editor;
-        editor.setData('');
-      });
-  } else {
-    editorModal.setData('');
-  }
 
   // TEXTO 2
   const textarea2 = document.getElementById('modal-texto-2');
   textarea2.value = '';
 
-  if (!editorModal2) {
-    ClassicEditor.create(textarea2)
-      .then(editor => {
-        editorModal2 = editor;
-        editor.setData('');
-      });
-  } else {
-    editorModal2.setData('');
-  }
 
   new bootstrap.Modal(document.getElementById('modalEdicao')).show();
 }

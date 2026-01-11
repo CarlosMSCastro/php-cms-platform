@@ -9,90 +9,61 @@ $bannerAtual = $headerSolucoes['imagem'] ?? '';
 
 $paginas = select_sql("SELECT * FROM paginas_solucoes ORDER BY id");
 
-/* ====== Guardar Banner ====== */
+/* Guardar Banner */
 if (isset($_POST['guardar_banner'])) {
     $novoBanner = $_POST['banner'] ?? '';
     if ($headerSolucoes) {
         idu_sql("UPDATE headers SET imagem = ? WHERE tipo_pagina = 'solucoes'", [$novoBanner]);
     } else {
         idu_sql(
-            "INSERT INTO headers (tipo_pagina, imagem, ativo, ordem) VALUES (?, ?, 1, 1)",
-            ['solucoes', $novoBanner]
-        );
+            "INSERT INTO headers (tipo_pagina, imagem, ativo, ordem) VALUES (?, ?, 1, 1)",['solucoes', $novoBanner]);
     }
     $_SESSION['mensagem_sucesso'] = "Banner de Soluções atualizado com sucesso!";
     header("Location: editar_solucoes.php");
     exit;
 }
 
-/* ====== Criar / Editar Página ====== */
+/* Criar / Editar Página  */
 if (isset($_POST['salvar_pagina'])) {
     $id = $_POST['id'] ?? null;
     $novoTitulo = strip_tags($_POST['titulo_h1'] ?? '');
     $novoTexto  = $_POST['texto'] ?? '';
-
     if ($id) {
-        // EDITAR
-        idu_sql(
-            "UPDATE paginas_solucoes SET titulo_h1 = ?, texto = ? WHERE id = ?",
-            [$novoTitulo, $novoTexto, $id]
+        idu_sql("UPDATE paginas_solucoes SET titulo_h1 = ?, texto = ? WHERE id = ?",[$novoTitulo, $novoTexto, $id]
         );
-
-        $id_navbar = select_sql(
-            "SELECT id_navbar FROM paginas_solucoes WHERE id = ?",
-            [$id]
-        )[0]['id_navbar'] ?? null;
-
+        $id_navbar = select_sql("SELECT id_navbar FROM paginas_solucoes WHERE id = ?",[$id])[0]['id_navbar'] ?? null;
         if ($id_navbar) {
             $url = "solucoes.php?id=$id_navbar";
-            idu_sql(
-                "UPDATE navbar SET titulo = ?, url = ? WHERE id = ?",
-                [$novoTitulo, $url, $id_navbar]
-            );
+            idu_sql("UPDATE navbar SET titulo = ?, url = ? WHERE id = ?",[$novoTitulo, $url, $id_navbar]);
         }
-
         $_SESSION['mensagem_sucesso'] = "Página atualizada com sucesso!";
     } else {
         // CRIAR
         global $pdo;
-
-        $pai = select_sql(
-            "SELECT id FROM navbar WHERE titulo = 'solucoes' LIMIT 1"
-        )[0]['id'] ?? null;
-
+        $pai = select_sql("SELECT id FROM navbar WHERE titulo = 'solucoes' LIMIT 1")[0]['id'] ?? null;
         if (!$pai) {
             $_SESSION['mensagem_sucesso'] = "Erro: menu 'soluções' não encontrado!";
             header("Location: editar_solucoes.php");
             exit;
         }
 
-        $proxOrdem = select_sql(
-            "SELECT IFNULL(MAX(ordem),0)+1 prox FROM navbar WHERE pai_id = ?",
-            [$pai]
-        )[0]['prox'];
+        $proxOrdem = select_sql("SELECT IFNULL(MAX(ordem),0)+1 prox FROM navbar WHERE pai_id = ?",[$pai])[0]['prox'];
 
-        $stmt = $pdo->prepare(
-            "INSERT INTO navbar (titulo, url, pai_id, ordem) VALUES (?, '', ?, ?)"
-        );
+        $stmt = $pdo->prepare("INSERT INTO navbar (titulo, url, pai_id, ordem) VALUES (?, '', ?, ?)");
         $stmt->execute([$novoTitulo, $pai, $proxOrdem]);
         $id_navbar = $pdo->lastInsertId();
 
-        $stmt2 = $pdo->prepare(
-            "INSERT INTO paginas_solucoes (titulo_h1, texto, id_navbar) VALUES (?, ?, ?)"
-        );
+        $stmt2 = $pdo->prepare("INSERT INTO paginas_solucoes (titulo_h1, texto, id_navbar) VALUES (?, ?, ?)");
         $stmt2->execute([$novoTitulo, $novoTexto, $id_navbar]);
-
         $url = "solucoes.php?id=$id_navbar";
         idu_sql("UPDATE navbar SET url = ? WHERE id = ?", [$url, $id_navbar]);
-
         $_SESSION['mensagem_sucesso'] = "Nova página adicionada com sucesso!";
     }
-
     header("Location: editar_solucoes.php");
     exit;
 }
 
-/* ====== Eliminar Página ====== */
+/* Eliminar Página */
 if (isset($_POST['delete_id'])) {
     $id = $_POST['delete_id'];
     $id_navbar = select_sql(
@@ -110,13 +81,13 @@ if (isset($_POST['delete_id'])) {
     exit;
 }
 
-/* ====== Mensagem ====== */
+/* Mensagem */
 $mensagem_sucesso = $_SESSION['mensagem_sucesso'] ?? '';
 unset($_SESSION['mensagem_sucesso']);
 
 require_once "components/header.php";
 ?>
-<!-- MENSAGEM DE SUCESSO -->
+
 <?php if($mensagem_sucesso): ?>
   <div class="container-fluid py-3">
     <div class="alert alert-success fw-bold alert-dismissible fade show" role="alert">
@@ -126,7 +97,7 @@ require_once "components/header.php";
   </div>
 <?php endif; ?>
 
-<!-- SEÇÃO: BANNER -->
+<!-- BANNER -->
 <div class="container-fluid py-4">
   <div class="card shadow-lg border-0">
     
@@ -169,11 +140,9 @@ require_once "components/header.php";
           <!-- TAB 2: GALERIA -->
           <div class="tab-pane fade py-3" id="tab-galeria">
             <div class="mx-auto py-2" style="max-width: 85%;">
-              
-              <div class="alert alert-info mb-4">
+              <div class="alert alert-info mb-4" >
                 <strong>Clique numa imagem</strong> para selecionar como banner da página.
               </div>
-
               <div class="d-flex flex-wrap gap-3 justify-content-center">
                 <?php foreach($banners as $b):
                   $isSelected = ($b['imagem'] ?? '') === $bannerAtual;
@@ -192,14 +161,11 @@ require_once "components/header.php";
                 </div>
                 <?php endforeach; ?>
               </div>
-
             </div>
           </div>
-
         </div>
-
         <input type="hidden" name="banner" id="banner" value="<?= htmlspecialchars($bannerAtual) ?>">
-                <!-- BOTÃO GUARDAR -->
+        <!-- BOTÃO GUARDAR -->
         <div class="d-flex justify-content-end border-top pt-3 mt-4">
           <button type="submit" name="guardar_banner" class="btn btn-dark btn-lg px-5">Guardar Banner</button>
         </div>
@@ -209,7 +175,7 @@ require_once "components/header.php";
   </div>
 </div>
 
-<!-- SEÇÃO: PÁGINAS DA EMPRESA -->
+<!-- PÁGINAS DA EMPRESA -->
 <div class="container-fluid py-4">
   <div class="card shadow-lg border-0">
 
@@ -237,31 +203,22 @@ require_once "components/header.php";
                   
                   <div class="flex-shrink-0">
                     <?php if(!empty($paginaItem['imagem'])): ?>
-                      <img src="../backoffice/<?= htmlspecialchars($paginaItem['imagem']) ?>"
-                          class="rounded"
-                          style="width: 120px; height: 100px; object-fit: cover;">
+                      <img src="../backoffice/<?= htmlspecialchars($paginaItem['imagem']) ?>" class="rounded" style="width: 120px; height: 100px; object-fit: cover;">
                     <?php else: ?>
-                      <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center"
-                          style="width: 120px; height: 100px;">
+                      <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center" style="width: 120px; height: 100px;">
                         <small>Sem imagem</small>
                       </div>
                     <?php endif; ?>
                   </div>
-
-
                   <div class="flex-grow-1">
                     <h5 class="fw-bold mb-1"><?= htmlspecialchars($paginaItem['titulo_h1']) ?></h5>
                     <p class="text-muted mb-2 small">
                       <?= htmlspecialchars(mb_strimwidth(strip_tags($paginaItem['texto']), 0, 200, '...')) ?>
                     </p>
-
                     <div class="d-flex gap-2 flex-wrap mt-2">
-                      <button type="button" 
-                              class="btn btn-dark btn-sm" 
-                              onclick="abrirModalEdicao(<?= htmlspecialchars(json_encode($paginaItem), ENT_QUOTES) ?>)">
+                      <button type="button" class="btn btn-dark btn-sm" onclick="abrirModalEdicao(<?= htmlspecialchars(json_encode($paginaItem), ENT_QUOTES) ?>)">
                         Editar
                       </button>
-
                       <form method="post" class="d-inline">
                         <input type="hidden" name="delete_id" value="<?= $paginaItem['id'] ?>">
                         <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Eliminar esta página?');">
@@ -300,20 +257,13 @@ require_once "components/header.php";
           <!-- TÍTULO -->
           <div class="mb-3">
             <label class="form-label fw-bold">Título</label>
-            <input type="text"
-                   name="titulo_h1"
-                   id="modal-titulo-h1"
-                   class="form-control form-control-lg"
-                   required>
+            <input type="text" name="titulo_h1"id="modal-titulo-h1"class="form-control form-control-lg"required>
           </div>
 
           <!-- TEXTO -->
           <div class="mb-3">
             <label class="form-label fw-bold">Texto</label>
-            <textarea name="texto"
-                      id="modal-texto"
-                      class="form-control"
-                      rows="8"></textarea>
+            <textarea name="texto"id="modal-texto"class="form-control ckeditor"rows="8"></textarea>
           </div>
 
           <!-- IMAGEM (IGUAL A NOTÍCIAS) -->
@@ -323,45 +273,32 @@ require_once "components/header.php";
             <!-- TABS -->
             <ul class="nav nav-tabs mb-3">
               <li class="nav-item">
-                <button class="nav-link active"
-                        data-bs-toggle="tab"
-                        data-bs-target="#tab-imagem-preview"
-                        type="button">
+                <button class="nav-link active"data-bs-toggle="tab" data-bs-target="#tab-imagem-preview" type="button">
                   Imagem Atual
                 </button>
               </li>
               <li class="nav-item">
-                <button class="nav-link"
-                        data-bs-toggle="tab"
-                        data-bs-target="#tab-imagem-galeria"
-                        type="button">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-imagem-galeria" type="button">
                   Escolher da Galeria
                 </button>
               </li>
             </ul>
 
             <!-- TAB CONTENT -->
-            <div class="tab-content border rounded p-3"
-                style="height:380px; overflow:hidden;">
-
+            <div class="tab-content border rounded p-3" style="height:380px; overflow:hidden;">
               <!-- PREVIEW -->
-              <div class="tab-pane fade show active h-100"
-                  id="tab-imagem-preview">
-                <div id="preview-container"
-                    class="text-center d-flex align-items-center justify-content-center h-100">
+              <div class="tab-pane fade show active h-100" id="tab-imagem-preview">
+                <div id="preview-container" class="text-center d-flex align-items-center justify-content-center h-100">
                   <div class="text-muted">Nenhuma imagem selecionada</div>
                 </div>
               </div>
 
               <!-- GALERIA -->
-              <div class="tab-pane fade h-100"
-                  id="tab-imagem-galeria">
+              <div class="tab-pane fade h-100"id="tab-imagem-galeria">
                 <div class="h-100 d-flex flex-column">
-
-                  <div class="alert alert-info mx-5 flex-shrink-0">
+                  <div class="alert alert-info mx-5 mt-3 flex-shrink-0">
                     <strong>Clique numa imagem</strong> para selecioná-la.
                   </div>
-
                   <div class="flex-grow-1" style="overflow-y:auto;">
                     <div class="mx-auto" style="max-width:85%;">
                       <div class="d-flex flex-wrap gap-2 justify-content-center">
@@ -369,10 +306,8 @@ require_once "components/header.php";
                         $uploadsPath = __DIR__ . "/uploads/";
                         if (is_dir($uploadsPath)) {
                           foreach (scandir($uploadsPath) as $file) {
-                            if (in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)),
-                                ['jpg','jpeg','png','gif','webp'])) {
-
-                              $caminho = "uploads/$file"; // Para guardar na BD (SEM backoffice/)
+                            if (in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)),['jpg','jpeg','png','gif','webp'])) {
+                              $caminho = "uploads/$file";
                               echo '<div class="card shadow-sm imagem-galeria-item" style="width:110px;cursor:pointer;" onclick="selecionarImagemSolucao(\'' . htmlspecialchars($caminho, ENT_QUOTES) . '\', this)">';
                               echo '<img src="../backoffice/' . htmlspecialchars($caminho) . '" class="card-img-top" style="height:80px;object-fit:cover;">';
                               echo '<div class="card-body p-1 text-center">';
@@ -396,10 +331,7 @@ require_once "components/header.php";
 
             <!-- FILE MANAGER -->
             <div class="mt-2">
-              <button type="button"
-                      class="btn btn-outline-secondary btn-sm"
-                      data-bs-toggle="offcanvas"
-                      data-bs-target="#offcanvasTFM">
+              <button type="button"class="btn btn-outline-secondary btn-sm"data-bs-toggle="offcanvas"data-bs-target="#offcanvasTFM">
                 📁 Gerir Ficheiros / Upload
               </button>
             </div>
@@ -408,23 +340,17 @@ require_once "components/header.php";
         </div>
 
         <div class="modal-footer">
-          <button type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
             Cancelar
           </button>
-          <button type="submit"
-                  name="salvar_pagina"
-                  class="btn btn-dark btn-lg px-5">
+          <button type="submit"name="salvar_pagina" class="btn btn-dark btn-lg px-5">
             Guardar
           </button>
         </div>
-
       </form>
     </div>
   </div>
 </div>
-
 
 
 <!-- OFFCANVAS: FILE MANAGER -->
@@ -439,7 +365,6 @@ require_once "components/header.php";
 </div>
 
 <script>
-let editorModal = null;
 
 // EDITAR página existente
 function abrirModalEdicao(pagina) {
@@ -459,16 +384,6 @@ function abrirModalEdicao(pagina) {
   const textarea = document.getElementById('modal-texto');
   textarea.value = pagina.texto || '';
 
-  // Inicializa CKEditor (básico, como estava)
-  if (!editorModal) {
-    ClassicEditor.create(textarea)
-      .then(editor => {
-        editorModal = editor;
-        editor.setData(pagina.texto || '');
-      });
-  } else {
-    editorModal.setData(pagina.texto || '');
-  }
 
   new bootstrap.Modal(document.getElementById('modalEdicao')).show();
 }
@@ -491,16 +406,6 @@ function abrirModalNovaPagina() {
   const textarea = document.getElementById('modal-texto');
   textarea.value = '';
 
-  // Inicializa CKEditor (básico, como estava)
-  if (!editorModal) {
-    ClassicEditor.create(textarea)
-      .then(editor => {
-        editorModal = editor;
-        editor.setData('');
-      });
-  } else {
-    editorModal.setData('');
-  }
 
   new bootstrap.Modal(document.getElementById('modalEdicao')).show();
 }
