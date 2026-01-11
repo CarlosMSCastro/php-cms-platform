@@ -164,7 +164,9 @@ require_once "components/header.php";
         </div>
 
         <input type="hidden" name="banner" id="banner" value="<?= htmlspecialchars($bannerAtual) ?>">
-
+        <div class="d-flex justify-content-end border-top pt-3 mt-4">
+          <button type="submit" name="guardar_banner" class="btn btn-dark btn-lg px-5">Guardar Banner</button>
+        </div>
       </form>
     </div>
 
