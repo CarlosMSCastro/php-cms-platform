@@ -1,3 +1,4 @@
+
 body{
     max-width:1600px;
     margin:0 auto;
@@ -5,12 +6,6 @@ body{
     font-family: 'Proxima Nova ExCn Rg';
     background-color: #ffffff;
 }
-.text-tiny { font-size: 0.7rem; }
-.text-small { font-size: 0.85rem; }
-.text-default { font-size: 1rem; }
-.text-big { font-size: 1.25rem; }
-.text-huge { font-size: 2rem; }
-
 .header-mobile{display:none !important;}
 .nav-mobile {display: none !important;}
 .titulos{font-family: 'Proxima Nova ExCn Sb';}
@@ -170,16 +165,25 @@ header .row:first-child .col-12 {
     display: flex;
     justify-content: center;
 }
-h1 {
+#intro {
+    max-width: 1250px;
+    margin: 60px auto 40px auto;
+    text-align: center;
+    padding: 0 20px;
+}
+#intro h1 {
     font-family: 'Proxima Nova ExCn Sb';
+    font-size: 48px;
     font-weight: 600;
     text-transform: none;
     color: #4D4D4D;
 }
-h2 {
+#intro h2 {
     font-family: 'Proxima Nova ExCn Sb';
+    font-size: 36px;
+    line-height: 12px;
     font-weight: 400;
-    text-transform: none;
+    margin-bottom: 35px;
     color: #4D4D4D;
 }
 #intro p {
@@ -187,7 +191,28 @@ h2 {
     font-size: 20px;
     line-height: 1.45;
     max-width: 1250px;
+    margin: 0 auto 55px auto;
     color: #4D4D4D;
+}
+#intro .titulo-secundario {
+    font-family: 'Proxima Nova ExCn Sb';
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 35px;
+    color: #4D4D4D;
+}
+#destaques {
+    max-width: 1600px;
+    margin: 5px auto;
+    padding: 0 20px;
+}
+#destaques .titulo-secundario {
+    font-family: 'Proxima Nova ExCn Sb';
+    font-size: 42px;
+    font-weight: 600;
+    color: #4D4D4D;
+    text-align: center;
+    margin-bottom: 25px;
 }
 .linha-separadora {
     width: 78% !important;
@@ -196,14 +221,24 @@ h2 {
     border: none;
     border-top: 3px solid #4D4D4D;
 }
-
+#carouselDestaques {
+    width: 81%;
+    max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+}
 #carouselDestaques .destaques-img {
     width: 100%;
-    overflow:hidden;
+    max-width: 630px;
+    min-width: 500px;
+    height: auto;
+    object-fit: cover;
     flex-shrink: 0 !important;
 }
 #carouselDestaques .destaques-conteudo {
     flex:1;
+    max-width: 520px !important;
+    min-width: 420px !important;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -215,6 +250,13 @@ h2 {
     font-family: 'Proxima Nova ExCn Sb';
     font-size: 34px;
     color: #4D4D4D;
+}
+#carouselDestaques .destaques-data {
+    font-family: 'Proxima Nova ExCn Sb';
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #4D4D4D;
+    line-height:15px;
 }
 #carouselDestaques .destaques-texto {
     font-family: 'Proxima Nova ExCn Rg';
@@ -236,8 +278,9 @@ h2 {
     width: 140px;
     text-align:center;
     padding: 2px !important;
-    top:460px;
-    position:absolute;
+    margin-top: 62px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 .destaques-btn:hover {
     background-color: #4D4D4D;
@@ -280,6 +323,9 @@ h2 {
 #carouselDestaques .carousel-indicators {
     justify-content: center;
     gap: 14px;
+    bottom: -60px;
+    padding-bottom: 19px;
+    right: 280px !important;
     background-color:white;
 }
 #carouselDestaques .carousel-indicators [data-bs-target]:hover {
@@ -390,6 +436,15 @@ h2 {
 }
 #carouselNoticias .carousel-indicators button:not(.active) {background-image: url("../imagens/carousel2/bola_azul.svg");}
 #carouselNoticias .carousel-indicators .active {background-image: url("../imagens/carousel2/bola_cinza.svg");}
+#noticias .titulo-secundario {
+    font-family: 'Proxima Nova ExCn Sb';
+    font-size: 42px;
+    font-weight: 600;
+    color: #4D4D4D;
+    text-align: center;
+    margin-bottom: 25px;
+    padding-top: 60px! important;
+}
 #navbarfundo {
     margin-top: -7px;
     z-index: 20;
@@ -638,8 +693,7 @@ h5.titulocontactos{
     }
     #carouselDestaques .destaques-btn {
         display: inline-block !important;
-        align-self:flex-start;
-        margin-top:0 !important;  
+        align-self:flex-start;  
     }
     #carouselDestaques .carousel-indicators {
         position: absolute !important;
@@ -958,62 +1012,6 @@ h5.titulocontactos{
         margin-bottom:50px;
     }
 }
-@media (max-width: 767.98px) {
-    .card-destaque {
-        width: 100% !important;  
-        margin: 0 !important;
-        margin-bottom: 20px !important; 
-    }
-    .card-img-top {
-        height: 320px !important;
-        width: 100% !important;
-        border-radius: 0; 
-    }
-    #titulo-empresa{
-        text-align: center;
-        font-size: 22px !important;
-        font-weight: bold;
-    }
-    .corpo-texto {
-        width: 90%;
-        margin: -40px auto 0 auto;
-    }
-    .corpo-texto{font-size:19px !important;}
-    .card-title{font-size:22px !important;}
-    .row.g-0.g-md-5 > .col-12.col-md-6:nth-of-type(n+7) {display: none !important;}
-    .imgsolucoes{
-        height:300px !important;
-        object-fit:cover !important;
-        width: 100%;
-    }
-    .container_destaque{
-        width:85%;
-        margin-bottom:60px;
-    }
-    .textomobile{
-        text-align: justify;
-        font-size: 16px;
-        color: #4D4D4D;
-        width:85% !important;
-        margin:auto;
-    }
-    .container-empresa{
-        font-size: 16px !important;
-        max-width: 95% !important;
-    }
-    .parceiros{
-        width:100% !important;
-        margin-bottom: 40px;
-    }
-    .shadownav{margin-top:150px !important;}
-    .container-contactos{
-        padding-left:0px !important;
-        margin-bottom:70px;
-    }
-    .caixabotaoenviar{
-        margin-top:50px !important;
-    }
-}
 @media (max-width: 610px){
     .social-icons {
         transform: scale(85%);
@@ -1063,6 +1061,7 @@ h5.titulocontactos{
     }
     #carouselNoticias .noticias-texto{font-size:18px !important}
     #carouselNoticias .noticias-titulo{font-size:26px !important}
+    #destaques .titulo-secundario{font-size:30px !important;}
     #carouselDestaques .carousel-item .row{align-items:normal !important;}
     #carouselNoticias .noticias-conteudo{bottom:200px !important;}
     #carouselNoticias .noticias-btn{bottom:200px !important;}
@@ -1119,6 +1118,60 @@ h5.titulocontactos{
         margin-top:70px;
     }
 }
-@media (max-width: 510px){
-    
+
+@media (max-width: 767.98px) {
+    .card-destaque {
+        width: 100% !important;  
+        margin: 0 !important;
+        margin-bottom: 20px !important; 
+    }
+    .card-img-top {
+        height: 320px !important;
+        width: 100% !important;
+        border-radius: 0; 
+    }
+    #titulo-empresa{
+        text-align: center;
+        font-size: 22px !important;
+        font-weight: bold;
+    }
+    .corpo-texto {
+        width: 90%;
+        margin: -40px auto 0 auto;
+    }
+    .corpo-texto{font-size:19px !important;}
+    .card-title{font-size:22px !important;}
+    .row.g-0.g-md-5 > .col-12.col-md-6:nth-of-type(n+7) {display: none !important;}
+    .imgsolucoes{
+        height:300px !important;
+        object-fit:cover !important;
+        width: 100%;
+    }
+    .container_destaque{
+        width:85%;
+        margin-bottom:60px;
+    }
+    .textomobile{
+        text-align: justify;
+        font-size: 16px;
+        color: #4D4D4D;
+        width:85% !important;
+        margin:auto;
+    }
+    .container-empresa{
+        font-size: 16px !important;
+        max-width: 95% !important;
+    }
+    .parceiros{
+        width:100% !important;
+        margin-bottom: 40px;
+    }
+    .shadownav{margin-top:150px !important;}
+    .container-contactos{
+        padding-left:0px !important;
+        margin-bottom:70px;
+    }
+    .caixabotaoenviar{
+        margin-top:50px !important;
+    }
 }

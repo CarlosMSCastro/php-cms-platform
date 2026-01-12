@@ -5,21 +5,16 @@ require_once "bd_helper.php";
 $homeContent = select_sql("SELECT * FROM home_conteudo LIMIT 1")[0];
 ?>
 
-  <!-- Texto Introdução-->
-  <div class="container-fluid p-0">
-    <div class="row mx-4 my-0">
-      <div class="col-12 p-0 m-0">
-        <section id="intro">
-          <h1><?= $homeContent['titulo_h1'] ?></h1><br>
-          <h2><?= $homeContent['titulo_h2'] ?></h2>
-
-          <p>
+<div class="container-fluid pb-5">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12 col-sm-11 col-md-11 col-lg-9 text-center fs-5">
+        <h1 class="fs-1"><?= $homeContent['titulo_h1'] ?></h1><br>
+        <h2 class="d-none d-sm-block fs-2"><?= $homeContent['titulo_h2'] ?></h2>
         <?= $homeContent['texto'] ?>
-          </p>
-        </section>
-      </div>
     </div>
   </div>
+</div>
+
 
   <?php
   $showFooterCarousel=true;

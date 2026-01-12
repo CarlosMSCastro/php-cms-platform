@@ -32,7 +32,7 @@ if (!empty($tipoPagina) && $tipoPagina === 'home') {
 
   <header>
 
-    <div class="container-fluid p-0">
+    <div class="container-fluid px-0 pb-0 pb-lg-5">
       <div class="row m-0">
         <div class="col-12 p-0">
           <div class="header-top header-desktop">

@@ -17,59 +17,50 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
   <!-- Carrousel Destaques-->
   <?php if (!empty($carousel2Items) && ($showCarousel2 ?? true)): ?>
     <div class="container-fluid p-0 m-0"> 
-      <div class="row p-0 my-0 mx-3">
-        <div class="col-12 p-0 m-0">
-          <section id="destaques">            
-            <h3 class="titulo-secundario">Destaques</h3><br>
-            <hr class="linha-separadora">
-            <div id="carouselDestaques" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
-              <!-- Indicadores -->
-              <div class="carousel-indicators">
-                <?php foreach($carousel2Items as $index => $item): ?>
-                  <button type="button" data-bs-target="#carouselDestaques" data-bs-slide-to="<?= $index ?>" <?= $index === 0 ? 'class="active"' : '' ?>></button>
-                <?php endforeach; ?>
-              </div>
-              <!-- Slides -->
-              <div class="carousel-inner">
-                <?php foreach($carousel2Items as $index => $item): ?>
-                  <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                    <div class="row g-0">
-                      <!-- Imagem -->
-                      <div class="col-6">
-                        <img src="<?= $item['imagem'] ?>" class="destaques-img w-100">
-                      </div>
-                      <!-- Conteúdo -->
-                      <div class="col-6 destaques-conteudo">
-                        <h3 class="destaques-titulo"><?= $item['titulo'] ?></h3>
-                        <div class="destaques-data"><?= $item['data'] ?></div>
-                        <!-- Texto  -->
-                        <p class="destaques-texto">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget rutrum nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi id ante volutpat, commodo dolor eu, ornare leo. Integer efficitur, lacus sit amet pellentesque egestas, sapien massa tristique turpis, ac faucibus augue magna et libero. Quisque vel laoreet ipsum. Sed ac eleifend justo, maximus luctus turpis. Duis at neque nec est semper cursus. Quisque quis felis eu mi congue mollis eu at odio.
-                        </p>
-                        <br>
-                        <p class="destaques-texto">
-                          Vivamus aliquam nisi ut mauris luctus, eget suscipit lorem congue. Morbi ac ex quam. Aenean dapibus nibh vel nisi hendrerit venenatis a vitae nunc. In hac habitasse platea dictumst. Curabitur eleifend sagittis arcu,
-                        </p>
-                        <br>
-                        <!-- VER MAIS  -->
-                        <a href="<?= !empty($item['pagina_url']) ? $item['pagina_url'] : '#' ?>" class="destaques-btn">VER MAIS</a>
-                      </div>
+      <div class="row p-0 my-0 mx-3 justify-content-center align-items-center">
+        <div class="col-12 col-sm-11 col-md-10 text-center fs-5">           
+          <h1 class="fs-1 pt-5">Destaques</h1><br>
+          <hr class="linha-separadora">
+          <div id="carouselDestaques" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+            <!-- Indicadores -->
+            <div class="carousel-indicators m-0 p-2 w-25 d-flex">
+              <?php foreach($carousel2Items as $index => $item): ?>
+                <button type="button" data-bs-target="#carouselDestaques" data-bs-slide-to="<?= $index ?>" <?= $index === 0 ? 'class="active"' : '' ?>></button>
+              <?php endforeach; ?>
+            </div>
+            <!-- Slides -->
+            <div class="carousel-inner"style="min-height:500px;">
+              <?php foreach($carousel2Items as $index => $item): ?>
+                <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                  <div class="row g-0" >
+                    <!-- Imagem -->
+                    <div class="col-6">
+                      <img src="<?= $item['imagem'] ?>" class="destaques-img w-100">
+                    </div>
+                    <!-- Conteúdo -->
+                    <div class="col-6 destaques-conteudo">
+                      <h1 class="fs-2"><?= $item['titulo'] ?></h1>
+                      <h1 class="fs-3"><?= $item['data'] ?></h1>
+                      <!-- Texto  -->
+                      <p class="card-text"><?= mb_strimwidth(strip_tags($item['texto'], '<em>'), 0, 300, '...') ?></p>
+                      <!-- VER MAIS  -->
+                      <a href="<?= !empty($item['pagina_url']) ? $item['pagina_url'] : '#' ?>" class="destaques-btn mt-0">VER MAIS</a>
                     </div>
                   </div>
-                <?php endforeach; ?>
-              </div>
-              <!-- Indicators -->
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestaques" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-              </button>
-
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselDestaques" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-              </button>
-
+                </div>
+              <?php endforeach; ?>
             </div>
+            <!-- Indicators -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestaques" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </button>
 
-          </section>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselDestaques" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </button>
+
+          </div>
+
           <br><br>
         </div>
       </div>
@@ -146,28 +137,28 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
       </div>
     </div>
   <?php endif; ?>
-        <!-- Navbarfundo FORA quando carousel NÃO existe -->
-        <?php if (!$showFooterCarousel && $showFooterNavbar): ?>
-          <nav id="navbarfundo" class="navbarfundo navbar navbar-expand-lg shadownav2">
-            <div class="mx-auto navbarfundo-topo">
-              <div class="collapse navbar-collapse" id="navbarFundoDropdown">
-                <ul class="navbar-nav navbarfundo-menu">
-                <?php foreach ($footerNav as $item): ?>
-                  <li class="nav-item navbarfundo-item">
-                    <a class="nav-link navbarfundo-link" 
-                      href="<?= $item['url'] ?>"
-                      <?php if($item['url'] === '#'): ?>
-                        onclick="abrirDropdownTopo('dropdown-<?= strtolower(str_replace(' ', '-', $item['titulo'])) ?>'); return false;"
-                      <?php endif; ?>>
-                      <?= $item['titulo'] ?>
-                    </a>
-                  </li>
-                <?php endforeach; ?>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        <?php endif; ?>
+  <!-- Navbarfundo FORA quando carousel NÃO existe -->
+  <?php if (!$showFooterCarousel && $showFooterNavbar): ?>
+    <nav id="navbarfundo" class="navbarfundo navbar navbar-expand-lg shadownav2">
+      <div class="mx-auto navbarfundo-topo">
+        <div class="collapse navbar-collapse" id="navbarFundoDropdown">
+          <ul class="navbar-nav navbarfundo-menu">
+          <?php foreach ($footerNav as $item): ?>
+            <li class="nav-item navbarfundo-item">
+              <a class="nav-link navbarfundo-link" 
+                href="<?= $item['url'] ?>"
+                <?php if($item['url'] === '#'): ?>
+                  onclick="abrirDropdownTopo('dropdown-<?= strtolower(str_replace(' ', '-', $item['titulo'])) ?>'); return false;"
+                <?php endif; ?>>
+                <?= $item['titulo'] ?>
+              </a>
+            </li>
+          <?php endforeach; ?>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  <?php endif; ?>
 
   <footer>
     <div class="container-fluid p-0">
