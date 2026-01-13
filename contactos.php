@@ -30,12 +30,10 @@ require_once "components/header.php";
 <?php if (!empty($mensagem_sucesso)): ?>
     <div class="alert alert-success"><?= $mensagem_sucesso ?></div>
 <?php endif; ?>
-<section id="intro">
-  <h1>Contactos</h1><br>
-</section>
 
 <div class="container">
-  <div class="row">
+  <div class="row text-center">
+    <h1 class="pb-5">Contactos</h1><br>
     <!-- Lado esquerdo: contactos -->
     <div class="col-12 col-md-6 container-contactos">
       <ul class="list-unstyled p-2">
@@ -94,7 +92,7 @@ require_once "components/header.php";
           <label for="mensagem" class="titulocontactos">*Mensagem</label>
           <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Insira aqui a sua mensagem" required></textarea>
         </div>
-        <div class="col-12">
+        <div class="col-8">
           <h5 class="titulocontactos">*Campos de preenchimento Obrigatório</h5>
           <div class="form-check mt-2">
             <input class="form-check-input me-2" type="checkbox" id="receberCopia" name="receberCopia">

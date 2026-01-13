@@ -67,52 +67,53 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
     </div>
   <?php endif; ?>               
   
-  <!-- Carrousel Ultimos Eventos e Noticias-->  
-  <?php if ($showFooterCarousel ?? true): ?>
-    <div class="container-fluid p-0 m-0">
-      <div class="row m-0 p-0">
-        <div class="col-12 p-0 m-0">
-          <section id="noticias">
-            <h3 class="titulo-secundario">Últimas Notícias e Eventos</h3><br>
-            <!-- Carrousel-->
+<!-- Carrousel Ultimos Eventos e Noticias-->  
+<?php if ($showFooterCarousel ?? true): ?>
+  <div class="container-fluid px-0 pt-0 m-0">
+    <div class="row m-0 p-0">
+      <div class="col-12 p-0 m-0">
+        <section id="noticias" class="pt-5">
+            <h1 class="fs-1 pt-5" style="text-align:center">Últimas Notícias e Eventos</h1><br>
+            
             <div id="carouselNoticias" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
-
-                <div class="carousel-indicators">
-                    <?php foreach ($footerSlides as $i => $slide): ?>
-                        <button type="button" data-bs-target="#carouselNoticias" data-bs-slide-to="<?= $i ?>" <?= $i === 0 ? 'class="active"' : '' ?>></button>
-                    <?php endforeach; ?>
-                </div>
 
                 <div class="carousel-inner">
                     <?php foreach ($footerSlides as $i => $slide): ?>
-                        <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
-                            <div class="row g-0">
-
-                                <div class="col-12">
-                                    <img src="<?= $slide['imagem'] ?>" class="noticias-img w-100">
-                                </div>
-
-                                <div class="noticias-conteudo">
-                                    <h3 class="noticias-titulo"><?= $slide['titulo'] ?></h3>
-                                    <div class="noticias-data"><?= $slide['data'] ?></div>
-
-                                    <p class="noticias-texto">
-                                        <p class="card-text"><?= mb_strimwidth(strip_tags($slide['texto'], '<em>'), 0, 600, '...') ?></p>
-                                    </p>
-                                </div>
-
+                        <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>" style="transition: transform 0.6s ease-in-out !important;">
+                            <img src="<?= $slide['imagem'] ?>" class="noticias-img w-100">
+                            
+                            <div class="noticias-conteudo">
+                                <h3 class="noticias-titulo"><?= $slide['titulo'] ?></h3>
+                                <div class="noticias-data"><?= $slide['data'] ?></div>
                                 <a href="<?= $slide['pagina_url'] ?>" class="noticias-btn">VER MAIS</a>
-
+                                <p class="noticias-texto ntmobile">
+                                    <?= mb_strimwidth(strip_tags($slide['texto'], '<em>'), 0, 130, '...') ?>
+                                </p>
+                                <p class="noticias-texto ntdesktop">
+                                    <?= mb_strimwidth(strip_tags($slide['texto'], '<em>'), 0, 520, '...') ?>
+                                </p>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
 
+                <!-- Indicadores -->
+                <div class="carousel-indicators">
+                    <?php foreach ($footerSlides as $i => $slide): ?>
+                        <button type="button" 
+                                data-bs-target="#carouselNoticias" 
+                                data-bs-slide-to="<?= $i ?>" 
+                                <?= $i === 0 ? 'class="active" aria-current="true"' : '' ?>
+                                aria-label="Slide <?= $i + 1 ?>">
+                        </button>
+                    <?php endforeach; ?>
+                </div>
+
             </div>
-          </section>
+        </section>
           <!-- Navbarfundo-->
         <?php if($showFooterNavbar): ?>
-          <nav id="navbarfundo" class="navbarfundo navbar navbar-expand-lg">
+          <nav id="navbarfundo" class="navbarfundo navbar navbar-expand-lg mt-5">
             <div class="mx-auto navbarfundo-topo">
               <div class="collapse navbar-collapse" id="navbarFundoDropdown">
                 <ul class="navbar-nav navbarfundo-menu">
@@ -159,6 +160,7 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
       </div>
     </nav>
   <?php endif; ?>
+
 
   <footer>
     <div class="container-fluid p-0">

@@ -10,7 +10,12 @@ body{
 .text-default { font-size: 1rem; }
 .text-big { font-size: 1.25rem; }
 .text-huge { font-size: 2rem; }
-
+.ntmobile{
+    display:none;
+}
+.ntdesktop{
+    display:block;
+}
 .header-mobile{display:none !important;}
 .nav-mobile {display: none !important;}
 .titulos{font-family: 'Proxima Nova ExCn Sb';}
@@ -313,31 +318,27 @@ h2 {
 }
 #carouselNoticias {
     width: 100%;
-    max-width: 1600px;
-    height: 735px;
     margin: 0 auto;
     position: relative;
-    overflow: visible;
+    height: 640px;
 }
 #carouselNoticias .noticias-img {
     width: 100%;
-    height: auto !important;
-    max-height: 540px;
+    height: 540px;
     object-fit: cover;
     display: block;
 }
 #carouselNoticias .noticias-conteudo {
     position: relative !important; 
-    bottom: 397px; 
+    margin-top: -410px;
+    min-height:520px;
     left: 270px;  
     width: 680px;
     background: rgba(255,255,255,0.85);
     padding: 40px 30px 40px; 
 }
 #carouselNoticias .noticias-btn {
-    position: absolute;          
-    left: 24%;                    
-    bottom: 341px;                 
+    position: absolute;                        
     display: inline-block;
     background-color: #006E94;
     color: #FFFFFF !important;
@@ -347,6 +348,7 @@ h2 {
     padding: 2px;
     width:130px;
     text-align:center;
+    top:430px;
 }
 #carouselNoticias .noticias-titulo {
     font-family: 'Proxima Nova ExCn Sb';
@@ -370,14 +372,16 @@ h2 {
     background-color: #4D4D4D;
 }
 #carouselNoticias .carousel-indicators {
-    bottom: 118px;
-    left: 530px !important;
-    right: 0 !important;
-    margin: 0 auto !important;
     gap: 12px;
     justify-content: center;
     background-color:white;
-    padding-bottom: 15px;
+    max-width:300px;
+    margin:auto !important;
+    position: absolute !important;  
+    bottom: 48px!important;        
+    left: 190px !important;             
+    right: 0!important; 
+    padding: 10px 0;       
 }
 #carouselNoticias .carousel-indicators [data-bs-target] {
     width: 26px;
@@ -639,7 +643,9 @@ h5.titulocontactos{
     #carouselDestaques .destaques-btn {
         display: inline-block !important;
         align-self:flex-start;
-        margin-top:0 !important;  
+        margin-top:0 !important;
+        position:relative;
+        top:0;
     }
     #carouselDestaques .carousel-indicators {
         position: absolute !important;
@@ -657,79 +663,30 @@ h5.titulocontactos{
         max-width: 100% !important;
         flex: none !important;
     }
-}
-@media (max-width: 1266px) {
-    #carouselNoticias .noticias-img {
-        width: 100% !important;
-        height: 500px !important;
-        display: block !important;
-        object-fit: cover;
-    }
-    #carouselNoticias .noticias-conteudo {
-        position: absolute !important;
-        bottom: 45px !important; 
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        max-height: 70%;
-        width: 80% !important;
-        max-width: 620px !important;
-        background: rgba(255,255,255,0.90);
-    }
-    #carouselNoticias .noticias-btn {
+    #carouselNoticias .noticias-conteudo{
+        left: 200px !important;
         position: relative !important;
-        bottom: auto !important;
-        transform: none !important;
-        margin: 15px 0 0 -25px !important; 
-        width: 140px !important;
-        display: inline-block !important;
-    }
-    #carouselNoticias .carousel-indicators {
-        position: absolute !important;
-        left: 50% !important;
-        bottom: 120px !important;
-        width: 550px !important;
-        left: 50% !important;
-        transform: translateX(-50%);
-        margin: 0 !important;
-        padding: 0 30px !important;
-        display: flex !important;
-        justify-content: flex-end !important;
-        gap: 10px !important;
-        background-color:white;
     }
 }
+
 @media (max-width: 992px) {
     #carouselDestaques .carousel-control-prev,
     #carouselDestaques .carousel-control-next {
         display: none !important;
     }
-    #carouselNoticias .noticias-conteudo {
+        #carouselNoticias .noticias-conteudo{
+        left: 10% !important;
         position: relative !important;
-        bottom:180px !important;
-        z-index: 10;
-    }
-    #carouselNoticias .noticias-btn {
-        position: absolute !important; 
-        bottom: 180px !important; 
-        left: 18%;
-        transform: translateX(-50%);
-        z-index: 9999 !important;
-    }   
-    #carouselNoticias {height: 935px !important;}
-    #carouselNoticias .carousel-indicators {
-        position:absolute;
-        background-color: transparent !important;
-        padding-bottom: 0 !important;
-        bottom: 105px !important;
+        max-width:80%;
     }
     #footerfundo {margin-top: 0px;}
-    #noticias{padding-bottom:0px;}
     #footer-social{
         position:relative;
         transform:scale(150%);
         bottom:150px !important;
+        padding-top:55px !important;
     }
-    #noticias {padding: 0 !important;}
+    #noticias {padding-bottom: 10px !important;}
     #footer-logos{
         position:relative;
         bottom:90px !important;
@@ -900,7 +857,7 @@ h5.titulocontactos{
         position: absolute !important;
         bottom: 10px !important;
         width: 550px !important;
-        left: 50% !important;
+        left: 60% !important;
         transform: translateX(-55%);
         padding: 10px;
         display: flex !important;
@@ -1026,25 +983,6 @@ h5.titulocontactos{
         margin-left:-30px;
     }
     .navbar-toggler{top: -135px !important;}
-    #intro {
-        position:relative;
-        margin: 0px;
-        padding: 10px;
-        text-align: justify;
-        top: -80px;
-    }
-    #intro h1{
-        margin-top: 55px;
-        margin-bottom: 55px;
-        width:90%;
-        font-size:35px;
-        text-align:center;
-    }
-    #intro p{
-        position:relative;
-        top:-30px;
-        margin-bottom: 0px;
-    }
     #destaques{
         position:relative;
         top:-80px;
@@ -1061,36 +999,19 @@ h5.titulocontactos{
         max-width:100%;
         min-width:100%;
     }
-    #carouselNoticias .noticias-texto{font-size:18px !important}
-    #carouselNoticias .noticias-titulo{font-size:26px !important}
     #carouselDestaques .carousel-item .row{align-items:normal !important;}
-    #carouselNoticias .noticias-conteudo{bottom:200px !important;}
-    #carouselNoticias .noticias-btn{bottom:200px !important;}
-    #noticias .titulo-secundario{
-        margin-top: -100px;
-        font-size: 30px !important;
-    }
     #carouselDestaques .carousel-item .col-6 {
         justify-content:center;
         min-width:100% !important;
     }
     .linha-separadora{width:100% !important;}
     #carouselDestaques .carousel-indicators{
-        left: 30% !important;
-        transform: translateX(-55%) scale(85%);
-        padding: 10px;
         display: flex !important;
-        justify-content: flex-end !important;
         gap: 6px;
+        bottom:0px !important;
+        justify-content: center !important;
     }
-    #carouselNoticias .carousel-indicators{
-        left: 43% !important;
-        transform: translateX(-55%) scale(85%);
-        padding: 10px;
-        display: flex !important;
-        justify-content: flex-end !important;
-        gap: 6px;
-    }
+
     #carouselDestaques .destaques-texto {
         font-family: 'Proxima Nova ExCn Rg';
         font-size: 18px;
@@ -1102,7 +1023,6 @@ h5.titulocontactos{
         font-size: 24px;
         color: #4D4D4D;
     }
-    #carouselNoticias {height: 1215px !important;}
     .footer-logo,
     #samsung,
     .footer-consumo,
@@ -1118,7 +1038,13 @@ h5.titulocontactos{
     h3.titulo-secundario{
         margin-top:70px;
     }
-}
-@media (max-width: 510px){
-    
+    .ntmobile{
+        display:block;
+    }
+    .ntdesktop{
+        display:none;
+    }
+    #carouselNoticias .noticias-btn{
+        top: 350px;
+    }
 }

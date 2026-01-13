@@ -12,7 +12,8 @@ function abrirDropdownTopo(idDropdown){
 window.addEventListener('load', function() {
   var paginaAtual = window.location.pathname.split('/').pop();
   
-  if(paginaAtual !== 'home.php') {
+  // Verifica se é home.php, vazio (/) ou index
+  if(paginaAtual !== 'home.php' && paginaAtual !== '' && paginaAtual !== 'index.php') {
     var header = document.querySelector('header');
     if(header) {
       var alturaHeader = header.offsetHeight;
