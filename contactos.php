@@ -4,7 +4,7 @@ $tipoPagina = 'contactos';
 
 $id_navbar = $_GET['id'] ?? 0;
 $footerNav = select_sql("SELECT * FROM footer_navbar ORDER BY ordem");
-$contactos = select_sql("SELECT morada, telefone, fax, email, nif, gps FROM contactos")[0] ?? [];
+$contactos = select_sql("SELECT morada, telefone, fax, email, nif, gps, gps_iframe_url FROM contactos")[0] ?? [];
 
 if (!empty($_POST)) {
     $nome = $_POST['nome'] ?? '';
@@ -32,7 +32,7 @@ require_once "components/header.php";
 <?php endif; ?>
 
 <div class="container">
-  <div class="row text-center">
+  <div class="row text-right">
     <h1 class="pb-5">Contactos</h1><br>
     <!-- Lado esquerdo: contactos -->
     <div class="col-12 col-md-6 container-contactos">
@@ -103,7 +103,7 @@ require_once "components/header.php";
         </div>
         <div class="caixabotaoenviar d-flex flex-column align-items-end">
           <img src="imagens/recaptcha.png" alt="recaptcha" class="recaptcha"><br>
-          <button type="submit" class="destaques-btn border-0 botaoalto">Enviar</button>  
+          <button type="submit" class="border-0 btn-enviar">Enviar</button>  
         </div>
         
       </form>

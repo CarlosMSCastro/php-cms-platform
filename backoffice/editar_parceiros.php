@@ -56,14 +56,12 @@ require_once "components/header.php";
 ?>
 
 
-<?php if($mensagem_sucesso): ?>
-  <div class="container-fluid py-3">
-    <div class="alert alert-success fw-bold alert-dismissible fade show" role="alert">
-      <?= htmlspecialchars($mensagem_sucesso) ?>
-      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-  </div>
-<?php endif; ?>
+<?php 
+if ($mensagem_sucesso) {
+    $mensagem = $mensagem_sucesso;
+    include 'components/alert_message.php';
+}
+?>
 
 <!-- SEÇÃO: PARCEIROS -->
 <div class="container-fluid py-4">
@@ -230,7 +228,7 @@ require_once "components/header.php";
                   <div class="flex-grow-1" style="overflow-y:auto;">
                     <div class="d-flex flex-wrap gap-2 justify-content-center">
                       <?php
-                      $uploadsPath = __DIR__ . "/uploads/";
+                      $uploadsPath = __DIR__ . "/uploads";
                       if (is_dir($uploadsPath)) {
                         foreach (scandir($uploadsPath) as $file) {
                           if (in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)),
@@ -281,7 +279,7 @@ require_once "components/header.php";
               </div>
 
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="tamanho_radio" id="tamanho-pequeno" value="0" checkedonchange="document.getElementById('tamanho-input').checked = false">
+                <input class="form-check-input" type="radio" name="tamanho_radio" id="tamanho-pequeno" value="0" checked onchange="document.getElementById('tamanho-input').checked = false">
                 <label class="form-check-label" for="tamanho-pequeno">
                   <strong>Pequeno</strong> - 2 por linha<br>
                   <div class="mt-2 d-flex gap-2">
@@ -295,7 +293,7 @@ require_once "components/header.php";
                 </label>
               </div>
               <!-- Hidden checkbox para enviar no POST -->
-              <input type="hidden" name="tamanho" id="tamanho-input" value="">
+              <input type="checkbox" name="tamanho" id="tamanho-input" value="1" style="display:none;">
             </div>
           </div>
         </div>

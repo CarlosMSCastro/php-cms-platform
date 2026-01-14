@@ -22,15 +22,14 @@ if (isset($_POST['guardar_banner'])) {
     header("Location: editar_solucoes.php");
     exit;
 }
-
 /* Criar / Editar Página  */
 if (isset($_POST['salvar_pagina'])) {
     $id = $_POST['id'] ?? null;
     $novoTitulo = strip_tags($_POST['titulo_h1'] ?? '');
     $novoTexto  = $_POST['texto'] ?? '';
     if ($id) {
-        idu_sql("UPDATE paginas_solucoes SET titulo_h1 = ?, texto = ? WHERE id = ?",[$novoTitulo, $novoTexto, $id]
-        );
+        $novaImagem = $_POST['imagem'] ?? '';
+        idu_sql("UPDATE paginas_solucoes SET titulo_h1 = ?, texto = ?, imagem = ? WHERE id = ?",[$novoTitulo, $novoTexto, $novaImagem, $id]);
         $id_navbar = select_sql("SELECT id_navbar FROM paginas_solucoes WHERE id = ?",[$id])[0]['id_navbar'] ?? null;
         if ($id_navbar) {
             $url = "solucoes.php?id=$id_navbar";
@@ -53,8 +52,9 @@ if (isset($_POST['salvar_pagina'])) {
         $stmt->execute([$novoTitulo, $pai, $proxOrdem]);
         $id_navbar = $pdo->lastInsertId();
 
-        $stmt2 = $pdo->prepare("INSERT INTO paginas_solucoes (titulo_h1, texto, id_navbar) VALUES (?, ?, ?)");
-        $stmt2->execute([$novoTitulo, $novoTexto, $id_navbar]);
+        $stmt2 = $pdo->prepare("INSERT INTO paginas_solucoes (titulo_h1, texto, id_navbar, imagem) VALUES (?, ?, ?, ?)");
+        $novaImagem = $_POST['imagem'] ?? '';
+        $stmt2->execute([$novoTitulo, $novoTexto, $novaImagem, $id_navbar]);
         $url = "solucoes.php?id=$id_navbar";
         idu_sql("UPDATE navbar SET url = ? WHERE id = ?", [$url, $id_navbar]);
         $_SESSION['mensagem_sucesso'] = "Nova página adicionada com sucesso!";
@@ -62,7 +62,6 @@ if (isset($_POST['salvar_pagina'])) {
     header("Location: editar_solucoes.php");
     exit;
 }
-
 /* Eliminar Página */
 if (isset($_POST['delete_id'])) {
     $id = $_POST['delete_id'];
@@ -80,100 +79,24 @@ if (isset($_POST['delete_id'])) {
     header("Location: editar_solucoes.php");
     exit;
 }
-
-/* Mensagem */
 $mensagem_sucesso = $_SESSION['mensagem_sucesso'] ?? '';
 unset($_SESSION['mensagem_sucesso']);
 
 require_once "components/header.php";
 ?>
 
-<?php if($mensagem_sucesso): ?>
-  <div class="container-fluid py-3">
-    <div class="alert alert-success fw-bold alert-dismissible fade show" role="alert">
-      <?= htmlspecialchars($mensagem_sucesso) ?>
-      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-  </div>
-<?php endif; ?>
+<?php 
+if ($mensagem_sucesso) {
+    $mensagem = $mensagem_sucesso;
+    include 'components/alert_message.php';
+}
+?>
 
-<!-- BANNER -->
-<div class="container-fluid py-4">
-  <div class="card shadow-lg border-0">
-    
-    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-      <h3 class="mb-0 fw-bold">Banner da Página</h3>
-      <button class="btn btn-light btn-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTFM">
-        📁 Gerir Ficheiros
-      </button>
-    </div>
-
-    <div class="card-body">
-      <form method="post" id="form-banner">
-
-        <!-- TABS -->
-        <ul class="nav nav-tabs mb-4">
-          <li class="nav-item">
-            <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#tab-preview" type="button">
-              Banner Ativo
-            </button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#tab-galeria" type="button">
-              Trocar Banner
-            </button>
-          </li>
-        </ul>
-
-        <!-- TAB CONTENT -->
-        <div class="tab-content">
-          
-          <!-- TAB 1: PREVIEW -->
-          <div class="tab-pane fade show active pt-2 pb-4" id="tab-preview">
-            <div class="mx-auto" style="max-width: 85%;">
-              <div class="text-center py-4">
-                <img id="banner-preview" src="<?= htmlspecialchars($bannerAtual) ?>" class="img-fluid rounded shadow" style="max-height: 500px;">
-              </div>
-            </div>
-          </div>
-
-          <!-- TAB 2: GALERIA -->
-          <div class="tab-pane fade py-3" id="tab-galeria">
-            <div class="mx-auto py-2" style="max-width: 85%;">
-              <div class="alert alert-info mb-4" >
-                <strong>Clique numa imagem</strong> para selecionar como banner da página.
-              </div>
-              <div class="d-flex flex-wrap gap-3 justify-content-center">
-                <?php foreach($banners as $b):
-                  $isSelected = ($b['imagem'] ?? '') === $bannerAtual;
-                ?>
-                <div class="card shadow-sm <?= $isSelected ? 'border-success border-3' : '' ?>" 
-                    style="width: 160px; cursor: pointer;"
-                    onclick="selecionarBanner('<?= htmlspecialchars($b['imagem'], ENT_QUOTES) ?>', this)">
-                  <img src="<?= htmlspecialchars($b['imagem']) ?>" class="card-img-top" style="height: 120px; object-fit: cover;">
-                  <div class="card-body p-2 text-center">
-                    <?php if($isSelected): ?>
-                      <span class="badge bg-success w-100">✓ Selecionado</span>
-                    <?php else: ?>
-                      <small class="text-muted text-truncate d-block"><?= basename($b['imagem']) ?></small>
-                    <?php endif; ?>
-                  </div>
-                </div>
-                <?php endforeach; ?>
-              </div>
-            </div>
-          </div>
-        </div>
-        <input type="hidden" name="banner" id="banner" value="<?= htmlspecialchars($bannerAtual) ?>">
-        <!-- BOTÃO GUARDAR -->
-        <div class="d-flex justify-content-end border-top pt-3 mt-4">
-          <button type="submit" name="guardar_banner" class="btn btn-dark btn-lg px-5">Guardar Banner</button>
-        </div>
-      </form>
-    </div>
-
-  </div>
-</div>
+<!-- EDITAR BANNER -->
+<?php
+$tipoPagina = 'solucoes';
+include 'components/banner_editor.php';
+?>
 
 <!-- PÁGINAS DA EMPRESA -->
 <div class="container-fluid py-4">
@@ -364,8 +287,8 @@ require_once "components/header.php";
   </div>
 </div>
 
-<script>
 
+<script>
 // EDITAR página existente
 function abrirModalEdicao(pagina) {
   document.getElementById('modalTitulo').textContent = 'Editar Página';
@@ -387,15 +310,16 @@ function abrirModalEdicao(pagina) {
 
   new bootstrap.Modal(document.getElementById('modalEdicao')).show();
 
-  // Aguarda CKEditor inicializar
   setTimeout(() => {
-    const textarea = document.getElementById('modal-texto');
-    if (textarea.editorInstance) {
-      textarea.editorInstance.setData(pagina.texto || '');
-    } else {
-      textarea.value = pagina.texto || '';
-    }
-  }, 300);
+      const textarea = document.getElementById('modal-texto');
+      const editor = tinymce.get('modal-texto');
+      
+      if (editor) {
+        editor.setContent(pagina.texto || '');
+      } else {
+        textarea.value = pagina.texto || '';
+      }
+  }, 500); // 500ms em vez de 300ms
 }
 
 // CRIAR nova página
@@ -419,33 +343,18 @@ function abrirModalNovaPagina() {
 
   new bootstrap.Modal(document.getElementById('modalEdicao')).show();
 
+
   setTimeout(() => {
-    const textarea = document.getElementById('modal-texto');
-    if (textarea.editorInstance) {
-      textarea.editorInstance.setData('');
-    } else {
-      textarea.value = '';
-    }
-  }, 300);
+      const textarea = document.getElementById('modal-texto');
+      const editor = tinymce.get('modal-texto');
+      
+      if (editor) {
+        editor.setContent(pagina.texto || '');
+      } else {
+        textarea.value = pagina.texto || '';
+      }
+  }, 500); // 500ms em vez de 300ms
 }
-
-// Selecionar banner
-function selecionarBanner(imagemUrl, elemento) {
-  document.getElementById('banner').value = imagemUrl;
-  document.getElementById('banner-preview').src = imagemUrl;
-  
-  document.querySelectorAll('#tab-galeria .card').forEach(card => {
-    card.classList.remove('border-success', 'border-3');
-    const cardBody = card.querySelector('.card-body');
-    const img = card.querySelector('img');
-    const fileName = img.src.split('/').pop();
-    cardBody.innerHTML = `<small class="text-muted text-truncate d-block">${fileName}</small>`;
-  });
-  
-  elemento.classList.add('border-success', 'border-3');
-  elemento.querySelector('.card-body').innerHTML = '<span class="badge bg-success w-100">✓ Selecionado</span>';
-}
-
 
 // Atualizar preview da imagem
 function atualizarPreview(url) {

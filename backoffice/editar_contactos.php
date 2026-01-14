@@ -44,14 +44,12 @@ unset($_SESSION['mensagem_sucesso']);
 require_once "components/header.php";
 ?>
 
-<?php if($mensagem_sucesso): ?>
-  <div class="container-fluid py-3">
-    <div class="alert alert-success fw-bold alert-dismissible fade show" role="alert">
-      <?= htmlspecialchars($mensagem_sucesso) ?>
-      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-  </div>
-<?php endif; ?>
+<?php 
+if ($mensagem_sucesso) {
+    $mensagem = $mensagem_sucesso;
+    include 'components/alert_message.php';
+}
+?>
 
 <!--INFORMAÇÕES DE CONTACTO -->
 <div class="container-fluid py-4">

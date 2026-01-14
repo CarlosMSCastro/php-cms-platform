@@ -16,6 +16,15 @@ body{
 .ntdesktop{
     display:block;
 }
+.ntmini{
+    display:none;
+}
+.dtmobile{
+    display:none;
+}
+.dtdesktop{
+    display:block;
+}
 .header-mobile{display:none !important;}
 .nav-mobile {display: none !important;}
 .titulos{font-family: 'Proxima Nova ExCn Sb';}
@@ -404,6 +413,10 @@ h2 {
     display: flex;
     align-items: center;
 }
+.textomobile img {
+    max-width: 100% !important;  
+}
+
 .navbarfundo-link {
     color: #2E2E2E !important;
     font-family: 'Proxima Nova ExCn Sb';
@@ -479,7 +492,6 @@ footer{
     height: 38px;
     object-fit: contain;
 }
-#samsung{width: 120px !important;}
 .footer-mobile{display:none !important;}
 #titulo-empresa{
     text-align: right;
@@ -530,15 +542,12 @@ footer{
     width: 100%;
 }
 .textomobile{
-    text-align: justify;
-    font-size: 20px;
     color: #4D4D4D;
 }
 .textoempresa{
     color: #4D4D4D;
 }
 .parceiros{
-    max-width:55% !important;
     margin-bottom: 40px;
 }
 .container-empresa{
@@ -591,16 +600,69 @@ h5.titulocontactos{
 .recaptcha{
     width:250px;
 }
-.botaoalto{
-    padding-bottom:12px !important;
-    font-size:23px !important;
-    margin-top: 0px !important;
+.btn-enviar{
+    padding: 2px 2px 20px 2px !important;
     width:120px !important;
+    display: block;
+    align-self: flex-end;
+    background-color: #006E94;
+    color: #FFFFFF !important;
+    font-family: 'Proxima Nova ExCn Sb';
+    font-size: 20px !important;
+    text-decoration: none;
+    transition: 0.2s ease;
+    width: 140px;
+}
+.btn-enviar:hover {
+    background-color: #4D4D4D;
+    color: #FFFFFF;
 }
 .caixabotaoenviar{
     margin-top:-61px;
 }
+/* ========================================
+   TinyMCE - Alinhamento de Imagens
+   ======================================== */
 
+/* Imagens centralizadas por defeito */
+.textoempresa img,
+.container-empresa img {
+    display: block !important;
+    margin: 1em auto !important;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Imagem à esquerda - TinyMCE */
+.textoempresa img[style*="float: left"],
+.container-empresa img[style*="float: left"] {
+    float: left !important;
+    margin: 0 1.5em 1em 0 !important;
+    max-width: 50%;
+}
+
+/* Imagem à direita - TinyMCE */
+.textoempresa img[style*="float: right"],
+.container-empresa img[style*="float: right"] {
+    float: right !important;
+    margin: 0 0 1em 1.5em !important;
+    max-width: 50%;
+}
+
+/* Limpar floats */
+.textoempresa::after,
+.container-empresa::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Respeitar largura inline */
+.textoempresa img[style*="width"],
+.container-empresa img[style*="width"] {
+    max-width: 100% !important;
+    height: auto !important;
+}
 @media (max-width:1400px) and (min-width :992px){
     .caixabotaoenviar{
         margin-top:61px;
@@ -947,13 +1009,7 @@ h5.titulocontactos{
         width:85%;
         margin-bottom:60px;
     }
-    .textomobile{
-        text-align: justify;
-        font-size: 16px;
-        color: #4D4D4D;
-        width:85% !important;
-        margin:auto;
-    }
+    .textomobile{color: #4D4D4D;}
     .container-empresa{
         font-size: 16px !important;
         max-width: 95% !important;
@@ -1024,7 +1080,6 @@ h5.titulocontactos{
         color: #4D4D4D;
     }
     .footer-logo,
-    #samsung,
     .footer-consumo,
     .footer-livro{transform:scale(75%);}
     #footer-certificados{left: -15% !important;}
@@ -1044,7 +1099,38 @@ h5.titulocontactos{
     .ntdesktop{
         display:none;
     }
+    .ntmini{
+        display:none;
+    }
     #carouselNoticias .noticias-btn{
         top: 350px;
+    }
+}
+@media (max-width:510px){
+        #carouselNoticias .carousel-indicators {
+            gap: 0 !important;
+            position: absolute !important;
+            left: 0px !important
+        }
+}
+
+
+@media (max-width: 393px){
+    .ntmobile{
+        display:none;
+    }
+    .ntdesktop{
+        display:none;
+    }
+    .ntmini{
+        display:block;
+    }
+}
+@media (max-width: 1200px){
+    .dtmobile{
+        display:block;
+    }
+    .dtdesktop{
+        display:none;
     }
 }

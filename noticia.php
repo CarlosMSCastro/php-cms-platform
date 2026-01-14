@@ -16,16 +16,14 @@ $noticia = select_sql("SELECT titulo, imagem, texto FROM footer_carousel WHERE i
       <div class="col-12 p-0">
 
       <?php if ($noticia): ?>
-        <h1 id="titulo-empresa" style=" line-height: 1.2;  ">
+        <h1 id="titulo-empresa text-end" style=" line-height: 1.2;  ">
           <?= ucfirst($tipoPagina) ?>s – <?= $noticia['titulo'] ?>
         </h1>
       <?php endif; ?>
 
         <div class="row mt-3">
-          <div class="col-12">
-            <p class="textomobile">
-              <?= preg_replace('/<img/', '<img style="max-width: 100% !important; height: auto !important;"', $noticia['texto']) ?>
-            </p>
+          <div class="col-12 textomobile">
+              <?= $noticia['texto'] ?>
           </div>
         </div>
         <div class="row mt-4 mx-0">

@@ -21,10 +21,8 @@ $inovacao = select_sql("SELECT titulo_h1, texto, texto_2, imagem FROM paginas_in
         </h1>
       <?php endif; ?>
         <div class="row mt-3 p-0">
-          <div class="col-12 p-0">
-            <p class="textomobile">
-              <?= preg_replace('/<img/', '<img style="max-width: 100% !important; height: auto !important;"', $inovacao['texto']) ?>
-            </p>
+          <div class="col-12 p-0 textomobile">
+              <?= $inovacao['texto'] ?>
           </div>
         </div>
 

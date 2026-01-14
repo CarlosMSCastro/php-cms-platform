@@ -20,7 +20,6 @@ if (isset($_POST['guardar_banner'])) {
     header("Location: editar_empresa.php");
     exit;
 }
-
 // Criar/Editar Página 
 if (isset($_POST['salvar_pagina'])) {
     $id = $_POST['id'] ?? null;
@@ -70,7 +69,6 @@ if (isset($_POST['salvar_pagina'])) {
     header("Location: editar_empresa.php");
     exit;
 }
-
 // Eliminar Página
 if (isset($_POST['delete_id'])) {
     $idEliminar = $_POST['delete_id'];
@@ -81,107 +79,25 @@ if (isset($_POST['delete_id'])) {
     header("Location: editar_empresa.php");
     exit;
 }
-
 $mensagem_sucesso = '';
 if (!empty($_SESSION['mensagem_sucesso'])) {
     $mensagem_sucesso = $_SESSION['mensagem_sucesso'];
     unset($_SESSION['mensagem_sucesso']);
 }
-
 require_once "components/header.php";
 ?>
 
-<!-- MENSAGEM DE SUCESSO -->
-<?php if($mensagem_sucesso): ?>
-  <div class="container-fluid py-3">
-    <div class="alert alert-success fw-bold alert-dismissible fade show" role="alert">
-      <?= htmlspecialchars($mensagem_sucesso) ?>
-      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-  </div>
-<?php endif; ?>
+<?php 
+if ($mensagem_sucesso) {
+    $mensagem = $mensagem_sucesso;
+    include 'components/alert_message.php';
+}
+?>
 
-<!-- SEÇÃO: BANNER -->
-<div class="container-fluid py-4">
-  <div class="card shadow-lg border-0">
-    
-    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-      <h3 class="mb-0 fw-bold">Banner da Página</h3>
-      <button class="btn btn-light btn-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTFM">
-        📁 Gerir Ficheiros
-      </button>
-    </div>
-
-    <div class="card-body">
-      <form method="post" id="form-banner">
-
-        <!-- TABS -->
-        <ul class="nav nav-tabs mb-4">
-          <li class="nav-item">
-            <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#tab-preview" type="button">
-              Banner Ativo
-            </button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#tab-galeria" type="button">
-              Trocar Banner
-            </button>
-          </li>
-        </ul>
-
-        <!-- TAB CONTENT -->
-        <div class="tab-content">
-          
-          <!-- TAB 1: PREVIEW -->
-          <div class="tab-pane fade show active pt-2 pb-4" id="tab-preview">
-            <div class="mx-auto" style="max-width: 85%;">
-              <div class="text-center py-4">
-                <img id="banner-preview" src="<?= htmlspecialchars($bannerAtual) ?>" class="img-fluid rounded shadow" style="max-height: 500px;">
-              </div>
-            </div>
-          </div>
-
-          <!-- TAB 2: GALERIA -->
-          <div class="tab-pane fade py-3" id="tab-galeria">
-            <div class="mx-auto py-2" style="max-width: 85%;">
-              
-              <div class="alert alert-info mb-4">
-                <strong>Clique numa imagem</strong> para selecionar como banner da página.
-              </div>
-
-              <div class="d-flex flex-wrap gap-3 justify-content-center">
-                <?php foreach($banners as $b):
-                  $isSelected = ($b['imagem'] ?? '') === $bannerAtual;
-                ?>
-                <div class="card shadow-sm <?= $isSelected ? 'border-success border-3' : '' ?>" style="width: 160px; cursor: pointer;" onclick="selecionarBanner('<?= htmlspecialchars($b['imagem'], ENT_QUOTES) ?>', this)">
-                  <img src="<?= htmlspecialchars($b['imagem']) ?>" class="card-img-top" style="height: 120px; object-fit: cover;">
-                  <div class="card-body p-2 text-center">
-                    <?php if($isSelected): ?>
-                      <span class="badge bg-success w-100">✓ Selecionado</span>
-                    <?php else: ?>
-                      <small class="text-muted text-truncate d-block"><?= basename($b['imagem']) ?></small>
-                    <?php endif; ?>
-                  </div>
-                </div>
-                <?php endforeach; ?>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-        <input type="hidden" name="banner" id="banner" value="<?= htmlspecialchars($bannerAtual) ?>">
-        <!-- BOTÃO GUARDAR -->
-        <div class="d-flex justify-content-end border-top pt-3 mt-4">
-          <button type="submit" name="guardar_banner" class="btn btn-dark btn-lg px-5">Guardar Banner</button>
-        </div>      
-
-      </form>
-    </div>
-
-  </div>
-</div>
+<?php
+$tipoPagina = 'empresa';
+include 'components/banner_editor.php';
+?>
 
 <!-- SEÇÃO: PÁGINAS DA EMPRESA -->
 <div class="container-fluid py-4">
@@ -280,7 +196,6 @@ require_once "components/header.php";
   </div>
 </div>
 
-
 <!-- OFFCANVAS: FILE MANAGER -->
 <div class="offcanvas offcanvas-end" id="offcanvasTFM">
   <div class="offcanvas-header">
@@ -292,7 +207,6 @@ require_once "components/header.php";
   </div>
 </div>
 
-
 <script>
 function abrirModalEdicao(pagina) {
   document.getElementById('modal-id').value = pagina.id;
@@ -302,13 +216,15 @@ function abrirModalEdicao(pagina) {
   
 
   setTimeout(() => {
-    const textarea = document.getElementById('modal-texto');
-    if (textarea.editorInstance) {
-      textarea.editorInstance.setData(pagina.texto || '');
-    } else {
-      textarea.value = pagina.texto || '';
-    }
-  }, 300);
+      const textarea = document.getElementById('modal-texto');
+      const editor = tinymce.get('modal-texto');
+      
+      if (editor) {
+        editor.setContent(pagina.texto || '');
+      } else {
+        textarea.value = pagina.texto || '';
+      }
+  }, 500); // 500ms em vez de 300ms
 }
 
 function abrirModalNovaPagina() {
@@ -318,38 +234,17 @@ function abrirModalNovaPagina() {
   new bootstrap.Modal(document.getElementById('modalEdicao')).show();
   
   setTimeout(() => {
-    const textarea = document.getElementById('modal-texto');
-    if (textarea.editorInstance) {
-      textarea.editorInstance.setData('');
-    } else {
-      textarea.value = '';
-    }
-  }, 300);
+      const textarea = document.getElementById('modal-texto');
+      const editor = tinymce.get('modal-texto');
+      
+      if (editor) {
+        editor.setContent(pagina.texto || '');
+      } else {
+        textarea.value = pagina.texto || '';
+      }
+  }, 500); // 500ms em vez de 300ms
 }
 </script>
 
-
-<script>
-function selecionarBanner(imagemUrl, elemento) {
-
-  document.getElementById('banner').value = imagemUrl;
-  
-
-  document.getElementById('banner-preview').src = imagemUrl;
-  
-
-  document.querySelectorAll('#tab-galeria .card').forEach(card => {
-    card.classList.remove('border-success', 'border-3');
-    const cardBody = card.querySelector('.card-body');
-    const img = card.querySelector('img');
-    const fileName = img.src.split('/').pop();
-    cardBody.innerHTML = `<small class="text-muted text-truncate d-block">${fileName}</small>`;
-  });
-  
-
-  elemento.classList.add('border-success', 'border-3');
-  elemento.querySelector('.card-body').innerHTML = '<span class="badge bg-success w-100">✓ Selecionado</span>';
-}
-</script>
 
 <?php require_once "components/footer.php"; ?>

@@ -13,7 +13,7 @@ $destaque = select_sql("SELECT titulo, imagem, texto FROM carousel2 WHERE id = $
   <div class="row m-0">
       <div class="col-12 p-0">
       <?php if ($destaque): ?>
-        <h1 id="titulo-empresa">
+        <h1 id="titulo-empresa" class="text-end">
           <?= ucfirst($tipoPagina) ?> – <?= $destaque['titulo'] ?>
         </h1>
       <?php endif; ?>

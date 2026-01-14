@@ -92,6 +92,9 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
                                 <p class="noticias-texto ntdesktop">
                                     <?= mb_strimwidth(strip_tags($slide['texto'], '<em>'), 0, 520, '...') ?>
                                 </p>
+                                <p class="noticias-texto ntmini">
+                                    <?= mb_strimwidth(strip_tags($slide['texto'], '<em>'), 0, 60, '...') ?>
+                                </p>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -168,11 +171,11 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
         <div class="col-12 m-0 p-0 footer-desktop">
           <div id="footerfundo" class="container-fluid p-0">
             <div class="row m-0 p-0 justify-content-center" id="footer-logos">
-              <div class="col-auto"><img src="imagens/footer/altice_empresas.svg" class="footer-logo"></div>
-              <div class="col-auto"><img src="imagens/footer/samsung.svg" class="footer-logo" id="samsung"></div>
-              <div class="col-auto"><img src="imagens/footer/dell.svg" class="footer-logo"></div>
-              <div class="col-auto"><img src="imagens/footer/aruba.svg" class="footer-logo"></div>
-              <div class="col-auto"><img src="imagens/footer/hp.svg" class="footer-logo"></div>
+              <div class="col-auto"><img src="imagens/footer/logo1.png" class="footer-logo"></div>
+              <div class="col-auto"><img src="imagens/footer/logo2.png" class="footer-logo"></div>
+              <div class="col-auto"><img src="imagens/footer/logo3.png" class="footer-logo"></div>
+              <div class="col-auto"><img src="imagens/footer/logo4.png" class="footer-logo"></div>
+              <div class="col-auto"><img src="imagens/footer/logo5.png" class="footer-logo"></div>
             </div>
             <br><br>
             <hr id="footer-linha">
@@ -195,7 +198,7 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
             </div>
             
               <div class="col-auto" id="footer-copyright">
-                Copyright © 2021 Grupo MediaMaster. Todos os direitos reservados.
+                Copyright © 2026 Carlos Castro. Todos os direitos reservados.
               </div>
 
           </div>
@@ -211,11 +214,11 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
               <a href="https://www.facebook.com" target="_blank"><img src="imagens/socials/facebook.svg" class="footer-icon"></a>
             </div>
             <div class="row m-0 p-0 justify-content-center" id="footer-logos">
-              <div class="col-auto"><img src="imagens/footer/altice_empresas.svg" class="footer-logo"></div>
-              <div class="col-auto"><img src="imagens/footer/samsung.svg" class="footer-logo" id="samsung"></div>
-              <div class="col-auto"><img src="imagens/footer/dell.svg" class="footer-logo"></div>
-              <div class="col-auto"><img src="imagens/footer/aruba.svg" class="footer-logo"></div>
-              <div class="col-auto"><img src="imagens/footer/hp.svg" class="footer-logo"></div>
+              <div class="col-auto"><img src="imagens/footer/logo1.png" class="footer-logo"></div>
+              <div class="col-auto"><img src="imagens/footer/logo2.png" class="footer-logo"></div>
+              <div class="col-auto"><img src="imagens/footer/logo3.png" class="footer-logo"></div>
+              <div class="col-auto"><img src="imagens/footer/logo4.png" class="footer-logo"></div>
+              <div class="col-auto"><img src="imagens/footer/logo5.png" class="footer-logo"></div>
             </div>
             <br><br>
             <hr id="footer-linha">
@@ -231,7 +234,7 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
             </div>
             
               <div class="col-auto justify-content-between align-items-center" id="footer-copyright">
-                Copyright © 2021 Grupo MediaMaster. Todos os direitos reservados.
+                Copyright © 2026 Carlos Castro. Todos os direitos reservados.
               </div>
 
           </div>
