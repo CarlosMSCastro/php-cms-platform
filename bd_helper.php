@@ -19,7 +19,7 @@ function select_sql($sql, $parametros = []) {
   $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
   return $resultado;
 }
-
+#teste
 function select_sql_unico($sql, $parametros = []) {
   global $pdo;
   $consulta = $pdo->prepare($sql);
