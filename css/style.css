@@ -525,7 +525,7 @@ footer{
 }
 .card-destaque{
     margin: 0 auto;
-    margin-bottom:40px;
+    margin-bottom:50px;
     color: #4D4D4D !important;
 }
 .card-img-top{
@@ -998,7 +998,7 @@ h5.titulocontactos{
     .card-destaque {
         width: 100% !important;  
         margin: 0 !important;
-        margin-bottom: 20px !important; 
+        margin-bottom: 50px !important; 
     }
     .card-img-top {
         height: 320px !important;
@@ -1121,6 +1121,10 @@ h5.titulocontactos{
     }
     #carouselNoticias .noticias-btn{
         top: 350px;
+    }
+    #footer-social{
+        transform: scale(100%) !important;
+        margin-top: 55px !important;
     }
 }
 @media (max-width:510px){
