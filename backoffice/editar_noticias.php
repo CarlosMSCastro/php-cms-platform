@@ -276,7 +276,7 @@ include 'components/banner_editor.php';
                             $files = scandir($uploadsPath);
                             foreach ($files as $file) {
                                 if (in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
-                                    $caminho = "backoffice/uploads/" . $file;
+                                    $caminho = "uploads/" . $file;
                                     echo '<div class="card shadow-sm imagem-galeria-item" style="width:110px;cursor:pointer;" onclick="selecionarImagemNoticia(\'' . htmlspecialchars($caminho, ENT_QUOTES) . '\', this)">';
                                     echo '<img src="../' . htmlspecialchars($caminho) . '" class="card-img-top" style="height:80px;object-fit:cover;">';
                                     echo '<div class="card-body p-1 text-center">';

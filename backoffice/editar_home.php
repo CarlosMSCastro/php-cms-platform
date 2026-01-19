@@ -41,7 +41,7 @@ if (!empty($_POST)) {
     
     // ADICIONAR nova imagem carousel
     if (isset($_POST['nova_imagem']) && !empty($_POST['nova_imagem'])) {
-        $imagem = "backoffice/uploads/" . basename($_POST['nova_imagem']);
+        $imagem = "uploads/" . basename($_POST['nova_imagem']);
         $data = date('Y-m-d H:i:s');
         idu_sql("INSERT INTO carousel_topo (imagem, ativo, data_insercao) VALUES (?, ?, ?)", [$imagem, 1, $data]);
         $mensagemSucesso = "Imagem adicionada ao Carousel!";
@@ -54,7 +54,7 @@ $carousel = select_sql("SELECT * FROM carousel_topo");
 // ADICIONAR imagem da galeria ao carousel
 if (isset($_POST['add_from_gallery'])) {
     $filename = basename($_POST['add_from_gallery']);
-    $imagem = "backoffice/uploads/" . $filename;
+    $imagem = "uploads/" . $filename;
     $data = date('Y-m-d H:i:s');
     idu_sql("INSERT INTO carousel_topo (imagem, ativo, data_insercao) VALUES (?, ?, ?)", [$imagem, 1, $data]);
     $mensagemSucesso = "Imagem adicionada ao Carousel!";
@@ -239,7 +239,7 @@ if ($mensagemSucesso) {
             <div class="row row-cols-3 row-cols-md-4 row-cols-lg-6 g-2">
               <?php foreach($todasImagens as $img): ?>
                 <?php
-                  $caminhoCompleto = "backoffice/uploads/" . $img;
+                  $caminhoCompleto = "uploads/" . $img;
                   $jaNoCarousel = in_array($caminhoCompleto, $imagensNoCarousel);
                 ?>
                 <div class="col">
