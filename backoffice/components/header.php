@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="../imagens/LogotipoComunicacoes3.png">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.tiny.cloud/1/rs29wma7uac7rjhzhyl9qmqgxo0kg75mtt9yzr22vac8erjl/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
   <script src="js/tinymce_config.js"></script>
