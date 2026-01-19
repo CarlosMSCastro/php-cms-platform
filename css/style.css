@@ -1,3 +1,4 @@
+
 body{
     max-width:1600px;
     margin:0 auto;
@@ -312,6 +313,8 @@ h2 {
     justify-content: center;
     gap: 14px;
     background-color:white;
+    width: auto !important;
+    max-width: 90%;
 }
 #carouselDestaques .carousel-indicators [data-bs-target]:hover {
     opacity: 1 !important;
@@ -484,9 +487,10 @@ footer{
     opacity:1 !important;
 }
 #footer-info {
-    width: 88%;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    margin-left: 100px !important;
+    padding: 0 15px;
 }
 .footer-icon {
     width: 26px;
@@ -779,7 +783,8 @@ h5.titulocontactos{
         margin: auto;
         transform:scale(130%);
         bottom:90px !important;
-        left: -10% !important;
+        left: 0 !important;
+        right: 0 !important;
     }
     #footer-copyright{
         position:relative;
@@ -998,7 +1003,7 @@ h5.titulocontactos{
     .card-destaque {
         width: 100% !important;  
         margin: 0 !important;
-        margin-bottom: 90px !important; 
+        margin-bottom: 0px !important; 
     }
     .card-img-top {
         height: 320px !important;
@@ -1099,7 +1104,10 @@ h5.titulocontactos{
     .footer-logo,
     .footer-consumo,
     .footer-livro{transform:scale(75%);}
-    #footer-certificados{left: -15% !important;}
+    #footer-certificados{
+        left: 0 !important;
+        transform: scale(100%);
+    }
     #footer-logos{gap:20px;}
     #footer-copyright{font-size:16px !important;}
     #titulo-empresa{

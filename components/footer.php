@@ -17,7 +17,7 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
   <!-- Carrousel Destaques-->
   <?php if (!empty($carousel2Items) && ($showCarousel2 ?? true)): ?>
     <div class="container-fluid p-0 m-0"> 
-      <div class="row p-0 my-0 mx-3 justify-content-center align-items-center">
+      <div class="row g-0 p-0 my-0 mx-3 justify-content-center align-items-center">
         <div class="col-12 col-sm-11 col-md-10 text-center fs-5">           
           <h1 class="fs-1 pt-5">Destaques</h1><br>
           <hr class="linha-separadora">
@@ -70,7 +70,7 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
 <!-- Carrousel Ultimos Eventos e Noticias-->  
 <?php if ($showFooterCarousel ?? true): ?>
   <div class="container-fluid px-0 pt-0 m-0">
-    <div class="row m-0 p-0">
+    <div class="row g-0 m-0 p-0">
       <div class="col-12 p-0 m-0">
         <section id="noticias" class="pt-5">
             <h1 class="fs-1 pt-5" style="text-align:center">Últimas Notícias e Eventos</h1><br>
@@ -167,10 +167,10 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
 
   <footer>
     <div class="container-fluid p-0">
-      <div class="row m-0 p-0">
+      <div class="row g-0 m-0 p-0">
         <div class="col-12 m-0 p-0 footer-desktop">
           <div id="footerfundo" class="container-fluid p-0">
-            <div class="row m-0 p-0 justify-content-center" id="footer-logos">
+            <div class="row g-0 m-0 p-0 justify-content-center" id="footer-logos">
               <div class="col-auto"><img src="imagens/footer/logo1.png" class="footer-logo"></div>
               <div class="col-auto"><img src="imagens/footer/logo2.png" class="footer-logo"></div>
               <div class="col-auto"><img src="imagens/footer/logo3.png" class="footer-logo"></div>
@@ -180,7 +180,7 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
             <br><br>
             <hr id="footer-linha">
 
-            <div class="row m-0 p-0 justify-content-between align-items-center" id="footer-info">
+            <div class="row g-0 m-0 p-0 justify-content-between align-items-center" id="footer-info">
 
               <div class="col-auto d-flex align-items-center gap-3" id="footer-social">
                 <a href="contactos.php"><img src="imagens/socials/contactos.svg" class="footer-icon"></a>
@@ -213,7 +213,7 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
               <a href="https://www.instagram.com" target="_blank"><img src="imagens/socials/instagram.svg" class="footer-icon"></a>
               <a href="https://www.facebook.com" target="_blank"><img src="imagens/socials/facebook.svg" class="footer-icon"></a>
             </div>
-            <div class="row m-0 p-0 justify-content-center" id="footer-logos">
+            <div class="row g-0 m-0 p-0 justify-content-center" id="footer-logos">
               <div class="col-auto"><img src="imagens/footer/logo1.png" class="footer-logo"></div>
               <div class="col-auto"><img src="imagens/footer/logo2.png" class="footer-logo"></div>
               <div class="col-auto"><img src="imagens/footer/logo3.png" class="footer-logo"></div>
@@ -224,7 +224,7 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
             <hr id="footer-linha">
             
 
-            <div class="row m-0 p-0 justify-content-between align-items-center" id="footer-info">
+            <div class="row g-0 m-0 p-0 justify-content-between align-items-center" id="footer-info">
 
               <div class="col-auto d-flex align-items-center gap-4" id="footer-certificados">
                 <a href="https://www.livroreclamacoes.pt" target="_blank"><img src="imagens/footer/livrodeReclamacoes.svg" class="footer-livro"></a>
