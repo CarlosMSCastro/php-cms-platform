@@ -9,12 +9,12 @@ $bd = [
 ];
 
 // === ONLINE (InfinityFree) - ===
-// $bd = [
-//   "host" => "sql123.infinityfree.com",        // Do painel InfinityFree
-//   "dbname" => "epiz_XXXXXXXX_comunicacoes",   // Username + _comunicacoes
-//   "user" => "epiz_XXXXXXXX",                  // Username da conta
-//   "pass" => "SENHA_GERADA",                   // Password da BD
-// ];
+//$bd = [
+//  "host" => "sql101.infinityfree.com",
+//  "dbname" => "if0_40936955_comunicacoes_bd",
+//  "user" => "if0_40936955",
+//  "pass" => "M2CH3aj1964",
+//];
 
 // Conexão PDO
 try {
