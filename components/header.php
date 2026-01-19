@@ -132,7 +132,7 @@ if (!empty($tipoPagina) && $tipoPagina === 'home') {
               <div class="carousel-inner">
                 <?php foreach ($slides as $i => $slide): ?>
                   <div class="carousel-item <?php if ($i === 0) echo 'active'; ?>">
-                    <img src="<?= $slide['imagem'] ?>" class="d-block w-100">
+                    <img src="backoffice/<?= $slide['imagem'] ?>" class="d-block w-100">
                   </div>
                 <?php endforeach; ?>
               </div>

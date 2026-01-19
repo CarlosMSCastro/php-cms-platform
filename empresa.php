@@ -16,7 +16,7 @@ $pagina = select_sql("SELECT titulo_h1, texto FROM paginas_empresa WHERE id_navb
           <?= ucfirst($tipoPagina) ?> - <?= $pagina['titulo_h1'] ?>
         </h1>
         <div class="textoempresa">
-          <?= $pagina['texto'] ?>
+          <?= ajustar_imagens_frontend($pagina['texto']) ?>
         </div>      
       </div>
     </div>

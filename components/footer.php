@@ -35,7 +35,7 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
                   <div class="row g-0" >
                     <!-- Imagem -->
                     <div class="col-6">
-                      <img src="<?= $item['imagem'] ?>" class="destaques-img w-100">
+                      <img src="backoffice/<?= $item['imagem'] ?>" class="destaques-img w-100">
                     </div>
                     <!-- Conteúdo -->
                     <div class="col-6 destaques-conteudo">
@@ -80,7 +80,7 @@ if(!isset($showFooterNavbar)) $showFooterNavbar = true;
                 <div class="carousel-inner">
                     <?php foreach ($footerSlides as $i => $slide): ?>
                         <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>" style="transition: transform 0.6s ease-in-out !important;">
-                            <img src="<?= $slide['imagem'] ?>" class="noticias-img w-100">
+                            <img src="backoffice/<?= $slide['imagem'] ?>" class="noticias-img w-100">
                             
                             <div class="noticias-conteudo">
                                 <h3 class="noticias-titulo"><?= $slide['titulo'] ?></h3>

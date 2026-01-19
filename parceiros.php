@@ -12,7 +12,7 @@ $parceiros = select_sql("SELECT nome, imagem, tamanho FROM parceiros WHERE ativo
     <h1 class="pb-4">Os Nossos Parceiros</h1>
     <?php foreach ($parceiros as $parceiro): ?>
       <div class="<?= $parceiro['tamanho'] ? 'col-12' : 'col-12 col-md-6' ?> d-flex justify-content-center mb-5">
-        <img src="<?= htmlspecialchars($parceiro['imagem']) ?>" 
+        <img src="backoffice/<?= htmlspecialchars($parceiro['imagem']) ?>" 
              alt="<?= htmlspecialchars($parceiro['nome']) ?>" 
              class="img-fluid parceiros">
       </div>

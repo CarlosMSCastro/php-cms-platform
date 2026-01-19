@@ -25,7 +25,7 @@ $totalPages = ceil($totalItems / $perPage);
         <?php foreach ($pageItems as $d): ?>
             <div class="col-12 col-md-6">
                 <div class="card card-destaque border-0 rounded-0 pb-5">
-                    <img src="<?= $d['imagem'] ?>" class="card-img-top rounded-0">
+                    <img src="backoffice/<?= $d['imagem'] ?>" class="card-img-top rounded-0">
                     <div class="card-body corpo-texto">
                         <h5 class="card-title"><?= $d['titulo'] ?></h5>
                         <h6 class="card-title"><?= $d['data'] ?></h6>

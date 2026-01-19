@@ -19,7 +19,7 @@ $destaque = select_sql("SELECT titulo, imagem, texto FROM carousel2 WHERE id = $
       <?php endif; ?>
         <div class="row mt-3">
           <div class="col-12 textomobile">
-              <?= $destaque['texto'] ?>
+              <?= ajustar_imagens_frontend($destaque['texto']) ?>
           </div>
         </div>
         <div class="row mt-4 mx-0">

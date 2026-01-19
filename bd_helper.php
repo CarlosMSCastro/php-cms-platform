@@ -50,4 +50,8 @@ function idu_sql($sql, $parametros = []) {
   $consulta->execute($parametros);
   return $pdo->lastInsertId();
 }
+
+function ajustar_imagens_frontend($html) {
+    return str_replace('src="uploads/', 'src="backoffice/uploads/', $html);
+}
 ?>
