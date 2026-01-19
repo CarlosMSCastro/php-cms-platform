@@ -142,7 +142,7 @@ include 'components/banner_editor.php';
                       </div>
                     </div>
                     <p class="text-muted mb-3 small">
-                      <?= htmlspecialchars(mb_strimwidth(strip_tags($noticia['texto']), 0, 200, '...')) ?>
+                      <?= mb_strimwidth(strip_tags($noticia['texto']), 0, 200, '...') ?>
                     </p>
 
                     <div class="d-flex gap-2 flex-wrap">

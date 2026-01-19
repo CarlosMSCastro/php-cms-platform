@@ -1,5 +1,5 @@
 <?php
-echo "codemaster → " . password_hash("codemaster", PASSWORD_DEFAULT) . "<br>";
+echo "demo → " . password_hash("demo", PASSWORD_DEFAULT) . "<br>";
 
 
 ?>

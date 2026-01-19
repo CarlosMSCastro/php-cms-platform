@@ -136,7 +136,7 @@ include 'components/banner_editor.php';
                   <div class="flex-grow-1">
                     <h5 class="fw-bold mb-1"><?= htmlspecialchars($paginaItem['titulo_h1']) ?></h5>
                     <p class="text-muted mb-2 small">
-                      <?= htmlspecialchars(mb_strimwidth(strip_tags($paginaItem['texto']), 0, 200, '...')) ?>
+                      <?= mb_strimwidth(strip_tags($paginaItem['texto']), 0, 200, '...') ?>
                     </p>
                     <div class="d-flex gap-2 flex-wrap mt-2">
                       <button type="button" class="btn btn-dark btn-sm" onclick="abrirModalEdicao(<?= htmlspecialchars(json_encode($paginaItem), ENT_QUOTES) ?>)">

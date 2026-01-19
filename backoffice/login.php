@@ -46,12 +46,15 @@ if(!empty($_POST)){
             <div class="card-body p-5">
               <form method="POST">
                 <h2 class="text-center mb-4 fw-bold">Login</h2>
-                
-                <?php if(!empty($erro)): ?>
-                  <div class="alert alert-danger fw-bold">
-                    <?php echo $erro; ?>
-                  </div>
-                <?php endif; ?>
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                  <strong>Demo Access:</strong> <code>demo</code> / <code>demo</code>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+              <?php if(!empty($erro)): ?>
+                <div class="alert alert-danger fw-bold">
+                  <?php echo $erro; ?>
+                </div>
+              <?php endif; ?>
 
                 <div class="mb-3">
                   <label class="form-label fw-bold">Username</label>
