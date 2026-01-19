@@ -4,7 +4,7 @@
 header('Content-Type: application/json');
 
 $uploadDir = __DIR__ . '/uploads/';
-$uploadUrl = '/comunicacoes/backoffice/uploads/';  
+$uploadUrl = 'uploads/';  
 
 if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0755, true);
