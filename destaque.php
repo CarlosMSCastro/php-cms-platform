@@ -18,10 +18,8 @@ $destaque = select_sql("SELECT titulo, imagem, texto FROM carousel2 WHERE id = $
         </h1>
       <?php endif; ?>
         <div class="row mt-3">
-          <div class="col-12">
-            <p class="textomobile">
+          <div class="col-12 textomobile">
               <?= $destaque['texto'] ?>
-            </p>
           </div>
         </div>
         <div class="row mt-4 mx-0">

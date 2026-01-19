@@ -434,7 +434,8 @@ h2 {
     align-items: center;
 }
 .textomobile img {
-    max-width: 100% !important;  
+    max-width: 100% !important;
+    height: auto !important; 
 }
 
 .navbarfundo-link {
