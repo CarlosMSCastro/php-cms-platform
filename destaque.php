@@ -26,7 +26,7 @@ $destaque = select_sql("SELECT titulo, imagem, texto FROM carousel2 WHERE id = $
         </div>
         <div class="row mt-4 mx-0">
           <div class="col-12 text-center text-md-end px-0">            
-            <a href="destaques.php" class="destaques-btn d-inline-block">Voltar para destaques</a>
+            <a href="destaques.php" class="voltarbtn d-inline-block">Voltar para destaques</a>
           </div>
         </div>
       </div>

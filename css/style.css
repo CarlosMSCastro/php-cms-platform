@@ -257,6 +257,23 @@ h2 {
     background-color: #4D4D4D;
     color: #FFFFFF;
 }
+
+.voltarbtn{
+    background-color: #006E94;
+    color: #FFFFFF !important;
+    font-family: 'Proxima Nova ExCn Sb';
+    font-size: 17px !important;
+    text-decoration: none;
+    transition: 0.2s ease;
+    width: 140px;
+    text-align:center;
+    padding: 2px !important;
+}
+
+.voltarbtn:hover{
+    background-color: #4D4D4D;
+    color: #FFFFFF;
+}
 #carouselDestaques {margin-top: 0;}
 #carouselDestaques .carousel-indicators [data-bs-target] {
     background-size: contain;
@@ -1107,11 +1124,23 @@ h5.titulocontactos{
     }
 }
 @media (max-width:510px){
-        #carouselNoticias .carousel-indicators {
-            gap: 0 !important;
-            position: absolute !important;
-            left: 0px !important
-        }
+    #carouselNoticias .carousel-indicators {
+        gap: 0 !important;
+        position: absolute !important;
+        left: 0px !important
+    }
+    .card-destaque {
+        width: 100% !important;  
+        margin: 0 !important;
+        margin-bottom: 50px !important; 
+    }
+    #footer-social{
+        transform: scale(100%) !important;
+        margin-top: 55px !important;
+    }
+    #footer-logos{
+        gap:3px !important;
+    }
 }
 
 
