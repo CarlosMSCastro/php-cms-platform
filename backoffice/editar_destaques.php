@@ -110,7 +110,7 @@ include 'components/banner_editor.php';
                 <div class="d-flex gap-3 align-items-start">                  
                   <div class="flex-shrink-0">
                     <?php if(!empty($destaque['imagem'])): ?>
-                      <img src="../<?= htmlspecialchars($destaque['imagem']) ?>" class="rounded" style="width: 120px; height: 100px; object-fit: cover;">
+                      <img src="<?= htmlspecialchars($destaque['imagem']) ?>" class="rounded" style="width: 120px; height: 100px; object-fit: cover;">
                     <?php else: ?>
                       <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center" style="width: 120px; height: 100px;">
                         <small>Sem imagem</small>
@@ -268,7 +268,7 @@ include 'components/banner_editor.php';
                                 if (in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
                                     $caminho = "uploads/" . $file;
                                     echo '<div class="card shadow-sm imagem-galeria-item" style="width:110px;cursor:pointer;" onclick="selecionarImagemDestaque(\'' . htmlspecialchars($caminho, ENT_QUOTES) . '\', this)">';
-                                    echo '<img src="../' . htmlspecialchars($caminho) . '" class="card-img-top" style="height:80px;object-fit:cover;">';
+                                    echo '<img src="' . htmlspecialchars($caminho) . '" class="card-img-top" style="height:80px;object-fit:cover;">';
                                     echo '<div class="card-body p-1 text-center">';
                                     echo '<small class="text-muted d-block text-truncate" style="font-size:0.65rem;">' . htmlspecialchars($file) . '</small>';
                                     echo '</div>';
@@ -372,7 +372,7 @@ function atualizarPreview(url) {
   const container = document.getElementById('preview-container');
   if (url) {
     container.innerHTML = `
-      <img src="../${url}" class="img-fluid rounded shadow p-0">
+      <img src="${url}" class="img-fluid rounded shadow p-0">
     `;
   } else {
     container.innerHTML = '<div class="text-muted">Nenhuma imagem selecionada</div>';

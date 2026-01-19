@@ -92,7 +92,7 @@ if ($mensagem_sucesso) {
                       
                       <!-- Imagem -->
                       <div class="flex-shrink-0">
-                        <img src="../<?= htmlspecialchars($parceiro['imagem']) ?>" alt="<?= htmlspecialchars($parceiro['nome']) ?>"class="rounded" style="width: 120px; height: 80px; object-fit: contain; background: #f8f9fa;">
+                        <img src="<?= htmlspecialchars($parceiro['imagem']) ?>" alt="<?= htmlspecialchars($parceiro['nome']) ?>"class="rounded" style="width: 120px; height: 80px; object-fit: contain; background: #f8f9fa;">
                       </div>
 
                       <!-- Info -->
@@ -205,7 +205,7 @@ if ($mensagem_sucesso) {
                           echo '<span class="position-absolute top-0 end-0 badge bg-secondary m-1" style="font-size:0.6rem;">Inativo</span>';
                         }
                         
-                        echo '<img src="../' . htmlspecialchars($p['imagem']) . '" class="card-img-top p-2" style="height:80px;object-fit:contain;background:#f8f9fa;">';
+                        echo '<img src="' . htmlspecialchars($p['imagem']) . '" class="card-img-top p-2" style="height:80px;object-fit:contain;background:#f8f9fa;">';
                         echo '<div class="card-body p-1 text-center">';
                         echo '<small class="text-muted d-block text-truncate" style="font-size:0.65rem;">'. htmlspecialchars($p['nome']) .'</small>';
                         echo '</div></div>';
@@ -236,7 +236,7 @@ if ($mensagem_sucesso) {
 
                             $caminho = "backoffice/uploads/$file";
                             echo '<div class="card shadow-sm imagem-galeria-item" style="width:110px;cursor:pointer;" onclick="selecionarImagemParceiro(\'' . htmlspecialchars($caminho, ENT_QUOTES) . '\', this)">';
-                            echo '<img src="../' . htmlspecialchars($caminho) . '" class="card-img-top p-2" style="height:80px;object-fit:contain;background:#f8f9fa;">';
+                            echo '<img src="' . htmlspecialchars($caminho) . '" class="card-img-top p-2" style="height:80px;object-fit:contain;background:#f8f9fa;">';
                             echo '<div class="card-body p-1 text-center">';
                             echo '<small class="text-muted d-block text-truncate" style="font-size:0.65rem;">'. htmlspecialchars($file) .'</small>';
                             echo '</div></div>';
