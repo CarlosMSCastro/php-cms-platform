@@ -1,0 +1,48 @@
+# PHP CMS Platform
+
+Demo funcional de um CMS genérico de notícias e destaques de uma empresa. Este projeto serve como portfólio para demonstrar competências em desenvolvimento web com PHP, MySQL, Bootstrap e JavaScript.
+
+---
+
+## 🔗 Site Live
+[Ver site online](#) <!-- Substituir # pelo link real -->
+
+---
+
+## 🛠 Tecnologias Utilizadas
+- **PHP** – Backend dinâmico  
+- **MySQL** – Base de dados, ligação via phpMyAdmin  
+- **Bootstrap** – Layout responsivo  
+- **JavaScript** – Funcionalidades interativas  
+- **TinyMCE** – Editor de conteúdo rico  
+- **HTML / CSS** – Estrutura e estilo do frontend  
+
+---
+
+## ⚙ Funcionalidades Principais
+- Backoffice com login demo (`demo/demo`)  
+- CRUD de notícias e fotos  
+- Editor TinyMCE para criar e editar conteúdo  
+- Proteções implementadas: hash de passwords, prevenção contra SQL injection  
+- Frontend dinâmico baseado em PHP + Bootstrap + JS  
+
+---
+
+## 📸 Screenshots / GIFs
+
+**Frontend do site:**  
+![Frontend](imgsreadme/frontend1.png)
+![Frontend](imgsreadme/frontend2.png)
+![Frontend](imgsreadme/frontend3.png)
+
+**Backoffice – login:**  
+![Backoffice](imgsreadme/gif1.gif)
+![Backoffice](imgsreadme/gif2.gif)
+
+
+---
+
+## 📝 Observações
+- Projeto funcional, destinado a portfólio / demo.  
+- Credenciais demo estão visíveis na página de login.  
+- Ideal para mostrar arquitetura, boas práticas e segurança mínima em projetos web.
