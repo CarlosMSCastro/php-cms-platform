@@ -1,11 +1,12 @@
 # PHP CMS Platform
 
-Demo funcional de um CMS genérico de notícias e destaques de uma empresa. Este projeto serve como portfólio para demonstrar competências em desenvolvimento web com PHP, MySQL, Bootstrap e JavaScript.
+Demo funcional de um CMS genérico de notícias e destaques de uma empresa. Serve como portfólio para demonstrar competências em PHP, MySQL, Bootstrap e JavaScript.
 
 ---
 
 ## 🔗 Site Live
-[Ver site online](#) <!-- Substituir # pelo link real -->
+[Ver site online](https://ccdev.free.nf)
+[Ver backoffice online](https://ccdev.free.nf/backoffice)
 
 ---
 
@@ -30,15 +31,22 @@ Demo funcional de um CMS genérico de notícias e destaques de uma empresa. Este
 
 ## 📸 Screenshots / GIFs
 
-**Frontend do site:**  
-![Frontend](imgsreadme/frontend1.png)
-![Frontend](imgsreadme/frontend2.png)
+<details>
+<summary>Frontend do site (clicar para expandir)</summary>
+
+![Frontend](imgsreadme/frontend1.png)  
+![Frontend](imgsreadme/frontend2.png)  
 ![Frontend](imgsreadme/frontend3.png)
 
-**Backoffice – login:**  
-![Backoffice](imgsreadme/gif1.gif)
+</details>
+
+<details>
+<summary>Backoffice – login / editor (clicar para expandir)</summary>
+
+![Backoffice](imgsreadme/gif1.gif)  
 ![Backoffice](imgsreadme/gif2.gif)
 
+</details>
 
 ---
 
