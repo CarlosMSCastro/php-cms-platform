@@ -193,7 +193,7 @@ if ($mensagemSucesso) {
                   <div class="card-body p-2">
                     <div class="d-flex gap-2 align-items-center">
                       
-                      <img src="/comunicacoes/<?= htmlspecialchars($item['imagem']) ?>" 
+                      <img src="<?= htmlspecialchars($item['imagem']) ?>" 
                            class="rounded" 
                            style="width:300px;height:100px;object-fit:cover;">
                       
@@ -244,7 +244,7 @@ if ($mensagemSucesso) {
                 ?>
                 <div class="col">
                   <div class="card shadow-sm h-100 <?= $jaNoCarousel ? 'opacity-50' : '' ?>">
-                    <img src="/comunicacoes/backoffice/uploads/<?= htmlspecialchars($img) ?>" 
+                    <img src="uploads/<?= htmlspecialchars($img) ?>" 
                          class="card-img-top" 
                          style="height:90px;object-fit:cover;">
                     <div class="card-body p-1 text-center">
