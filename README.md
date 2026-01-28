@@ -33,8 +33,6 @@ Demo funcional de um CMS genérico de notícias e destaques de uma empresa. Serv
 
 **Frontend do site:**
 ![Frontend](imgsreadme/frontend1.png)  
-![Frontend](imgsreadme/frontend2.png)  
-![Frontend](imgsreadme/frontend3.png)
 
 **Backoffice – login / editor:**
 ![Backoffice](imgsreadme/gif1.gif)  
